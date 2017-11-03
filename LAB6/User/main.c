@@ -26,12 +26,9 @@ Before writing the function, please make sure in stm32f10x_conf.h, the following
 
 
 /* Private function prototypes -----------------------------------------------*/
-void HMC_Init(void);
 void Delayus(int duration);
 void LCD_Print(int Angle);
-int HMC_Read(void);
-void DisplaySingleDigit(int digit);
-void LEDCONFIG(void);
+void GPIOConf(void);
 void digitalWrite(int i, int H_L);
 void turnOff(void);
 
@@ -40,35 +37,11 @@ int ANGLE_LAST_DIGIT;
 int ANGLE;
 int main(void)
 {
-
-  LCD_INIT(); 						// LCD_INIT
-  I2C_GY80_Init();        // I2C Init
-  HMC_Init();             // HMC Init
-	LEDCONFIG();
+	LCD_INIT(); 						// LCD_INIT 
 
 
  
   while (1) {
-	/* Please add code below to complete the LAB6 */
-  /* You might want to create your own functions */	
-		//TASK 1
-		ANGLE = HMC_Read();
-		//LCD_Print(ANGLE);
-		LCD_DrawString(10, 10, "The Angle measured: ");
-		first = (ANGLE/100)%10+48;
-		first2 = (ANGLE/10)%10+48;
-		first3 = ANGLE%10+48;
-		LCD_DrawChar(50, 20, first);
-		LCD_DrawChar(60, 20, first2);
-		LCD_DrawChar(70, 20, first3);
-		
-		//Delayus(67000);
-		
-		//TASK 2
-		ANGLE_LAST_DIGIT = (ANGLE % 100) %10;
-		turnOff();
-		DisplaySingleDigit(ANGLE_LAST_DIGIT);
-		Delayus(67000);
 			
   }
 }
@@ -85,18 +58,12 @@ void Delayus(int duration)
 			__asm("nop");
 		}
 }
-void LCD_Print(int Angle){
-	char Angle_Char[3] = { 0 };
-		sprintf(Angle_Char, "0%d", Angle);
-		LCD_DrawString(10, 10, "The Angle measured: ");
-		LCD_DrawString(10, 50, Angle_Char);
-}
 
 
 
-void LEDCONFIG(void)
+void GPIOConf(void)
 {		
-	/* Task 1: Configure the 7seg as output(A2,A3,A4,A5,A6,A7) */
+	/* Task 1: Configure the folowing pin as output(A2,A3,A4,A5,A6,A7) */
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
