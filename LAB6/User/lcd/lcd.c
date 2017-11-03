@@ -888,9 +888,6 @@ void DrawArrow( int x, int y)
 	
 {
 
-	void LCD_DrawArrow( int x, int y)
-	
-{
 
 	LCD_OpenWindow ( x, y, 10, 5 );
 	LCD_FillColor(100, 0x0000);
@@ -906,7 +903,7 @@ void DrawArrow( int x, int y)
 	LCD_FillColor(18, 0x0000);
 	LCD_OpenWindow ( x+8, y+6, 1, 1);
 	LCD_FillColor(1, 0x0000);
-}
+
 }
 
 //Task 2
