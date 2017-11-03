@@ -75,12 +75,6 @@ int main(void)
 
 
 
-void HMC_Init(void)
-{
-  I2C_ByteWrite(HMC5883L_Addr, 0x00, 0x70);
-  I2C_ByteWrite(HMC5883L_Addr, 0x01, 0xA0);
-  Delayus(10000);
-}
 
 void Delayus(int duration)
 {
@@ -97,77 +91,8 @@ void LCD_Print(int Angle){
 		LCD_DrawString(10, 10, "The Angle measured: ");
 		LCD_DrawString(10, 50, Angle_Char);
 }
-int HMC_Read(void){
-	int Angle;
-	int16_t X_MSB, X_LSB, Y_MSB, Y_LSB;
-	int16_t X,Y;
-	//int x,y;
-	double heading;
-		Angle = 0;
-	heading = 0;
-	I2C_ByteWrite(HMC5883L_Addr, 0x02, 0x01);
-	Delayus(60000);
-	X_MSB = I2C_ByteRead(HMC5883L_Addr, 0x03);
-	X_LSB = I2C_ByteRead(HMC5883L_Addr, 0x04);
-	X = X_MSB<<8 | X_LSB;
-	Y_MSB = I2C_ByteRead(HMC5883L_Addr, 0x07);
-	Y_LSB = I2C_ByteRead(HMC5883L_Addr, 0x08);
-	Y = Y_MSB<<8 | Y_LSB;
-	//x = (int)(X<<2)/4;
-	//y = (int)(Y<<2)/4;
-	heading = atan2(Y	, X);
-	//heading = atan2(y	, x);
-	if(heading < 0) {
-		heading += 2 * M_PI;
-	}
-	Angle = (int)(heading * 180/M_PI);
-	//Angle = (Angle - 180)*2; 
-	return Angle;
-}
-
-void DisplaySingleDigit(int digit)
-{
-	 //Display Single Digit on 7 segment display
-	 //Conditions for displaying segment a
-	 if(digit!=1 && digit != 4)
-	 digitalWrite(0,1);
-	 
-	 //Conditions for displaying segment b
-	 if(digit != 5 && digit != 6)
-	 digitalWrite(1,1);
-	 
-	 //Conditions for displaying segment c
-	 if(digit !=2)
-	 digitalWrite(2,1);
-	 
-	 //Conditions for displaying segment d
-	 if(digit != 1 && digit !=4 && digit !=7)
-	 digitalWrite(3,1);
-	 
-	 //Conditions for displaying segment e 
-	 if(digit == 2 || digit ==6 || digit == 8 || digit==0)
-	 digitalWrite(4,1);
-	 
-	 //Conditions for displaying segment f
-	 if(digit != 1 && digit !=2 && digit!=3 && digit !=7)
-	 digitalWrite(5,1);
-	  //Conditions for displaying segment g
-	 if (digit!=0 && digit!=1 && digit !=7)
-	 digitalWrite(6,1);
- }
 
 
- void turnOff(void)
-{
-	  //Clear 7 segment display
-	  digitalWrite(0,0);
-	  digitalWrite(1,0);
-	  digitalWrite(2,0);
-	  digitalWrite(3,0);
-	  digitalWrite(4,0);
-	  digitalWrite(5,0);
-	  digitalWrite(6,0);
-}
 
 void LEDCONFIG(void)
 {		
