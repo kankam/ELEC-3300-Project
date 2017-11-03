@@ -553,13 +553,22 @@ void LCD_DrawString ( uint16_t usC, uint16_t usP, const char * pStr )
 	}
 	
 }
+void DrawArrow( int x, int y)
+	
+{
 
+	LCD_OpenWindow ( x, y, 5, 3 );
+	LCD_OpenWindow ( x+5, y+1, 1, 1);
+	LCD_OpenWindow ( x+3, y+3, 1, 1);
+	LCD_OpenWindow ( x+3, y-1, 1, 1);
+
+}
 
 //Task 2
 void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
 {	
 	/*
-	 *  Task 2 – Implement the LCD_DrawDot to turn on a particular dot on the LCD.
+	 *  Task 2 Â– Implement the LCD_DrawDot to turn on a particular dot on the LCD.
 	 */
 
 		
@@ -569,7 +578,7 @@ void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)
 void LCD_DrawCircle ( uint16_t usC, uint16_t usP, uint16_t R, uint16_t usColor)
 {	
 	/*
-	 *  Task 3 – Implement LCD_DrawCircle by using LCD_DrawDot
+	 *  Task 3 Â– Implement LCD_DrawCircle by using LCD_DrawDot
 	 */
 	
 }
