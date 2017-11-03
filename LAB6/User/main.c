@@ -35,11 +35,11 @@ void motor(int dir, int speed, int step, int motor_no);
 int main(void)
 {
 	LCD_INIT(); 						// LCD_INIT 
-
+	GPIOConf();
 
  
   while (1) {
-			motor(1,1,200,0);
+			motor(0,0,100,0);
   }
 }
 
@@ -73,31 +73,31 @@ void GPIOConf(void)
 void digitalWrite(int i, int H_L){
 	switch(i){
 		case 0 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_2;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_2;}
 			else{GPIOA->BSRR=GPIO_Pin_2;}
 		break;
 		case 1 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_3;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_3;}
 			else{GPIOA->BSRR=GPIO_Pin_3;}
 		break;			
 		case 2 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_4;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_4;}
 			else{GPIOA->BSRR=GPIO_Pin_4;}
 		break;
 		case 3 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_5;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_5;}
 			else{GPIOA->BSRR=GPIO_Pin_5;}
 		break;
 		case 4 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_6;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_6;}
 			else{GPIOA->BSRR=GPIO_Pin_6;}
 		break;
 		case 5 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_7;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_7;}
 			else{GPIOA->BSRR=GPIO_Pin_7;}
 		break;
 		case 6 : 
-			if (H_L == 1){ GPIOA->BRR=GPIO_Pin_8;}
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_8;}
 			else{GPIOA->BSRR=GPIO_Pin_8;}
 		break;
 		}			
@@ -215,9 +215,9 @@ void Step(int motor_no){
 	switch(motor_no){
 		case 0 :
 			digitalWrite(1,1);
-			Delayus(2);
+			Delayus(20);
 			digitalWrite(1,0);
-			Delayus(2);
+			Delayus(20);
 		break;
 		
 	}
