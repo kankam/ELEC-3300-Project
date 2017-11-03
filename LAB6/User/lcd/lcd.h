@@ -99,7 +99,7 @@ void                     LCD_DrawChar             	 ( uint16_t usC, uint16_t usP
 void                     LCD_DrawString           	 ( uint16_t usC, uint16_t usP, const char * pStr);
 void 										 LCD_DrawCircle							 ( uint16_t usC, uint16_t usP, uint16_t R, uint16_t usColor);
 
-
+void                     LCD_DrawArrow                ( uint16_t x, uint16_t y)
 
 #endif 
 
