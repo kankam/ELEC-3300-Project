@@ -561,15 +561,15 @@ void DrawArrow( int x, int y)
 	LCD_OpenWindow ( x+5, y+1, 1, 1);
 	LCD_OpenWindow ( x+3, y+3, 1, 1);
 	LCD_OpenWindow ( x+3, y-1, 1, 1);
-
+        LCD_FillColor(1, 0x0000);
 }
 
 //Task 2
 void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
 {	
-	/*
-	 *  Task 2  Implement the LCD_DrawDot to turn on a particular dot on the LCD.
-	 */
+	
+	LCD_OpenWindow ( usCOLUMN, usPAGE, 1, 1 );
+	LCD_FillColor(1, usColor);
 
 		
 }
