@@ -26,24 +26,83 @@ void Delayus(int duration);
 void LCD_Print(int Angle);
 void GPIOConf(void);
 void digitalWrite(int i, int H_L);
+int digitalRead(int i);
 void turnOff(void);
 void Step(int motor_mo);
-char first, first2, first3;
+void buzzer(int times);
+
+
 int ANGLE_LAST_DIGIT;
 int ANGLE;
+int motor0Max, motor1Max, motor2Max;
+int currentMenu;
 void motor(int dir, int speed, int step, int motor_no);
+int cursor = 0;
+
+///*
 int main(void)
 {
 	LCD_INIT(); 						// LCD_INIT 
 	GPIOConf();
+	buzzer(2);
+	//initialize
+	//LCD Print initializeing
+	LCD_DrawString(10, 10, "Initializeing ... ...");
+	//Slew the slider to min
 
- 
+	while(digitalRead(0) == 0){
+		motor(0,0,1,0);
+	}		
+	//Slew the slider to max
+	motor0Max = 0;
+	while(digitalRead(1) == 0){
+		motor(1,0,1,0);
+		motor0Max ++;
+	}
+	//Change menu to 0
+	currentMenu = 0;
   while (1) {
-			motor(0,0,100,0);
+		if(currentMenu == 0){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(2) == 1){
+				if(cursor < 3){
+					cursor ++;}
+				else{cursor = 0;}
+			}
+			if(digitalRead(3) == 1){
+				if(cursor > 0){
+					cursor --;}
+				else{cursor = 3;}
+			}
+			if(cursor == 0 && digitalRead(1) == 1){
+				currentMenu = 1;
+			}
+			if(cursor == 1 && digitalRead(1) == 1){
+				currentMenu = 2;
+			}
+			if(cursor == 2 && digitalRead(1) == 1){
+				currentMenu = 3;
+			}
+			if(cursor == 3 && digitalRead(1) == 1){
+				currentMenu = 4;
+			}
+		}
+			//motor(0,0,100,0);
   }
 }
+//*/
 
-
+/*
+int main(void){
+	LCD_INIT();
+	GPIOConf();
+	buzzer(2);
+	while (1) {
+	motor(0,1,1,0);
+  }
+}
+/*/
 
 
 void Delayus(int duration)
@@ -60,7 +119,7 @@ void Delayus(int duration)
 
 void GPIOConf(void)
 {		
-	/* Task 1: Configure the folowing pin as output(A2,A3,A4,A5,A6,A7) */
+	/* Configure the folowing pin as output(A2,A3,A4,A5,A6,A7) */
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
@@ -68,6 +127,11 @@ void GPIOConf(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 	GPIOA->BSRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8;
+	//Configure the folowing pin as intput(B 0 1 2 3 4 5 6 7 8 )
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
 void digitalWrite(int i, int H_L){
@@ -101,6 +165,21 @@ void digitalWrite(int i, int H_L){
 			else{GPIOA->BSRR=GPIO_Pin_8;}
 		break;
 		}			
+}
+
+int digitalRead(int i){
+	int r;
+	switch(i){
+		case 0 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)){r = 1;}
+			else{r = 0;}
+		break;
+		case 1 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)){r = 1;}
+			else{r = 0;}
+		break;			
+	}
+	return r;
 }
 void MCO_CONFIG (void)
 {		
@@ -202,7 +281,7 @@ void motor(int dir, int speed, int step, int motor_no){
 		break;		
 	}
 	if(dir == 1){
-		digitalWrite(2,1);
+		digitalWrite(2,1);//A4
 	}
 	else{digitalWrite(2,0);}
 	for(i = 0; i < step; i++){
@@ -214,7 +293,7 @@ void motor(int dir, int speed, int step, int motor_no){
 void Step(int motor_no){
 	switch(motor_no){
 		case 0 :
-			digitalWrite(1,1);
+			digitalWrite(1,1); //A3
 			Delayus(20);
 			digitalWrite(1,0);
 			Delayus(20);
@@ -222,3 +301,13 @@ void Step(int motor_no){
 		
 	}
 }
+void buzzer(int times){
+	int i =0;
+	while(i < times){
+		Delayus(100000);
+		digitalWrite(0,1);//A2
+		Delayus(100000);
+		digitalWrite(0,0);
+		i++;
+	}
+}	

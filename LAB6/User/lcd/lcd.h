@@ -101,5 +101,7 @@ void 										 LCD_DrawCircle							 ( uint16_t usC, uint16_t usP, uint16_t R, 
 void 									   LCD_DrawArrow							 (int x, int y);
 void                     DrawMenu                     (int menu);
 
+extern char END_X1,END_X2,END_X3,END_X4;
+
 #endif 
 

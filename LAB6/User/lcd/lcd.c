@@ -883,9 +883,9 @@ LCD_DrawString(10, 10, "Stop");
 		break;
 		
 	}
+}
 	
-void DrawArrow( int x, int y)
-	
+void LCD_DrawArrow( int x, int y)	
 {
 
 
@@ -906,22 +906,10 @@ void DrawArrow( int x, int y)
 
 }
 
-//Task 2
 void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
-{	
-	
+{		
 	LCD_OpenWindow ( usCOLUMN, usPAGE, 1, 1 );
-	LCD_FillColor(1, usColor);
-
-		
+	LCD_FillColor(1, usColor);		
 }
 
-//Task 3
-void LCD_DrawCircle ( uint16_t usC, uint16_t usP, uint16_t R, uint16_t usColor)
-{	
-	/*
-	 *  Task 3  Implement LCD_DrawCircle by using LCD_DrawDot
-	 */
-	
-}
 
