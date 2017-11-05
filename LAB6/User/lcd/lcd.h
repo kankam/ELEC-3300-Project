@@ -98,9 +98,10 @@ void                     LCD_DrawLine                ( uint16_t usC1, uint16_t u
 void                     LCD_DrawChar             	 ( uint16_t usC, uint16_t usP, const char cChar);
 void                     LCD_DrawString           	 ( uint16_t usC, uint16_t usP, const char * pStr);
 void 										 LCD_DrawCircle							 ( uint16_t usC, uint16_t usP, uint16_t R, uint16_t usColor);
-void 									   LCD_DrawArrow							 (int x, int y);
-void                     DrawMenu                     (int menu);
+void 									   LCD_DrawArrow_raw							 (int x, int y);
 
+void                     DrawMenu                     (int menu);
+void LCD_DrawArrow(int line);
 extern char END_X1,END_X2,END_X3,END_X4;
 
 #endif 

@@ -77,7 +77,34 @@ int main(void)
 			}
 			if(cursor == 0 && digitalRead(1) == 1){
 				currentMenu = 1;
+				cursor = 1;
+			} 	
+			if(cursor == 1 && digitalRead(1) == 1){
+				currentMenu = 2;
 			}
+			if(cursor == 2 && digitalRead(1) == 1){
+				currentMenu = 3;
+			}
+			if(cursor == 3 && digitalRead(1) == 1){
+				currentMenu = 4;
+			}
+		}
+		if(currentMenu == 1){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(2) == 1){
+				if(cursor < 3){
+					cursor ++;}
+				else{cursor = 0;}
+			}
+			if(digitalRead(3) == 1){
+				if(cursor > 0){
+					cursor --;}
+				else{cursor = 3;}
+			}
+			if(cursor == 0 && digitalRead(1) == 1){
+				currentMenu = 1;
+			} 	
 			if(cursor == 1 && digitalRead(1) == 1){
 				currentMenu = 2;
 			}

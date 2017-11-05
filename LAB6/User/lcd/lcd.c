@@ -885,10 +885,40 @@ LCD_DrawString(10, 10, "Stop");
 	}
 }
 	
-void LCD_DrawArrow( int x, int y)	
+void LCD_DrawArrow(int line)	
 {
+	switch(line){
+		case 0 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 1 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 2 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 3 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 4 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 5 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+		case 6 :
+			LCD_DrawArrow_raw(10,10);
+		break;
+	}
+}
 
+void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
+{		
+	LCD_OpenWindow ( usCOLUMN, usPAGE, 1, 1 );
+	LCD_FillColor(1, usColor);		
+}
 
+void LCD_DrawArrow_raw(int x, int y){
 	LCD_OpenWindow ( x, y, 10, 5 );
 	LCD_FillColor(100, 0x0000);
 	LCD_OpenWindow ( x+10, y+1, 1, 3);
@@ -903,13 +933,5 @@ void LCD_DrawArrow( int x, int y)
 	LCD_FillColor(18, 0x0000);
 	LCD_OpenWindow ( x+8, y+6, 1, 1);
 	LCD_FillColor(1, 0x0000);
-
 }
-
-void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
-{		
-	LCD_OpenWindow ( usCOLUMN, usPAGE, 1, 1 );
-	LCD_FillColor(1, usColor);		
-}
-
 
