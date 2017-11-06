@@ -125,10 +125,13 @@ int main(void){
 	GPIOConf();
 	buzzer(2);
 	while (1) {
-	motor(0,1,1,0);
+	motor(1,0,200,0);
+		Delayus(1000000);
+	motor(0,0,200,0);
+		Delayus(1000000);
   }
 }
-/*/
+*/
 
 
 void Delayus(int duration)
@@ -320,10 +323,10 @@ void motor(int dir, int speed, int step, int motor_no){
 	int delay_t, i;
 	switch(speed){
 		case 0 :
-			delay_t = 0;
+			delay_t = 5000;
 		break;
 		case 1:
-			delay_t = 1000;
+			delay_t = 10000;
 		break;		
 	}
 	if(dir == 1){
