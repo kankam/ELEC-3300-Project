@@ -13,4 +13,5 @@
 ..\..\output\main.o: ..\..\User\lcd\lcd.h
 ..\..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_tim.h

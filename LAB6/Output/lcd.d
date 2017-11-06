@@ -12,3 +12,4 @@
 ..\..\output\lcd.o: ..\..\Libraries\FWlib\inc\stm32f10x_rcc.h
 ..\..\output\lcd.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\lcd.o: ..\..\User\lcd\ascii.h
+..\..\output\lcd.o: ..\..\User\main.h

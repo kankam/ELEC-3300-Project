@@ -1,5 +1,6 @@
 #include "lcd.h"
 #include "ascii.h"	
+#include "main.h"
 
 char END_X1,END_X2,END_X3,END_X4;
 char END_Y1,END_Y2,END_Y3,END_Y4;
@@ -11,9 +12,6 @@ char fames1,fames2,fames3,fames4;
 char interval1,interval2,interval3,interval4;
 char Frames_taken1,Frames_taken2,Frames_taken3,Frames_taken4;
 char Hour1,Hour2,Minute1,Minute2,Second1,Second2;
-int END_X,END_Y,END_Z;
-int STR_X,STR_Y,STR_Z;
-int fames, interval;
 int Frames_taken;
 long Minute,Second;
 

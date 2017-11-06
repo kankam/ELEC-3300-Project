@@ -2,6 +2,7 @@
 #include "lcd.h"
 #include "math.h"
 #include "stdio.h"
+#include "stdlib.h"
 #include "stm32f10x_tim.h" 
 
 /*------------------------------------------------------------
@@ -30,20 +31,37 @@ int digitalRead(int i);
 void turnOff(void);
 void Step(int motor_mo);
 void buzzer(int times);
-
+void motor(int dir, int speed, int step, int motor_no);
+void shutterNow(void);
+void SysTick_Handler(void);
+long millis(void);
 
 int ANGLE_LAST_DIGIT;
 int ANGLE;
 int motor0Max, motor1Max, motor2Max;
 int currentMenu;
-void motor(int dir, int speed, int step, int motor_no);
 int cursor = 0;
-
+int TimeLapseFlag =0;
+int END_X, END_Y, END_Z;
+int STR_X, STR_Y, STR_Z;
+int fames, interval, shutterT;
+int dir_X, dir_Y, dir_Z;
+int totalTime;
+int totalX, totalY, totalZ;
+int STP_X, STP_Y, STP_Z;
+long lastPhotoTime;
+//void SysTick_Handler(void);
+volatile long counter;
 ///*
 int main(void)
 {
 	LCD_INIT(); 						// LCD_INIT 
 	GPIOConf();
+	// Initialise SysTick to tick at 1ms by initialising it with SystemCoreClock (Hz)/1000
+
+	counter = 0;
+	SysTick_Config(SystemCoreClock / 1000);
+	
 	buzzer(2);
 	//initialize
 	//LCD Print initializeing
@@ -215,8 +233,6 @@ int main(void)
 					cursor --;}
 				else{cursor = 5;}
 			}
-				
-			if(millis()
 			if(cursor == 1 && digitalRead(2) == 1){
 				fames--;
 			}
@@ -239,20 +255,20 @@ int main(void)
 				currentMenu = 8;
 				cursor = 3;
 				totalTime = fames * interval;
-				totalX=abs(END_X - STR_X) -1;
+				totalX = abs(END_X - STR_X);
 				STP_X = totalX/fames;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
-				totalY=END_Y - STR_Y;
-				STP_Y = abs(totalY/fames);
+				totalY = abs(END_Y - STR_Y);
+				STP_Y = totalY/fames;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
-				totalZ=END_Z - STR_Z;
-				STP_Z = abs(totalZ/fames;)
+				totalZ = abs(END_Z - STR_Z);
+				STP_Z = totalZ/fames;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
@@ -288,17 +304,18 @@ int main(void)
 				TimeLapseFlag = 0;
 			}
 			
-			if(((mills() - lastPhotoTime)/1000000)>(shutter + interval)){
+			if(((millis() - lastPhotoTime)/1000000)>(shutterT + interval)){
 				shutterNow();
 				lastPhotoTime=0;
 			}
-			if(((mills() - lastPhotoTime)/1000000)>shutter){
+			if(((millis() - lastPhotoTime)/1000000)>shutterT){
 				shutterNow();
 				motor(dir_X,0,STP_X,0);
 				motor(dir_Y,0,STP_Y,1);
 				motor(dir_Z,0,STP_Z,2);
 			}
 		}
+	}
 }
 //*/
 
@@ -344,6 +361,14 @@ void GPIOConf(void)
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
+}
+/*
+void SysTick_Handler(void) {
+  counter++;
+}
+*/
+long millis(void) {
+  return counter;
 }
 
 void digitalWrite(int i, int H_L){
@@ -543,3 +568,7 @@ void buzzer(int times){
 		i++;
 	}
 }	
+void shutterNow(void){
+	digitalWrite(6, 1);
+	digitalWrite(6, 0);
+}
