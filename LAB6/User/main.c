@@ -7,8 +7,8 @@
 /*------------------------------------------------------------
 LAB 6: I2C APPLICATION ON GY80 
 
-Task 1 – Display Compass Result on LCD
-Task 2 – Build your 7-segment display circuit and display the last digit on the 7-segment display
+Task 1 â€“ Display Compass Result on LCD
+Task 2 â€“ Build your 7-segment display circuit and display the last digit on the 7-segment display
 
 Before writing the function, please make sure in stm32f10x_conf.h, the following #include lines are uncommented
 			"stm32f10x_fsmc.h" 
@@ -78,29 +78,33 @@ int main(void)
 			if(cursor == 0 && digitalRead(4) == 1){
 				currentMenu = 1;
 				cursor = 1;
+				TimeLapseFlag =1;
 			} 	
 			if(cursor == 1 && digitalRead(4) == 1){
 				currentMenu = 2;
+				cursor = 1;
 			}
 			if(cursor == 2 && digitalRead(4) == 1){
 				currentMenu = 3;
+				cursor = 1;
 			}
 			if(cursor == 3 && digitalRead(4) == 1){
 				currentMenu = 4;
+				cursor = 1;
 			}
 		}
 		if(currentMenu == 1){
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
 			if(digitalRead(0) == 1){
-				if(cursor < 2){
+				if(cursor < 3){
 					cursor ++;}
 				else{cursor = 1;}
 			}
 			if(digitalRead(1) == 1){
 				if(cursor > 1){
 					cursor --;}
-				else{cursor = 2;}
+				else{cursor = 3;}
 			}	
 			if(cursor == 1 && digitalRead(4) == 1){
 				currentMenu = 5;
@@ -108,14 +112,193 @@ int main(void)
 			}
 			if(cursor == 2 && digitalRead(4) == 1){
 				currentMenu = 9;
+				cursor = 1;
 			}
 			if(cursor == 3 && digitalRead(4) == 1){
 				currentMenu = 0;
 				cursor = 0;
+				TimeLapseFlag = 0;
 			}
 		}
-			//motor(0,0,100,0);
-  }
+		if(currentMenu == 5){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(0) == 1){
+				if(cursor < 5){
+					cursor ++;}
+				else{cursor = 1;}
+			}
+			if(digitalRead(1) == 1){
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 5;}
+			}	
+			if(cursor == 1 && digitalRead(2) == 1){
+				END_X--;
+			}
+			if(cursor == 1 && digitalRead(3) == 1){
+				END_X++;
+			}
+			if(cursor == 2 && digitalRead(2) == 1){
+				END_Y--;
+			}
+			if(cursor == 2 && digitalRead(3) == 1){
+				END_Y++;
+			}
+			if(cursor == 3 && digitalRead(2) == 1){
+				END_Z--;
+			}
+			if(cursor == 3 && digitalRead(3) == 1){
+				END_Z++;
+			}
+			if(cursor == 4 && digitalRead(4) == 1){
+				currentMenu = 7;
+				cursor = 1;
+			}
+			if(cursor == 5 && digitalRead(4) == 1){
+				currentMenu = 1;
+				cursor = 1;
+			}
+		
+		}
+		if(currentMenu == 6){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(0) == 1){
+				if(cursor < 5){
+					cursor ++;}
+				else{cursor = 1;}
+			}
+			if(digitalRead(1) == 1){
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 5;}
+			}	
+			if(cursor == 1 && digitalRead(2) == 1){
+				STR_X--;
+			}
+			if(cursor == 1 && digitalRead(3) == 1){
+				STR_X++;
+			}
+			if(cursor == 2 && digitalRead(2) == 1){
+				STR_Y--;
+			}
+			if(cursor == 2 && digitalRead(3) == 1){
+				STR_Y++;
+			}
+			if(cursor == 3 && digitalRead(2) == 1){
+				STR_Z--;
+			}
+			if(cursor == 3 && digitalRead(3) == 1){
+				STR_Z++;
+			}
+			if(cursor == 4 && digitalRead(4) == 1 && TimeLapseFlag == 1){
+				currentMenu = 7;
+				cursor = 1;
+			}
+			if(cursor == 5 && digitalRead(4) == 1){
+				currentMenu = 5;
+				cursor = 1;
+			}
+		
+		}
+		if(currentMenu == 7){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(0) == 1){
+				if(cursor < 5){
+					cursor ++;}
+				else{cursor = 1;}
+			}
+			if(digitalRead(1) == 1){
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 5;}
+			}
+				
+			if(millis()
+			if(cursor == 1 && digitalRead(2) == 1){
+				fames--;
+			}
+			if(cursor == 1 && digitalRead(3) == 1){
+				fames++;
+			}
+			if(cursor == 2 && digitalRead(2) == 1){
+				interval--;
+			}
+			if(cursor == 2 && digitalRead(3) == 1){
+				interval++;
+			}
+			if(cursor == 3 && digitalRead(2) == 1){
+				shutterT --;
+			}
+			if(cursor == 3 && digitalRead(3) == 1){
+				shutterT ++;
+			}
+			if(cursor == 4 && digitalRead(4) == 1){
+				currentMenu = 8;
+				cursor = 3;
+				totalTime = fames * interval;
+				totalX=abs(END_X - STR_X) -1;
+				STP_X = totalX/fames;
+				if(END_X > STR_X){
+					dir_X = 1;
+				}
+				else{dir_X = 0;}
+				totalY=END_Y - STR_Y;
+				STP_Y = abs(totalY/fames);
+				if(END_Y > STR_Y){
+					dir_Y = 1;
+				}
+				else{dir_Y = 0;}
+				totalZ=END_Z - STR_Z;
+				STP_Z = abs(totalZ/fames;)
+				if(END_Z > STR_Z){
+					dir_Z = 1;
+				}
+				else{dir_Z = 0;}
+				lastPhotoTime=0;
+			}
+			if(cursor == 5 && digitalRead(4) == 1){
+				currentMenu = 6;
+				cursor = 1;
+			}
+		
+		}
+		if(currentMenu == 8){
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(0) == 1){
+				if(cursor < 4){
+					cursor ++;}
+				else{cursor = 3;}
+			}
+			if(digitalRead(1) == 1){
+				if(cursor > 3){
+					cursor --;}
+				else{cursor = 4;}
+			}	
+			if(cursor == 3 && digitalRead(4) == 1 ){
+				currentMenu = 88;
+				cursor = 3;
+			}
+			if(cursor == 4 && digitalRead(4) == 1){
+				currentMenu = 0;
+				cursor = 0;
+				TimeLapseFlag = 0;
+			}
+			
+			if(((mills() - lastPhotoTime)/1000000)>(shutter + interval)){
+				shutterNow();
+				lastPhotoTime=0;
+			}
+			if(((mills() - lastPhotoTime)/1000000)>shutter){
+				shutterNow();
+				motor(dir_X,0,STP_X,0);
+				motor(dir_Y,0,STP_Y,1);
+				motor(dir_Z,0,STP_Z,2);
+			}
+		}
 }
 //*/
 
@@ -233,7 +416,7 @@ int digitalRead(int i){
 void MCO_CONFIG (void)
 {		
 	/*
-	 *  Task 1 – Output SYSCLK via MCO.
+	 *  Task 1 â€“ Output SYSCLK via MCO.
 	 */
   
 	GPIO_InitTypeDef GPIO_InitStructure;
