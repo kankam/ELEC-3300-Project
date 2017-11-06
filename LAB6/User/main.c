@@ -65,54 +65,53 @@ int main(void)
 		if(currentMenu == 0){
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(2) == 1){
+			if(digitalRead(0) == 1){
 				if(cursor < 3){
 					cursor ++;}
 				else{cursor = 0;}
 			}
-			if(digitalRead(3) == 1){
+			if(digitalRead(1) == 1){
 				if(cursor > 0){
 					cursor --;}
 				else{cursor = 3;}
 			}
-			if(cursor == 0 && digitalRead(1) == 1){
+			if(cursor == 0 && digitalRead(4) == 1){
 				currentMenu = 1;
 				cursor = 1;
 			} 	
-			if(cursor == 1 && digitalRead(1) == 1){
+			if(cursor == 1 && digitalRead(4) == 1){
 				currentMenu = 2;
 			}
-			if(cursor == 2 && digitalRead(1) == 1){
+			if(cursor == 2 && digitalRead(4) == 1){
 				currentMenu = 3;
 			}
-			if(cursor == 3 && digitalRead(1) == 1){
+			if(cursor == 3 && digitalRead(4) == 1){
 				currentMenu = 4;
 			}
 		}
 		if(currentMenu == 1){
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(2) == 1){
-				if(cursor < 3){
+			if(digitalRead(0) == 1){
+				if(cursor < 2){
 					cursor ++;}
-				else{cursor = 0;}
+				else{cursor = 1;}
 			}
-			if(digitalRead(3) == 1){
-				if(cursor > 0){
+			if(digitalRead(1) == 1){
+				if(cursor > 1){
 					cursor --;}
-				else{cursor = 3;}
+				else{cursor = 2;}
+			}	
+			if(cursor == 1 && digitalRead(4) == 1){
+				currentMenu = 5;
+				cursor = 1;
 			}
-			if(cursor == 0 && digitalRead(1) == 1){
-				currentMenu = 1;
-			} 	
-			if(cursor == 1 && digitalRead(1) == 1){
-				currentMenu = 2;
+			if(cursor == 2 && digitalRead(4) == 1){
+				currentMenu = 9;
 			}
-			if(cursor == 2 && digitalRead(1) == 1){
-				currentMenu = 3;
-			}
-			if(cursor == 3 && digitalRead(1) == 1){
-				currentMenu = 4;
+			if(cursor == 3 && digitalRead(4) == 1){
+				currentMenu = 0;
+				cursor = 0;
 			}
 		}
 			//motor(0,0,100,0);
@@ -203,6 +202,26 @@ int digitalRead(int i){
 		break;
 		case 1 :
 			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)){r = 1;}
+			else{r = 0;}
+		break;
+		case 2 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_2)){r = 1;}
+			else{r = 0;}
+		break;
+		case 3 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_3)){r = 1;}
+			else{r = 0;}
+		break;
+		case 4 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_4)){r = 1;}
+			else{r = 0;}
+		break;
+		case 5 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_5)){r = 1;}
+			else{r = 0;}
+		break;
+		case 6 :
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)){r = 1;}
 			else{r = 0;}
 		break;			
 	}
