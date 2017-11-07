@@ -15,3 +15,8 @@
 ..\..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_tim.h
+..\..\output\main.o: ..\..\User\millis.h
+..\..\output\main.o: ..\..\User\millis.c
+..\..\output\main.o: ..\..\User\delay.h
+..\..\output\main.o: ..\..\User\sys.h
+..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_rtc.h

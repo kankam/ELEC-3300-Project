@@ -4,7 +4,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stm32f10x_tim.h" 
-
+#include "millis.h"
+#include "millis.c"
 /*------------------------------------------------------------
 LAB 6: I2C APPLICATION ON GY80 
 
@@ -24,17 +25,13 @@ GPIO_InitTypeDef GPIO_InitStructure;
 TIM_TimeBaseInitTypeDef	TIM_TimeBaseStructure;
 TIM_OCInitTypeDef TIM_OCInitStructure;
 void Delayus(int duration);
-void LCD_Print(int Angle);
 void GPIOConf(void);
 void digitalWrite(int i, int H_L);
 int digitalRead(int i);
-void turnOff(void);
 void Step(int motor_mo);
 void buzzer(int times);
 void motor(int dir, int speed, int step, int motor_no);
 void shutterNow(void);
-void SysTick_Handler(void);
-long millis(void);
 
 int ANGLE_LAST_DIGIT;
 int ANGLE;
@@ -52,22 +49,23 @@ int STP_X, STP_Y, STP_Z;
 long lastPhotoTime;
 //void SysTick_Handler(void);
 volatile long counter;
+long lastClear = 0;
+long nowTime;
+
 ///*
 int main(void)
 {
 	LCD_INIT(); 						// LCD_INIT 
 	GPIOConf();
-	// Initialise SysTick to tick at 1ms by initialising it with SystemCoreClock (Hz)/1000
+	MILLIS_Init();
 
-	counter = 0;
-	SysTick_Config(SystemCoreClock / 1000);
 	
 	buzzer(2);
 	//initialize
 	//LCD Print initializeing
 	LCD_DrawString(10, 10, "Initializeing ... ...");
+	/*
 	//Slew the slider to min
-
 	while(digitalRead(0) == 0){
 		motor(0,0,1,0);
 	}		
@@ -77,21 +75,33 @@ int main(void)
 		motor(1,0,1,0);
 		motor0Max ++;
 	}
+	*/
+	
 	//Change menu to 0
+	LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+	lastClear = millis();
 	currentMenu = 0;
+	cursor =0;
   while (1) {
 		if(currentMenu == 0){
+			nowTime = millis();
+			if(nowTime - lastClear > 10000){
+				LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+				lastClear = millis();}
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
 			if(digitalRead(0) == 1){
 				if(cursor < 3){
-					cursor ++;}
+					cursor ++;
+				}
 				else{cursor = 0;}
+				Delayus(500000);
 			}
 			if(digitalRead(1) == 1){
 				if(cursor > 0){
 					cursor --;}
 				else{cursor = 3;}
+				Delayus(500000);
 			}
 			if(cursor == 0 && digitalRead(4) == 1){
 				currentMenu = 1;
@@ -355,20 +365,12 @@ void GPIOConf(void)
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	GPIOA->BSRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8;
-	//Configure the folowing pin as intput(B 0 1 2 3 4 5 6 7 8 )
+	GPIOA->BSRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+	//Configure the folowing pin as intput(B 0 1 5 6 7 8 9)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
-}
-/*
-void SysTick_Handler(void) {
-  counter++;
-}
-*/
-long millis(void) {
-  return counter;
 }
 
 void digitalWrite(int i, int H_L){
@@ -408,32 +410,32 @@ int digitalRead(int i){
 	int r;
 	switch(i){
 		case 0 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_0)){r = 0;}
+			else{r = 1;}
 		break;
 		case 1 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)){r = 0;}
+			else{r = 1;}
 		break;
 		case 2 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_2)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_5)){r = 0;}
+			else{r = 1;}
 		break;
 		case 3 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_3)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)){r = 0;}
+			else{r = 1;}
 		break;
 		case 4 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_4)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)){r = 0;}
+			else{r = 1;}
 		break;
 		case 5 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_5)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_8)){r = 0;}
+			else{r = 1;}
 		break;
 		case 6 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)){r = 1;}
-			else{r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_9)){r = 0;}
+			else{r = 1;}
 		break;			
 	}
 	return r;

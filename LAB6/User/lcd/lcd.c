@@ -571,10 +571,10 @@ void DrawMenu(int menu)
 	
 		switch(menu){
 		case 0 : 
-			LCD_DrawString(10, 10, "Time Lapse Mode");
-			LCD_DrawString(10, 10, "Video Mode");
-			LCD_DrawString(10, 10, "Manual Mode");
-			LCD_DrawString(10, 10, "Settings");
+			LCD_DrawString(20, 10, "Time Lapse Mode");
+			LCD_DrawString(20, 30, "Video Mode");
+			LCD_DrawString(20, 50, "Manual Mode");
+			LCD_DrawString(20, 70, "Settings");
 		break;
 		case 1 :
 			LCD_DrawString(10, 10, "Time Lapse Mode");
@@ -887,31 +887,32 @@ void LCD_DrawArrow(int line)
 {
 	switch(line){
 		case 0 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,15);
 		break;
 		case 1 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,35);
 		break;
 		case 2 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,55);
 		break;
 		case 3 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,75);
 		break;
 		case 4 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,95);
 		break;
 		case 5 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,115);
 		break;
 		case 6 :
-			LCD_DrawArrow_raw(10,10);
+			LCD_DrawArrow_raw(5,125);
 		break;
 	}
 }
 
 void LCD_DrawDot(uint16_t usCOLUMN, uint16_t usPAGE, uint16_t usColor)	
 {		
+	
 	LCD_OpenWindow ( usCOLUMN, usPAGE, 1, 1 );
 	LCD_FillColor(1, usColor);		
 }
