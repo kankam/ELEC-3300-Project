@@ -10,6 +10,7 @@ char STR_Y1,STR_Y2,STR_Y3,STR_Y4;
 char STR_Z1,STR_Z2,STR_Z3,STR_Z4;
 char fames1,fames2,fames3,fames4;
 char interval1,interval2,interval3,interval4;
+char shutterT1, shutterT2, shutterT3, shutterT4;
 char Frames_taken1,Frames_taken2,Frames_taken3,Frames_taken4;
 char Hour1,Hour2,Minute1,Minute2,Second1,Second2;
 long Minute,Second;
@@ -660,29 +661,43 @@ void DrawMenu(int menu)
 			LCD_DrawString(20, 130, "Return");
 			break;
 		case 7 : 
-		LCD_DrawString(10, 10, "Please enter the following parameters");
-		LCD_DrawString(10, 10, "Total Fames:");
+		LCD_DrawString(10, 10, "Please enter following");
+		LCD_DrawString(10, 30, "parameters");
+		LCD_DrawString(20, 50, "Fames:    <<<");
 		fames1 = (fames/1000)%10+48;
 		fames2 = (fames/100)%10+48;
 		fames3 = (fames/10)%10+48;
 		fames4 = fames%10+48;
-		LCD_DrawChar(50, 20, fames1);
-		LCD_DrawChar(60, 20, fames2);
-		LCD_DrawChar(70, 20, fames3);
-		LCD_DrawChar(80, 20, fames4);
+		LCD_DrawChar(125, 50, fames1);
+		LCD_DrawChar(135, 50, fames2);
+		LCD_DrawChar(145, 50, fames3);
+		LCD_DrawChar(155, 50, fames4);
+		LCD_DrawString(165, 50, ">>>");
 		
-		LCD_DrawString(10, 10, "Interval:");
+		LCD_DrawString(20, 70, "Interval: <<<");
 		interval1 = (interval/1000)%10+48;
 		interval2 = (interval/100)%10+48;
 		interval3 = (interval/10)%10+48;
 		interval4 = interval%10+48;
-		LCD_DrawChar(50, 20, interval1);
-		LCD_DrawChar(60, 20, interval2);
-		LCD_DrawChar(70, 20, interval3);
-		LCD_DrawChar(80, 20, interval4);
+		LCD_DrawChar(125, 70, interval1);
+		LCD_DrawChar(135, 70, interval2);
+		LCD_DrawChar(145, 70, interval3);
+		LCD_DrawChar(155, 70, interval4);
+		LCD_DrawString(165, 70, ">>>");
 		
-		LCD_DrawString(10, 10, "Set");
-		LCD_DrawString(10, 10, "Return");	
+		LCD_DrawString(20, 90, "Shutter:  <<<");
+		shutterT1 = (shutterT/1000)%10+48;
+		shutterT2 = (shutterT/100)%10+48;
+		shutterT3 = (shutterT/10)%10+48;
+		shutterT4 = shutterT%10+48;
+		LCD_DrawChar(125, 90, shutterT1);
+		LCD_DrawChar(135, 90, shutterT2);
+		LCD_DrawChar(145, 90, shutterT3);
+		LCD_DrawChar(155, 90, shutterT4);
+		LCD_DrawString(165, 90, ">>>");
+		
+		LCD_DrawString(20, 110, "Set");
+		LCD_DrawString(20, 130, "Return");	
 		break;
 		
 		case 8 : 
