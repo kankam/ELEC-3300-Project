@@ -12,7 +12,6 @@ char fames1,fames2,fames3,fames4;
 char interval1,interval2,interval3,interval4;
 char Frames_taken1,Frames_taken2,Frames_taken3,Frames_taken4;
 char Hour1,Hour2,Minute1,Minute2,Second1,Second2;
-int Frames_taken;
 long Minute,Second;
 
 static void                   LCD_GPIO_Config         ( void );
@@ -578,80 +577,88 @@ void DrawMenu(int menu)
 		break;
 		case 1 :
 			LCD_DrawString(10, 10, "Time Lapse Mode");
-			LCD_DrawString(10, 10, "Interactive Mode");
-			LCD_DrawString(10, 10, "Input Parameters Manually");		
-			LCD_DrawString(10, 10, "Return");
+			LCD_DrawString(20, 30, "Interactive Mode");
+			LCD_DrawString(20, 50, "Input Parameters Manually");		
+			LCD_DrawString(20, 70, "Return");
 		break;
 		case 5 : 
-		LCD_DrawString(10, 10, "Please slew the camera to the END position");
-		LCD_DrawString(10, 10, "Slide:");
-		END_X1 = (END_X/1000)%10+48;
-		END_X2 = (END_X/100)%10+48;
-		END_X3 = (END_X/10)%10+48;
-		END_X4 = END_X%10+48;
-		LCD_DrawChar(50, 20, END_X1);
-		LCD_DrawChar(60, 20, END_X2);
-		LCD_DrawChar(70, 20, END_X3);
-		LCD_DrawChar(80, 20, END_X4);
-		
-		LCD_DrawString(10, 10, "Pan:");
-		END_Y1 = (END_Y/1000)%10+48;
-		END_Y2 = (END_Y/100)%10+48;
-		END_Y3 = (END_Y/10)%10+48;
-		END_Y4 = END_Y%10+48;
-		LCD_DrawChar(50, 20, END_Y1);
-		LCD_DrawChar(60, 20, END_Y2);
-		LCD_DrawChar(70, 20, END_Y3);
-		LCD_DrawChar(80, 20, END_Y4);
-		
-		LCD_DrawString(10, 10, "Tilt:");
-		END_Z1 = (END_Z/1000)%10+48;
-		END_Z2 = (END_Z/100)%10+48;
-		END_Z3 = (END_Z/10)%10+48;
-		END_Z4 = END_Z%10+48;
-		LCD_DrawChar(50, 20, END_Z1);
-		LCD_DrawChar(60, 20, END_Z2);
-		LCD_DrawChar(70, 20, END_Z3);
-		LCD_DrawChar(80, 20, END_Z4);
-		
-		LCD_DrawString(10, 10, "Set");
-		LCD_DrawString(10, 10, "Return");
+			LCD_DrawString(10, 10, "Please slew the camera to");
+			LCD_DrawString(10, 30, "the END position");
+			LCD_DrawString(20, 50, "Slide: <<<");
+			END_X1 = (END_X/1000)%10+48;
+			END_X2 = (END_X/100)%10+48;
+			END_X3 = (END_X/10)%10+48;
+			END_X4 = END_X%10+48;
+			LCD_DrawChar(100, 50, END_X1);
+			LCD_DrawChar(110, 50, END_X2);
+			LCD_DrawChar(120, 50, END_X3);
+			LCD_DrawChar(130, 50, END_X4);
+			LCD_DrawString(140, 50, ">>>");
+			
+			LCD_DrawString(20, 70, "Pan:   <<<");
+			END_Y1 = (END_Y/1000)%10+48;
+			END_Y2 = (END_Y/100)%10+48;
+			END_Y3 = (END_Y/10)%10+48;
+			END_Y4 = END_Y%10+48;
+			LCD_DrawChar(100, 70, END_Y1);
+			LCD_DrawChar(110, 70, END_Y2);
+			LCD_DrawChar(120, 70, END_Y3);
+			LCD_DrawChar(130, 70, END_Y4);
+			LCD_DrawString(140, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Tilt:  <<<");
+			END_Z1 = (END_Z/1000)%10+48;
+			END_Z2 = (END_Z/100)%10+48;
+			END_Z3 = (END_Z/10)%10+48;
+			END_Z4 = END_Z%10+48;
+			LCD_DrawChar(100, 90, END_Z1);
+			LCD_DrawChar(110, 90, END_Z2);
+			LCD_DrawChar(120, 90, END_Z3);
+			LCD_DrawChar(130, 90, END_Z4);
+			LCD_DrawString(140, 90, ">>>");
+			
+			LCD_DrawString(20, 110, "Set");
+			LCD_DrawString(20, 130, "Return");
 		break;
 		case 6 : 
-			LCD_DrawString(10, 10, "Please slew the camera to the START position ");
-		LCD_DrawString(10, 10, "Slide:");
-		STR_X1 = (STR_X/1000)%10+48;
-		STR_X2 = (STR_X/100)%10+48;
-		STR_X3 = (STR_X/10)%10+48;
-		STR_X4 = STR_X%10+48;
-		LCD_DrawChar(50, 20, STR_X1);
-		LCD_DrawChar(60, 20, STR_X2);
-		LCD_DrawChar(70, 20, STR_X3);
-		LCD_DrawChar(80, 20, STR_X4);
-		
-		LCD_DrawString(10, 10, "Pan:");
-		STR_Y1 = (STR_Y/1000)%10+48;
-		STR_Y2 = (STR_Y/100)%10+48;
-		STR_Y3 = (STR_Y/10)%10+48;
-		STR_Y4 = STR_Y%10+48;
-		LCD_DrawChar(50, 20, STR_Y1);
-		LCD_DrawChar(60, 20, STR_Y2);
-		LCD_DrawChar(70, 20, STR_Y3);
-		LCD_DrawChar(80, 20, STR_Y4);
-		
-		LCD_DrawString(10, 10, "Tilt:");
-		STR_Z1 = (STR_Z/1000)%10+48;
-		STR_Z2 = (STR_Z/100)%10+48;
-		STR_Z3 = (STR_Z/10)%10+48;
-		STR_Z4 = STR_Z%10+48;
-		LCD_DrawChar(50, 20, STR_Z1);
-		LCD_DrawChar(60, 20, STR_Z2);
-		LCD_DrawChar(70, 20, STR_Z3);
-		LCD_DrawChar(80, 20, STR_Z4);
-		
-		LCD_DrawString(10, 10, "Set");
-		LCD_DrawString(10, 10, "Return");
-		break;
+			LCD_DrawString(10, 10, "Please slew the camera to");
+			LCD_DrawString(10, 30,  "the START position");
+			LCD_DrawString(20, 50, "Slide: <<<");
+			STR_X1 = (STR_X/1000)%10+48;
+			STR_X2 = (STR_X/100)%10+48;
+			STR_X3 = (STR_X/10)%10+48;
+			STR_X4 = STR_X%10+48;
+			LCD_DrawChar(100, 50, STR_X1);
+			LCD_DrawChar(110, 50, STR_X2);
+			LCD_DrawChar(120, 50, STR_X3);
+			LCD_DrawChar(130, 50, STR_X4);
+			LCD_DrawString(140, 50, ">>>");
+			
+			LCD_DrawString(20, 70, "Pan:   <<<");
+			STR_Y1 = (STR_Y/1000)%10+48;
+			STR_Y2 = (STR_Y/100)%10+48;
+			STR_Y3 = (STR_Y/10)%10+48;
+			STR_Y4 = STR_Y%10+48;
+			LCD_DrawChar(100, 70, STR_Y1);
+			LCD_DrawChar(110, 70, STR_Y2);
+			LCD_DrawChar(120, 70, STR_Y3);
+			LCD_DrawChar(130, 70, STR_Y4);
+			LCD_DrawString(140, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Tilt:  <<<");
+			STR_Z1 = (STR_Z/1000)%10+48;
+			STR_Z2 = (STR_Z/100)%10+48;
+			STR_Z3 = (STR_Z/10)%10+48;
+			STR_Z4 = STR_Z%10+48;
+			LCD_DrawChar(100, 90, STR_Z1);
+			LCD_DrawChar(110, 90, STR_Z2);
+			LCD_DrawChar(120, 90, STR_Z3);
+			LCD_DrawChar(130, 90, STR_Z4);
+			LCD_DrawString(140, 90, ">>>");
+			
+			LCD_DrawString(20, 110, "Set");
+			LCD_DrawString(20, 130, "Return");
+			break;
 		case 7 : 
 		LCD_DrawString(10, 10, "Please enter the following parameters");
 		LCD_DrawString(10, 10, "Total Fames:");
@@ -905,7 +912,13 @@ void LCD_DrawArrow(int line)
 			LCD_DrawArrow_raw(5,115);
 		break;
 		case 6 :
-			LCD_DrawArrow_raw(5,125);
+			LCD_DrawArrow_raw(5,135);
+		break;
+		case 7 :
+			LCD_DrawArrow_raw(5,155);
+		break;
+		case 8 :
+			LCD_DrawArrow_raw(5,175);
 		break;
 	}
 }

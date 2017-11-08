@@ -102,7 +102,6 @@ void 									   LCD_DrawArrow_raw							 (int x, int y);
 
 void                     DrawMenu                     (int menu);
 void LCD_DrawArrow(int line);
-extern char END_X1,END_X2,END_X3,END_X4;
 
 #endif 
 

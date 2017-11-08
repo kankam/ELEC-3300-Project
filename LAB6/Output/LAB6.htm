@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\..\Output\LAB6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\LAB6.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Tue Nov 07 23:33:42 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Wed Nov 08 19:11:10 2017
 <BR><P>
 <H3>Maximum Stack Usage =        112 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -98,7 +98,7 @@ Global Symbols
 <P><STRONG><a name="[48]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
-<P><STRONG><a name="[7f]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+<P><STRONG><a name="[80]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
 
 <P><STRONG><a name="[49]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
 <BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
@@ -108,15 +108,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
 </UL>
 
-<P><STRONG><a name="[80]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+<P><STRONG><a name="[81]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
 
-<P><STRONG><a name="[81]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+<P><STRONG><a name="[82]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
 
-<P><STRONG><a name="[82]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+<P><STRONG><a name="[83]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
 
-<P><STRONG><a name="[83]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+<P><STRONG><a name="[84]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
 
-<P><STRONG><a name="[84]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+<P><STRONG><a name="[85]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
 <P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
@@ -305,7 +305,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[85]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+<P><STRONG><a name="[86]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.BusFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
@@ -313,189 +313,199 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[64]"></a>Delay</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, lcd.o(i.Delay))
+<P><STRONG><a name="[67]"></a>Delay</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, lcd.o(i.Delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
+<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
 </UL>
 
-<P><STRONG><a name="[78]"></a>Delayus</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, main.o(i.Delayus))
-<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
+<P><STRONG><a name="[4c]"></a>DelayAndAbuzz</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, main.o(i.DelayAndAbuzz))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = DelayAndAbuzz &rArr; buzzer
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[4e]"></a>Delayus</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, main.o(i.Delayus))
+<BR><BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayAndAbuzz
 </UL>
 
-<P><STRONG><a name="[4c]"></a>DrawMenu</STRONG> (Thumb, 5290 bytes, Stack size 8 bytes, lcd.o(i.DrawMenu))
+<P><STRONG><a name="[4f]"></a>DrawMenu</STRONG> (Thumb, 5354 bytes, Stack size 8 bytes, lcd.o(i.DrawMenu))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = DrawMenu &rArr; LCD_DrawString &rArr; LCD_DrawChar &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[5f]"></a>FSMC_NORSRAMCmd</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
+<P><STRONG><a name="[62]"></a>FSMC_NORSRAMCmd</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
 </UL>
 
-<P><STRONG><a name="[5e]"></a>FSMC_NORSRAMInit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMInit))
-<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
+<P><STRONG><a name="[61]"></a>FSMC_NORSRAMInit</STRONG> (Thumb, 230 bytes, Stack size 0 bytes, stm32f10x_fsmc.o(i.FSMC_NORSRAMInit))
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
 </UL>
 
-<P><STRONG><a name="[4f]"></a>GPIOConf</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, main.o(i.GPIOConf))
+<P><STRONG><a name="[52]"></a>GPIOConf</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, main.o(i.GPIOConf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = GPIOConf &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[51]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
+<P><STRONG><a name="[54]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
 </UL>
 
-<P><STRONG><a name="[7b]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
-<BR><BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalRead
+<P><STRONG><a name="[7c]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
+<BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalRead
 </UL>
 
-<P><STRONG><a name="[53]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
+<P><STRONG><a name="[56]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ResetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
 </UL>
 
-<P><STRONG><a name="[54]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
+<P><STRONG><a name="[57]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
 </UL>
 
 <P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[52]"></a>LCD_BackLed_Control</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd.o(i.LCD_BackLed_Control))
+<P><STRONG><a name="[55]"></a>LCD_BackLed_Control</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, lcd.o(i.LCD_BackLed_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LCD_BackLed_Control
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 </UL>
 
-<P><STRONG><a name="[55]"></a>LCD_Clear</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, lcd.o(i.LCD_Clear))
+<P><STRONG><a name="[58]"></a>LCD_Clear</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, lcd.o(i.LCD_Clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = LCD_Clear &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[58]"></a>LCD_DrawArrow</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, lcd.o(i.LCD_DrawArrow))
+<P><STRONG><a name="[5b]"></a>LCD_DrawArrow</STRONG> (Thumb, 116 bytes, Stack size 8 bytes, lcd.o(i.LCD_DrawArrow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = LCD_DrawArrow &rArr; LCD_DrawArrow_raw &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
+<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[59]"></a>LCD_DrawArrow_raw</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, lcd.o(i.LCD_DrawArrow_raw))
+<P><STRONG><a name="[5c]"></a>LCD_DrawArrow_raw</STRONG> (Thumb, 184 bytes, Stack size 16 bytes, lcd.o(i.LCD_DrawArrow_raw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = LCD_DrawArrow_raw &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
 </UL>
-<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow
+<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow
 </UL>
 
-<P><STRONG><a name="[4e]"></a>LCD_DrawChar</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, lcd.o(i.LCD_DrawChar))
+<P><STRONG><a name="[51]"></a>LCD_DrawChar</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, lcd.o(i.LCD_DrawChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LCD_DrawChar &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
-<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
+<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
 </UL>
 
-<P><STRONG><a name="[4d]"></a>LCD_DrawString</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, lcd.o(i.LCD_DrawString))
+<P><STRONG><a name="[50]"></a>LCD_DrawString</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, lcd.o(i.LCD_DrawString))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = LCD_DrawString &rArr; LCD_DrawChar &rArr; LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
+<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[61]"></a>LCD_INIT</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, lcd.o(i.LCD_INIT))
+<P><STRONG><a name="[64]"></a>LCD_INIT</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, lcd.o(i.LCD_INIT))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = LCD_INIT &rArr; LCD_FSMC_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
-<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
-<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Rst
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_BackLed_Control
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[56]"></a>LCD_OpenWindow</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, lcd.o(i.LCD_OpenWindow))
+<P><STRONG><a name="[59]"></a>LCD_OpenWindow</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, lcd.o(i.LCD_OpenWindow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LCD_OpenWindow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
+<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
 </UL>
 
-<P><STRONG><a name="[62]"></a>LCD_Rst</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, lcd.o(i.LCD_Rst))
+<P><STRONG><a name="[65]"></a>LCD_Rst</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, lcd.o(i.LCD_Rst))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_Rst &rArr; Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
-</UL>
-
-<P><STRONG><a name="[5a]"></a>LCD_Write_Cmd</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, lcd.o(i.LCD_Write_Cmd))
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 </UL>
 
-<P><STRONG><a name="[5b]"></a>LCD_Write_Data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, lcd.o(i.LCD_Write_Data))
-<BR><BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
+<P><STRONG><a name="[5d]"></a>LCD_Write_Cmd</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, lcd.o(i.LCD_Write_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
 </UL>
 
-<P><STRONG><a name="[65]"></a>MILLIS_Init</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, main.o(i.MILLIS_Init))
+<P><STRONG><a name="[5e]"></a>LCD_Write_Data</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, lcd.o(i.LCD_Write_Data))
+<BR><BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_OpenWindow
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawChar
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_REG_Config
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FillColor
+</UL>
+
+<P><STRONG><a name="[68]"></a>MILLIS_Init</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, main.o(i.MILLIS_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = MILLIS_Init &rArr; NVIC_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ITConfig
-<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
-<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKConfig
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKCmd
-<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWR_BackupAccessCmd
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ITConfig
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKConfig
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKCmd
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWR_BackupAccessCmd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -506,116 +516,116 @@ Global Symbols
 <P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.NMI_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[71]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
+<P><STRONG><a name="[74]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[67]"></a>PWR_BackupAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_pwr.o(i.PWR_BackupAccessCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[6a]"></a>PWR_BackupAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_pwr.o(i.PWR_BackupAccessCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
 <P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[5d]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
+<P><STRONG><a name="[60]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_FSMC_Config
 </UL>
 
-<P><STRONG><a name="[66]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[69]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[50]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
+<P><STRONG><a name="[53]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_GPIO_Config
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
 </UL>
 
-<P><STRONG><a name="[69]"></a>RCC_RTCCLKCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[6c]"></a>RCC_RTCCLKCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[68]"></a>RCC_RTCCLKConfig</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[6b]"></a>RCC_RTCCLKConfig</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
 <P><STRONG><a name="[33]"></a>RTCAlarm_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, main.o(i.RTCAlarm_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RTCAlarm_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[72]"></a>RTC_ClearITPendingBit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ClearITPendingBit))
+<P><STRONG><a name="[75]"></a>RTC_ClearITPendingBit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ClearITPendingBit))
 <BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTCAlarm_IRQHandler
 </UL>
 
-<P><STRONG><a name="[6c]"></a>RTC_EnterConfigMode</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_EnterConfigMode))
-<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[6f]"></a>RTC_EnterConfigMode</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_EnterConfigMode))
+<BR><BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[70]"></a>RTC_ExitConfigMode</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ExitConfigMode))
-<BR><BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[73]"></a>RTC_ExitConfigMode</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ExitConfigMode))
+<BR><BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[73]"></a>RTC_GetITStatus</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_GetITStatus))
+<P><STRONG><a name="[76]"></a>RTC_GetITStatus</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_GetITStatus))
 <BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
 </UL>
 
 <P><STRONG><a name="[d]"></a>RTC_IRQHandler</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, main.o(i.RTC_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RTC_IRQHandler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetITStatus
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
+<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetITStatus
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[6f]"></a>RTC_ITConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ITConfig))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[72]"></a>RTC_ITConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ITConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[6e]"></a>RTC_SetCounter</STRONG> (Thumb, 24 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetCounter))
+<P><STRONG><a name="[71]"></a>RTC_SetCounter</STRONG> (Thumb, 24 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetCounter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = RTC_SetCounter
 </UL>
-<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[6d]"></a>RTC_SetPrescaler</STRONG> (Thumb, 26 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetPrescaler))
+<P><STRONG><a name="[70]"></a>RTC_SetPrescaler</STRONG> (Thumb, 26 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetPrescaler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = RTC_SetPrescaler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
-</UL>
-
-<P><STRONG><a name="[6a]"></a>RTC_WaitForLastTask</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForLastTask))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
-<P><STRONG><a name="[6b]"></a>RTC_WaitForSynchro</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForSynchro))
-<BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<P><STRONG><a name="[6d]"></a>RTC_WaitForLastTask</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForLastTask))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+</UL>
+
+<P><STRONG><a name="[6e]"></a>RTC_WaitForSynchro</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForSynchro))
+<BR><BR>[Called By]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
 </UL>
 
 <P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SVC_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[76]"></a>Step</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(i.Step))
+<P><STRONG><a name="[79]"></a>Step</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(i.Step))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Step
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
 </UL>
-<BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
+<BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
 </UL>
 
 <P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SysTick_Handler))
@@ -624,80 +634,82 @@ Global Symbols
 <P><STRONG><a name="[47]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
 </UL>
 <P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[86]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+<P><STRONG><a name="[87]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
 
-<P><STRONG><a name="[87]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+<P><STRONG><a name="[88]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
 
-<P><STRONG><a name="[88]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+<P><STRONG><a name="[89]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
 
-<P><STRONG><a name="[79]"></a>buzzer</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, main.o(i.buzzer))
+<P><STRONG><a name="[4d]"></a>buzzer</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, main.o(i.buzzer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = buzzer
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayAndAbuzz
 </UL>
 
-<P><STRONG><a name="[7a]"></a>digitalRead</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, main.o(i.digitalRead))
+<P><STRONG><a name="[7b]"></a>digitalRead</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, main.o(i.digitalRead))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = digitalRead
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+<BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[77]"></a>digitalWrite</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, main.o(i.digitalWrite))
-<BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutterNow
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
+<P><STRONG><a name="[7a]"></a>digitalWrite</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, main.o(i.digitalWrite))
+<BR><BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutterNow
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
 </UL>
 
-<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 2078 bytes, Stack size 8 bytes, main.o(i.main))
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 2944 bytes, Stack size 8 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = main &rArr; LCD_INIT &rArr; LCD_FSMC_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
-<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutterNow
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
-<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
-<LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalRead
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
-<LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
-<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawString
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawMenu
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;shutterNow
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;motor
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;millis
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalRead
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MILLIS_Init
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOConf
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DelayAndAbuzz
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
-<P><STRONG><a name="[7c]"></a>millis</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(i.millis))
+<P><STRONG><a name="[7d]"></a>millis</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(i.millis))
 <BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7e]"></a>motor</STRONG> (Thumb, 82 bytes, Stack size 28 bytes, main.o(i.motor))
+<P><STRONG><a name="[7f]"></a>motor</STRONG> (Thumb, 82 bytes, Stack size 28 bytes, main.o(i.motor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = motor &rArr; Step
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
-<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Step
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delayus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[7d]"></a>shutterNow</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, main.o(i.shutterNow))
+<P><STRONG><a name="[7e]"></a>shutterNow</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, main.o(i.shutterNow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = shutterNow
 </UL>
-<BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;digitalWrite
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -705,57 +717,57 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[74]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
+<P><STRONG><a name="[77]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
 </UL>
-<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
 </UL>
 <BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[75]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
+<P><STRONG><a name="[78]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+<BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
 </UL>
 
-<P><STRONG><a name="[5c]"></a>LCD_FSMC_Config</STRONG> (Thumb, 100 bytes, Stack size 96 bytes, lcd.o(i.LCD_FSMC_Config))
+<P><STRONG><a name="[5f]"></a>LCD_FSMC_Config</STRONG> (Thumb, 100 bytes, Stack size 96 bytes, lcd.o(i.LCD_FSMC_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LCD_FSMC_Config
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMInit
-<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMCmd
-<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMInit
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FSMC_NORSRAMCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 </UL>
 
-<P><STRONG><a name="[57]"></a>LCD_FillColor</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, lcd.o(i.LCD_FillColor))
+<P><STRONG><a name="[5a]"></a>LCD_FillColor</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, lcd.o(i.LCD_FillColor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_FillColor
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
+<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
+<BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawArrow_raw
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Clear
 </UL>
 
-<P><STRONG><a name="[60]"></a>LCD_GPIO_Config</STRONG> (Thumb, 220 bytes, Stack size 8 bytes, lcd.o(i.LCD_GPIO_Config))
+<P><STRONG><a name="[63]"></a>LCD_GPIO_Config</STRONG> (Thumb, 220 bytes, Stack size 8 bytes, lcd.o(i.LCD_GPIO_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_GPIO_Config &rArr; GPIO_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 </UL>
 
-<P><STRONG><a name="[63]"></a>LCD_REG_Config</STRONG> (Thumb, 556 bytes, Stack size 8 bytes, lcd.o(i.LCD_REG_Config))
+<P><STRONG><a name="[66]"></a>LCD_REG_Config</STRONG> (Thumb, 556 bytes, Stack size 8 bytes, lcd.o(i.LCD_REG_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LCD_REG_Config &rArr; Delay
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
-<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
+<BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Data
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_Write_Cmd
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
+<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_INIT
 </UL>
 <P>
 <H3>

@@ -32,6 +32,7 @@ void Step(int motor_mo);
 void buzzer(int times);
 void motor(int dir, int speed, int step, int motor_no);
 void shutterNow(void);
+void DelayAndAbuzz(void);
 
 int ANGLE_LAST_DIGIT;
 int ANGLE;
@@ -51,6 +52,9 @@ long lastPhotoTime;
 volatile long counter;
 long lastClear = 0;
 long nowTime;
+int changeMenuFlag = 0;
+int Frames_taken;
+int UpdateRate;
 
 ///*
 int main(void)
@@ -80,165 +84,258 @@ int main(void)
 	//Change menu to 0
 	LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
 	lastClear = millis();
-	currentMenu = 0;
-	cursor =0;
+	
+	currentMenu = 5;
+	
+	cursor =2;
   while (1) {
 		if(currentMenu == 0){
+			changeMenuFlag =0;
 			nowTime = millis();
-			if(nowTime - lastClear > 10000){
+			if(nowTime - lastClear > 1000){
 				LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
 				lastClear = millis();}
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
+			if(digitalRead(1) == 1){
 				if(cursor < 3){
 					cursor ++;
 				}
 				else{cursor = 0;}
-				Delayus(500000);
+				DelayAndAbuzz();
 			}
-			if(digitalRead(1) == 1){
+			if(digitalRead(0) == 1){
 				if(cursor > 0){
 					cursor --;}
 				else{cursor = 3;}
-				Delayus(500000);
+				DelayAndAbuzz();
 			}
-			if(cursor == 0 && digitalRead(4) == 1){
+			if(cursor == 0 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 1;
 				cursor = 1;
 				TimeLapseFlag =1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			} 	
-			if(cursor == 1 && digitalRead(4) == 1){
+			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 2;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 2 && digitalRead(4) == 1){
+			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 3;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 3 && digitalRead(4) == 1){
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 4;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
 		}
 		if(currentMenu == 1){
+			changeMenuFlag =0;
+			nowTime = millis();
+			if(nowTime - lastClear > 1000){
+				LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+				lastClear = millis();}
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
+			if(digitalRead(1) == 1){
 				if(cursor < 3){
 					cursor ++;}
 				else{cursor = 1;}
+				DelayAndAbuzz();
 			}
-			if(digitalRead(1) == 1){
+			if(digitalRead(0) == 1){
 				if(cursor > 1){
 					cursor --;}
 				else{cursor = 3;}
+				DelayAndAbuzz();
 			}	
-			if(cursor == 1 && digitalRead(4) == 1){
+			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 5;
-				cursor = 1;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 2 && digitalRead(4) == 1){
+			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 9;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 3 && digitalRead(4) == 1){
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
 				cursor = 0;
 				TimeLapseFlag = 0;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
 		}
 		if(currentMenu == 5){
+			changeMenuFlag =0;
+			nowTime = millis();
+			if(nowTime - lastClear > 1000){
+				LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+				lastClear = millis();}
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
-				if(cursor < 5){
-					cursor ++;}
-				else{cursor = 1;}
-			}
 			if(digitalRead(1) == 1){
-				if(cursor > 1){
+				if(cursor < 6){
+					cursor ++;}
+				else{cursor = 2;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				if(cursor > 2){
 					cursor --;}
-				else{cursor = 5;}
+				else{cursor = 6;}
+				DelayAndAbuzz();
 			}	
-			if(cursor == 1 && digitalRead(2) == 1){
-				END_X--;
-			}
-			if(cursor == 1 && digitalRead(3) == 1){
-				END_X++;
-			}
+			if(digitalRead(0) == 0 && digitalRead(1) == 0 && digitalRead(2) == 0 && digitalRead(3) == 0 && digitalRead(4) == 0)
+				{
+					UpdateRate = 500000;
+				}
+				
 			if(cursor == 2 && digitalRead(2) == 1){
-				END_Y--;
+				END_X--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 2 && digitalRead(3) == 1){
-				END_Y++;
+				END_X++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 3 && digitalRead(2) == 1){
-				END_Z--;
+				END_Y--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 3 && digitalRead(3) == 1){
+				END_Y++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
+			}
+			if(cursor == 4 && digitalRead(2) == 1){
+				END_Z--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
+			}
+			if(cursor == 4 && digitalRead(3) == 1){
 				END_Z++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
-			if(cursor == 4 && digitalRead(4) == 1){
-				currentMenu = 7;
-				cursor = 1;
+			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 6;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 5 && digitalRead(4) == 1){
+			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 1;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
 		
 		}
 		if(currentMenu == 6){
+			changeMenuFlag =0;
+			nowTime = millis();
+			if(nowTime - lastClear > 1000){
+				LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+				lastClear = millis();}
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
-				if(cursor < 5){
-					cursor ++;}
-				else{cursor = 1;}
-			}
 			if(digitalRead(1) == 1){
-				if(cursor > 1){
+				if(cursor < 6){
+					cursor ++;}
+				else{cursor = 2;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				if(cursor > 2){
 					cursor --;}
-				else{cursor = 5;}
+				else{cursor = 6;}
+				DelayAndAbuzz();
 			}	
-			if(cursor == 1 && digitalRead(2) == 1){
-				STR_X--;
-			}
-			if(cursor == 1 && digitalRead(3) == 1){
-				STR_X++;
-			}
+			if(digitalRead(0) == 0 && digitalRead(1) == 0 && digitalRead(2) == 0 && digitalRead(3) == 0 && digitalRead(4) == 0)
+				{
+					UpdateRate = 500000;
+				}
+				
 			if(cursor == 2 && digitalRead(2) == 1){
-				STR_Y--;
+				STR_X--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 2 && digitalRead(3) == 1){
-				STR_Y++;
+				STR_X++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 3 && digitalRead(2) == 1){
-				STR_Z--;
+				STR_Y--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
 			if(cursor == 3 && digitalRead(3) == 1){
-				STR_Z++;
+				STR_Y++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
 			}
-			if(cursor == 4 && digitalRead(4) == 1 && TimeLapseFlag == 1){
+			if(cursor == 4 && digitalRead(2) == 1){
+				STR_Z--;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
+			}
+			if(cursor == 4 && digitalRead(3) == 1){
+				STR_Z++;
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate -10000;}
+			}
+			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 7;
 				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
-			if(cursor == 5 && digitalRead(4) == 1){
+			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 5;
-				cursor = 1;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
 			}
 		
-		}
+		}		
+
 		if(currentMenu == 7){
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
+			if(digitalRead(1) == 1){
 				if(cursor < 5){
 					cursor ++;}
 				else{cursor = 1;}
 			}
-			if(digitalRead(1) == 1){
+			if(digitalRead(0) == 1){
 				if(cursor > 1){
 					cursor --;}
 				else{cursor = 5;}
@@ -294,12 +391,12 @@ int main(void)
 		if(currentMenu == 8){
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
-			if(digitalRead(0) == 1){
+			if(digitalRead(1) == 1){
 				if(cursor < 4){
 					cursor ++;}
 				else{cursor = 3;}
 			}
-			if(digitalRead(1) == 1){
+			if(digitalRead(0) == 1){
 				if(cursor > 3){
 					cursor --;}
 				else{cursor = 4;}
@@ -369,7 +466,7 @@ void GPIOConf(void)
 	//Configure the folowing pin as intput(B 0 1 5 6 7 8 9)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
@@ -573,4 +670,8 @@ void buzzer(int times){
 void shutterNow(void){
 	digitalWrite(6, 1);
 	digitalWrite(6, 0);
+}
+void DelayAndAbuzz(void){
+	buzzer(1);
+	Delayus(500000);
 }
