@@ -13,7 +13,7 @@ char interval1,interval2,interval3,interval4;
 char shutterT1, shutterT2, shutterT3, shutterT4;
 char Frames_taken1,Frames_taken2,Frames_taken3,Frames_taken4;
 char Hour1,Hour2,Minute1,Minute2,Second1,Second2;
-long Minute,Second;
+long Hour, Minute,Second;
 
 static void                   LCD_GPIO_Config         ( void );
 static void                   LCD_FSMC_Config         ( void );
@@ -701,78 +701,72 @@ void DrawMenu(int menu)
 		break;
 		
 		case 8 : 
-		LCD_DrawString(10, 10, "Taking Time Lapse...... ");
-		LCD_DrawString(10, 10, "Fames Taken: ");
+		LCD_DrawString(10, 10, "Taking Time Lapse... ...");
+		LCD_DrawString(10, 30, "Fames Taken: ");
 		Frames_taken1 = (Frames_taken/1000)%10+48;
 		Frames_taken2 = (Frames_taken/100)%10+48;
 		Frames_taken3 = (Frames_taken/10)%10+48;
 		Frames_taken4 = Frames_taken%10+48;
-		LCD_DrawChar(50, 20, Frames_taken1);
-		LCD_DrawChar(60, 20, Frames_taken2);
-		LCD_DrawChar(70, 20, Frames_taken3);
-		LCD_DrawChar(80, 20, Frames_taken4);
+		LCD_DrawChar(110, 30, Frames_taken1);
+		LCD_DrawChar(120, 30, Frames_taken2);
+		LCD_DrawChar(130, 30, Frames_taken3);
+		LCD_DrawChar(140, 30, Frames_taken4);
 		
-		LCD_DrawString(10, 10, "Time Left:");
-		LCD_DrawString(10, 10, ":");
-		LCD_DrawString(10, 10, ":");
-		Hour1=Second/60/60/10%10+48;
-		Hour2=Second/60/60%10+48;
-		Minute=Second/60;
-		while (Minute>=60)
-		{Minute=Minute-60;
-		}
-		Minute1=Minute/10%10+48;
-		Minute2=Minute%10+48;
-		while (Second>=60)
-		{Second=Second-60;
-		}
+		LCD_DrawString(10, 50, "Time Left:");
+		LCD_DrawString(130, 50, ":");
+		LCD_DrawString(160, 50, ":");
+		Hour = timeLeft/3600;
+		Minute = (timeLeft - Hour * 60) / 60;
+		Second = timeLeft - Hour * 3600 - Minute * 60;
+		Hour1 = (Hour/10)%10+48;
+		Hour2 = Hour%10+48;
+		Minute1 = (Minute/10)%10+48;
+		Minute2 = Minute%10+48;
 		Second1 = (Second/10)%10+48;
-		Second1 = Second%10+48;
-		LCD_DrawChar(50, 20, Hour1);
-		LCD_DrawChar(60, 20, Hour2);
-		LCD_DrawChar(70, 20, Minute1);
-		LCD_DrawChar(80, 20, Second1);
-		LCD_DrawChar(80, 20, Second2);
+		Second2 = Second%10+48;
+		LCD_DrawChar(110, 50, Hour1);
+		LCD_DrawChar(120, 50, Hour2);
+		LCD_DrawChar(140, 50, Minute1);
+		LCD_DrawChar(150, 50, Minute2);
+		LCD_DrawChar(170, 50, Second1);
+		LCD_DrawChar(180, 50, Second2);
 		
-		LCD_DrawString(10, 10, "Pause");
-		LCD_DrawString(10, 10, "Stop");	
+		LCD_DrawString(20, 70, "Pause");
+		LCD_DrawString(20, 90, "Stop");	
 		break;
 		case 88 : 
-		LCD_DrawString(10, 10, "Taking Time Lapse...... ");
-		LCD_DrawString(10, 10, "Fames Taken: ");
+		LCD_DrawString(10, 10, "Taking Time Lapse... ...");
+		LCD_DrawString(10, 30, "Fames Taken: ");
 		Frames_taken1 = (Frames_taken/1000)%10+48;
 		Frames_taken2 = (Frames_taken/100)%10+48;
 		Frames_taken3 = (Frames_taken/10)%10+48;
 		Frames_taken4 = Frames_taken%10+48;
-		LCD_DrawChar(50, 20, Frames_taken1);
-		LCD_DrawChar(60, 20, Frames_taken2);
-		LCD_DrawChar(70, 20, Frames_taken3);
-		LCD_DrawChar(80, 20, Frames_taken4);
+		LCD_DrawChar(110, 30, Frames_taken1);
+		LCD_DrawChar(120, 30, Frames_taken2);
+		LCD_DrawChar(130, 30, Frames_taken3);
+		LCD_DrawChar(140, 30, Frames_taken4);
 		
-		LCD_DrawString(10, 10, "Time Left:");
-		LCD_DrawString(10, 10, ":");
-		LCD_DrawString(10, 10, ":");
-		Hour1=Second/60/60/10%10+48;
-		Hour2=Second/60/60%10+48;
-		Minute=Second/60;
-		while (Minute>=60)
-		{Minute=Minute-60;
-		}
-		Minute1=Minute/10%10+48;
-		Minute2=Minute%10+48;
-		while (Second>=60)
-		{Second=Second-60;
-		}
+		LCD_DrawString(10, 50, "Time Left:");
+		LCD_DrawString(130, 50, ":");
+		LCD_DrawString(160, 50, ":");
+		Hour = timeLeft/3600;
+		Minute = (timeLeft - Hour * 60) / 60;
+		Second = timeLeft - Hour * 3600 - Minute * 60;
+		Hour1 = (Hour/10)%10+48;
+		Hour2 = Hour%10+48;
+		Minute1 = (Minute/10)%10+48;
+		Minute2 = Minute%10+48;
 		Second1 = (Second/10)%10+48;
-		Second1 = Second%10+48;
-		LCD_DrawChar(50, 20, Hour1);
-		LCD_DrawChar(60, 20, Hour2);
-		LCD_DrawChar(70, 20, Minute1);
-		LCD_DrawChar(80, 20, Second1);
-		LCD_DrawChar(80, 20, Second2);
+		Second2 = Second%10+48;
+		LCD_DrawChar(110, 50, Hour1);
+		LCD_DrawChar(120, 50, Hour2);
+		LCD_DrawChar(140, 50, Minute1);
+		LCD_DrawChar(150, 50, Minute2);
+		LCD_DrawChar(170, 50, Second1);
+		LCD_DrawChar(180, 50, Second2);
 		
-LCD_DrawString(10, 10, "Resume");
-LCD_DrawString(10, 10, "Stop");	
+		LCD_DrawString(20, 70, "Resume");
+		LCD_DrawString(20, 90, "Stop");	
 		break;
 		case 9 : 
 			LCD_DrawString(10, 10, "Please enter the following parameters");
