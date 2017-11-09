@@ -102,6 +102,8 @@ void 									   LCD_DrawArrow_raw							 (int x, int y);
 
 void                     DrawMenu                     (int menu);
 void LCD_DrawArrow(int line);
+void LCD_Clear_Arrow(int i);
+void LCD_Clear_All(void);
 
 #endif 
 

@@ -956,3 +956,11 @@ void LCD_DrawArrow_raw(int x, int y){
 	LCD_FillColor(1, 0x0000);
 }
 
+void LCD_Clear_All(void){
+	LCD_Clear ( 0, 0, 240, 320, BACKGROUND);
+}
+
+void LCD_Clear_Arrow(int i){
+	LCD_Clear ( 5, 10 + i * 20, 15, 320 - (10 + i * 20), BACKGROUND);
+}
+
