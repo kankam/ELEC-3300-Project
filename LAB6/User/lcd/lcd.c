@@ -15,6 +15,11 @@ char Frames_taken1,Frames_taken2,Frames_taken3,Frames_taken4;
 char Hour1,Hour2,Minute1,Minute2,Second1,Second2;
 long Hour, Minute,Second;
 
+char nowX1,nowX2,nowX3,nowX4;
+char nowY1,nowY2,nowY3,nowY4;
+char nowZ1,nowZ2,nowZ3,nowZ4;
+char speed1;
+
 static void                   LCD_GPIO_Config         ( void );
 static void                   LCD_FSMC_Config         ( void );
 static void                   LCD_REG_Config          ( void );
@@ -660,247 +665,347 @@ void DrawMenu(int menu)
 			LCD_DrawString(20, 110, "Set");
 			LCD_DrawString(20, 130, "Return");
 			break;
-		case 113 : 
-		LCD_DrawString(10, 10, "Please enter following");
-		LCD_DrawString(10, 30, "parameters");
-		LCD_DrawString(20, 50, "Fames:    <<<");
-		fames1 = (fames/1000)%10+48;
-		fames2 = (fames/100)%10+48;
-		fames3 = (fames/10)%10+48;
-		fames4 = fames%10+48;
-		LCD_DrawChar(125, 50, fames1);
-		LCD_DrawChar(135, 50, fames2);
-		LCD_DrawChar(145, 50, fames3);
-		LCD_DrawChar(155, 50, fames4);
-		LCD_DrawString(165, 50, ">>>");
-		
-		LCD_DrawString(20, 70, "Interval: <<<");
-		interval1 = (interval/1000)%10+48;
-		interval2 = (interval/100)%10+48;
-		interval3 = (interval/10)%10+48;
-		interval4 = interval%10+48;
-		LCD_DrawChar(125, 70, interval1);
-		LCD_DrawChar(135, 70, interval2);
-		LCD_DrawChar(145, 70, interval3);
-		LCD_DrawChar(155, 70, interval4);
-		LCD_DrawString(165, 70, ">>>");
-		
-		LCD_DrawString(20, 90, "Shutter:  <<<");
-		shutterT1 = (shutterT/1000)%10+48;
-		shutterT2 = (shutterT/100)%10+48;
-		shutterT3 = (shutterT/10)%10+48;
-		shutterT4 = shutterT%10+48;
-		LCD_DrawChar(125, 90, shutterT1);
-		LCD_DrawChar(135, 90, shutterT2);
-		LCD_DrawChar(145, 90, shutterT3);
-		LCD_DrawChar(155, 90, shutterT4);
-		LCD_DrawString(165, 90, ">>>");
-		
-		LCD_DrawString(20, 110, "Set");
-		LCD_DrawString(20, 130, "Return");	
-		break;
-		
-		case 114 : 
-		LCD_DrawString(10, 10, "Taking Time Lapse... ...");
-		LCD_DrawString(10, 30, "Fames Taken: ");
-		Frames_taken1 = (Frames_taken/1000)%10+48;
-		Frames_taken2 = (Frames_taken/100)%10+48;
-		Frames_taken3 = (Frames_taken/10)%10+48;
-		Frames_taken4 = Frames_taken%10+48;
-		LCD_DrawChar(110, 30, Frames_taken1);
-		LCD_DrawChar(120, 30, Frames_taken2);
-		LCD_DrawChar(130, 30, Frames_taken3);
-		LCD_DrawChar(140, 30, Frames_taken4);
-		
-		LCD_DrawString(10, 50, "Time Left:");
-		LCD_DrawString(130, 50, ":");
-		LCD_DrawString(160, 50, ":");
-		Hour = timeLeft/3600;
-		Minute = (timeLeft - Hour * 60) / 60;
-		Second = timeLeft - Hour * 3600 - Minute * 60;
-		Hour1 = (Hour/10)%10+48;
-		Hour2 = Hour%10+48;
-		Minute1 = (Minute/10)%10+48;
-		Minute2 = Minute%10+48;
-		Second1 = (Second/10)%10+48;
-		Second2 = Second%10+48;
-		LCD_DrawChar(110, 50, Hour1);
-		LCD_DrawChar(120, 50, Hour2);
-		LCD_DrawChar(140, 50, Minute1);
-		LCD_DrawChar(150, 50, Minute2);
-		LCD_DrawChar(170, 50, Second1);
-		LCD_DrawChar(180, 50, Second2);
-		
-		LCD_DrawString(20, 70, "Pause");
-		LCD_DrawString(20, 90, "Stop");	
-		break;
-		case 1142 : 
-		LCD_DrawString(10, 10, "Taking Time Lapse... ...");
-		LCD_DrawString(10, 30, "Fames Taken: ");
-		Frames_taken1 = (Frames_taken/1000)%10+48;
-		Frames_taken2 = (Frames_taken/100)%10+48;
-		Frames_taken3 = (Frames_taken/10)%10+48;
-		Frames_taken4 = Frames_taken%10+48;
-		LCD_DrawChar(110, 30, Frames_taken1);
-		LCD_DrawChar(120, 30, Frames_taken2);
-		LCD_DrawChar(130, 30, Frames_taken3);
-		LCD_DrawChar(140, 30, Frames_taken4);
-		
-		LCD_DrawString(10, 50, "Time Left:");
-		LCD_DrawString(130, 50, ":");
-		LCD_DrawString(160, 50, ":");
-		Hour = timeLeft/3600;
-		Minute = (timeLeft - Hour * 60) / 60;
-		Second = timeLeft - Hour * 3600 - Minute * 60;
-		Hour1 = (Hour/10)%10+48;
-		Hour2 = Hour%10+48;
-		Minute1 = (Minute/10)%10+48;
-		Minute2 = Minute%10+48;
-		Second1 = (Second/10)%10+48;
-		Second2 = Second%10+48;
-		LCD_DrawChar(110, 50, Hour1);
-		LCD_DrawChar(120, 50, Hour2);
-		LCD_DrawChar(140, 50, Minute1);
-		LCD_DrawChar(150, 50, Minute2);
-		LCD_DrawChar(170, 50, Second1);
-		LCD_DrawChar(180, 50, Second2);
-		
-		LCD_DrawString(20, 70, "Resume");
-		LCD_DrawString(20, 90, "Stop");	
-		break;
-		case 121 : 
-		LCD_DrawString(10, 10, "Please enter the following parameters");
-		LCD_DrawString(10, 30, "parameters");
-		LCD_DrawString(20, 50, "Total Fames:<<<");
-		fames1 = (fames/1000)%10+48;
-		fames2 = (fames/100)%10+48;
-		fames3 = (fames/10)%10+48;
-		fames4 = fames%10+48;
-		LCD_DrawChar(125, 50, fames1);
-		LCD_DrawChar(135, 50, fames2);
-		LCD_DrawChar(145, 50, fames3);
-		LCD_DrawChar(155, 50, fames4);
-		LCD_DrawString(165, 50, ">>>");
-		
-		LCD_DrawString(20, 70, "Interval:<<<");
-		interval1 = (interval/1000)%10+48;
-		interval2 = (interval/100)%10+48;
-		interval3 = (interval/10)%10+48;
-		interval4 = interval%10+48;
-		LCD_DrawChar(125, 70, interval1);
-		LCD_DrawChar(135, 70, interval2);
-		LCD_DrawChar(145, 70, interval3);
-		LCD_DrawChar(155, 70, interval4);
-		LCD_DrawString(165, 70, ">>>");
-		
-		LCD_DrawString(20, 90, "Continue");
-		LCD_DrawString(20, 110, "Return");
+			case 113 : 
+			LCD_DrawString(10, 10, "Please enter following");
+			LCD_DrawString(10, 30, "parameters");
+			LCD_DrawString(20, 50, "Fames:    <<<");
+			fames1 = (fames/1000)%10+48;
+			fames2 = (fames/100)%10+48;
+			fames3 = (fames/10)%10+48;
+			fames4 = fames%10+48;
+			LCD_DrawChar(125, 50, fames1);
+			LCD_DrawChar(135, 50, fames2);
+			LCD_DrawChar(145, 50, fames3);
+			LCD_DrawChar(155, 50, fames4);
+			LCD_DrawString(165, 50, ">>>");
 			
-		break;
-		case 122 : 
-		LCD_DrawString(10, 10, "Please enter the following");
-		LCD_DrawString(10, 30, "parameters ");
-		LCD_DrawString(20, 50, "Start Position_X:<<<");
-		STR_X1 = (STR_X/1000)%10+48;
-		STR_X2 = (STR_X/100)%10+48;
-		STR_X3 = (STR_X/10)%10+48;
-		STR_X4 = STR_X%10+48;
-		LCD_DrawChar(125, 50, STR_X1);
-		LCD_DrawChar(135, 50, STR_X2);
-		LCD_DrawChar(145, 50, STR_X3);
-		LCD_DrawChar(155, 50, STR_X4);
-		LCD_DrawString(165, 50, ">>>");
-		
-		LCD_DrawString(20, 70, "Start Position_Y:<<<");
-		STR_Y1 = (STR_Y/1000)%10+48;
-		STR_Y2 = (STR_Y/100)%10+48;
-		STR_Y3 = (STR_Y/10)%10+48;
-		STR_Y4 = STR_Y%10+48;
-		LCD_DrawChar(125, 70, STR_Y1);
-		LCD_DrawChar(135, 70, STR_Y2);
-		LCD_DrawChar(145, 70, STR_Y3);
-		LCD_DrawChar(155, 70, STR_Y4);
-		LCD_DrawString(165, 70, ">>>");
-		
-		LCD_DrawString(20, 90, "Start Position_Z:<<<");
-		STR_Z1 = (STR_Z/1000)%10+48;
-		STR_Z2 = (STR_Z/100)%10+48;
-		STR_Z3 = (STR_Z/10)%10+48;
-		STR_Z4 = STR_Z%10+48;
-		LCD_DrawChar(125, 90, STR_Z1);
-		LCD_DrawChar(135, 90, STR_Z2);
-		LCD_DrawChar(145, 90, STR_Z3);
-		LCD_DrawChar(155, 90, STR_Z4);		
-		LCD_DrawString(165, 90, ">>>");
-		
-		LCD_DrawString(20, 110, "Continue");	
-		LCD_DrawString(20, 130, "Return");		
-		break;
-		case 123 : 
+			LCD_DrawString(20, 70, "Interval: <<<");
+			interval1 = (interval/1000)%10+48;
+			interval2 = (interval/100)%10+48;
+			interval3 = (interval/10)%10+48;
+			interval4 = interval%10+48;
+			LCD_DrawChar(125, 70, interval1);
+			LCD_DrawChar(135, 70, interval2);
+			LCD_DrawChar(145, 70, interval3);
+			LCD_DrawChar(155, 70, interval4);
+			LCD_DrawString(165, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Shutter:  <<<");
+			shutterT1 = (shutterT/1000)%10+48;
+			shutterT2 = (shutterT/100)%10+48;
+			shutterT3 = (shutterT/10)%10+48;
+			shutterT4 = shutterT%10+48;
+			LCD_DrawChar(125, 90, shutterT1);
+			LCD_DrawChar(135, 90, shutterT2);
+			LCD_DrawChar(145, 90, shutterT3);
+			LCD_DrawChar(155, 90, shutterT4);
+			LCD_DrawString(165, 90, ">>>");
+			
+			LCD_DrawString(20, 110, "Set");
+			LCD_DrawString(20, 130, "Return");	
+			break;
+			
+			case 114 : 
+			LCD_DrawString(10, 10, "Taking Time Lapse... ...");
+			LCD_DrawString(10, 30, "Fames Taken: ");
+			Frames_taken1 = (Frames_taken/1000)%10+48;
+			Frames_taken2 = (Frames_taken/100)%10+48;
+			Frames_taken3 = (Frames_taken/10)%10+48;
+			Frames_taken4 = Frames_taken%10+48;
+			LCD_DrawChar(110, 30, Frames_taken1);
+			LCD_DrawChar(120, 30, Frames_taken2);
+			LCD_DrawChar(130, 30, Frames_taken3);
+			LCD_DrawChar(140, 30, Frames_taken4);
+			
+			LCD_DrawString(10, 50, "Time Left:");
+			LCD_DrawString(130, 50, ":");
+			LCD_DrawString(160, 50, ":");
+			Hour = timeLeft/3600;
+			Minute = (timeLeft - Hour * 60) / 60;
+			Second = timeLeft - Hour * 3600 - Minute * 60;
+			Hour1 = (Hour/10)%10+48;
+			Hour2 = Hour%10+48;
+			Minute1 = (Minute/10)%10+48;
+			Minute2 = Minute%10+48;
+			Second1 = (Second/10)%10+48;
+			Second2 = Second%10+48;
+			LCD_DrawChar(110, 50, Hour1);
+			LCD_DrawChar(120, 50, Hour2);
+			LCD_DrawChar(140, 50, Minute1);
+			LCD_DrawChar(150, 50, Minute2);
+			LCD_DrawChar(170, 50, Second1);
+			LCD_DrawChar(180, 50, Second2);
+			
+			LCD_DrawString(20, 70, "Pause");
+			LCD_DrawString(20, 90, "Stop");	
+			break;
+			case 1142 : 
+			LCD_DrawString(10, 10, "Taking Time Lapse... ...");
+			LCD_DrawString(10, 30, "Fames Taken: ");
+			Frames_taken1 = (Frames_taken/1000)%10+48;
+			Frames_taken2 = (Frames_taken/100)%10+48;
+			Frames_taken3 = (Frames_taken/10)%10+48;
+			Frames_taken4 = Frames_taken%10+48;
+			LCD_DrawChar(110, 30, Frames_taken1);
+			LCD_DrawChar(120, 30, Frames_taken2);
+			LCD_DrawChar(130, 30, Frames_taken3);
+			LCD_DrawChar(140, 30, Frames_taken4);
+			
+			LCD_DrawString(10, 50, "Time Left:");
+			LCD_DrawString(130, 50, ":");
+			LCD_DrawString(160, 50, ":");
+			Hour = timeLeft/3600;
+			Minute = (timeLeft - Hour * 60) / 60;
+			Second = timeLeft - Hour * 3600 - Minute * 60;
+			Hour1 = (Hour/10)%10+48;
+			Hour2 = Hour%10+48;
+			Minute1 = (Minute/10)%10+48;
+			Minute2 = Minute%10+48;
+			Second1 = (Second/10)%10+48;
+			Second2 = Second%10+48;
+			LCD_DrawChar(110, 50, Hour1);
+			LCD_DrawChar(120, 50, Hour2);
+			LCD_DrawChar(140, 50, Minute1);
+			LCD_DrawChar(150, 50, Minute2);
+			LCD_DrawChar(170, 50, Second1);
+			LCD_DrawChar(180, 50, Second2);
+			
+			LCD_DrawString(20, 70, "Resume");
+			LCD_DrawString(20, 90, "Stop");	
+			break;
+			case 121 : 
 			LCD_DrawString(10, 10, "Please enter the following parameters");
-		LCD_DrawString(10, 10, "END Position_X:");
-		END_X1 = (END_X/1000)%10+48;
-		END_X2 = (END_X/100)%10+48;
-		END_X3 = (END_X/10)%10+48;
-		END_X4 = END_X%10+48;
-		LCD_DrawChar(50, 20, END_X1);
-		LCD_DrawChar(60, 20, END_X2);
-		LCD_DrawChar(70, 20, END_X3);
-		LCD_DrawChar(80, 20, END_X4);
-		
-		LCD_DrawString(10, 10, "END Position_Y:");
-		END_Y1 = (END_Y/1000)%10+48;
-		END_Y2 = (END_Y/100)%10+48;
-		END_Y3 = (END_Y/10)%10+48;
-		END_Y4 = END_Y%10+48;
-		LCD_DrawChar(50, 20, END_Y1);
-		LCD_DrawChar(60, 20, END_Y2);
-		LCD_DrawChar(70, 20, END_Y3);
-		LCD_DrawChar(80, 20, END_Y4);
-		
-		LCD_DrawString(10, 10, "END Position_Z:");
-		END_Z1 = (END_Z/1000)%10+48;
-		END_Z2 = (END_Z/100)%10+48;
-		END_Z3 = (END_Z/10)%10+48;
-		END_Z4 = END_Z%10+48;
-		LCD_DrawChar(50, 20, END_Z1);
-		LCD_DrawChar(60, 20, END_Z2);
-		LCD_DrawChar(70, 20, END_Z3);
-		LCD_DrawChar(80, 20, END_Z4);
-		LCD_DrawString(10, 10, " ");
-		LCD_DrawString(10, 10, "Continue");
-		LCD_DrawString(10, 10, "Return");
+			LCD_DrawString(10, 30, "parameters");
+			LCD_DrawString(20, 50, "Total Fames:<<<");
+			fames1 = (fames/1000)%10+48;
+			fames2 = (fames/100)%10+48;
+			fames3 = (fames/10)%10+48;
+			fames4 = fames%10+48;
+			LCD_DrawChar(125, 50, fames1);
+			LCD_DrawChar(135, 50, fames2);
+			LCD_DrawChar(145, 50, fames3);
+			LCD_DrawChar(155, 50, fames4);
+			LCD_DrawString(165, 50, ">>>");
 			
+			LCD_DrawString(20, 70, "Interval:  <<<");
+			interval1 = (interval/1000)%10+48;
+			interval2 = (interval/100)%10+48;
+			interval3 = (interval/10)%10+48;
+			interval4 = interval%10+48;
+			LCD_DrawChar(125, 70, interval1);
+			LCD_DrawChar(135, 70, interval2);
+			LCD_DrawChar(145, 70, interval3);
+			LCD_DrawChar(155, 70, interval4);
+			LCD_DrawString(165, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Continue");
+			LCD_DrawString(20, 110, "Return");
+				
+			break;
+			case 122 : 
+			LCD_DrawString(10, 10, "Please enter the following");
+			LCD_DrawString(10, 30, "parameters ");
+			LCD_DrawString(20, 50, "Start Position_X:");
+			LCD_DrawString(20, 70, "<<<");
+			STR_X1 = (STR_X/1000)%10+48;
+			STR_X2 = (STR_X/100)%10+48;
+			STR_X3 = (STR_X/10)%10+48;
+			STR_X4 = STR_X%10+48;
+			LCD_DrawChar(35, 70, STR_X1);
+			LCD_DrawChar(45, 70, STR_X2);
+			LCD_DrawChar(55, 70, STR_X3);
+			LCD_DrawChar(65, 70, STR_X4);
+			LCD_DrawString(75, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Start Position_Y:");
+			LCD_DrawString(20, 110, "<<<");
+			STR_Y1 = (STR_Y/1000)%10+48;
+			STR_Y2 = (STR_Y/100)%10+48;
+			STR_Y3 = (STR_Y/10)%10+48;
+			STR_Y4 = STR_Y%10+48;
+			LCD_DrawChar(35, 110, STR_Y1);
+			LCD_DrawChar(45, 110, STR_Y2);
+			LCD_DrawChar(55, 110, STR_Y3);
+			LCD_DrawChar(65, 110, STR_Y4);
+			LCD_DrawString(75, 110, ">>>");
+			
+			LCD_DrawString(20, 130, "Start Position_Z:");
+			LCD_DrawString(20, 150, "<<<");
+			STR_Z1 = (STR_Z/1000)%10+48;
+			STR_Z2 = (STR_Z/100)%10+48;
+			STR_Z3 = (STR_Z/10)%10+48;
+			STR_Z4 = STR_Z%10+48;
+			LCD_DrawChar(35, 150, STR_Z1);
+			LCD_DrawChar(45, 150, STR_Z2);
+			LCD_DrawChar(55, 150, STR_Z3);
+			LCD_DrawChar(65, 150, STR_Z4);		
+			LCD_DrawString(75, 150, ">>>");
+			
+			LCD_DrawString(20, 170, "Continue");	
+			LCD_DrawString(20, 170, "Return");		
+			break;
+			case 123 : 
+				LCD_DrawString(10, 10, "Please enter the following");
+			LCD_DrawString(10, 30, "parameters");
+			LCD_DrawString(20, 50, "END Position_X:<<<");
+			END_X1 = (END_X/1000)%10+48;
+			END_X2 = (END_X/100)%10+48;
+			END_X3 = (END_X/10)%10+48;
+			END_X4 = END_X%10+48;
+			LCD_DrawChar(125, 50, END_X1);
+			LCD_DrawChar(135, 50, END_X2);
+			LCD_DrawChar(145, 50, END_X3);
+			LCD_DrawChar(155, 50, END_X4);
+			LCD_DrawString(165, 50, ">>>");
+			
+			LCD_DrawString(20, 70, "END Position_Y:<<");
+			END_Y1 = (END_Y/1000)%10+48;
+			END_Y2 = (END_Y/100)%10+48;
+			END_Y3 = (END_Y/10)%10+48;
+			END_Y4 = END_Y%10+48;
+			LCD_DrawChar(125, 70, END_Y1);
+			LCD_DrawChar(135, 70, END_Y2);
+			LCD_DrawChar(145, 70, END_Y3);
+			LCD_DrawChar(155, 70, END_Y4);
+			LCD_DrawString(165, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "END Position_Z:");
+			END_Z1 = (END_Z/1000)%10+48;
+			END_Z2 = (END_Z/100)%10+48;
+			END_Z3 = (END_Z/10)%10+48;
+			END_Z4 = END_Z%10+48;
+			LCD_DrawChar(125, 90, END_Z1);
+			LCD_DrawChar(135, 90, END_Z2);
+			LCD_DrawChar(145, 90, END_Z3);
+			LCD_DrawChar(155, 90, END_Z4);
+			LCD_DrawString(165, 90, ">>>");
+		
+			LCD_DrawString(20, 110, "Continue");
+			LCD_DrawString(20, 130, "Return");
+				
+			break;
+			case 2:
+				LCD_DrawString(10, 10, "Video Mode");
+			LCD_DrawString(20, 30, "Interactive Mode");
+			LCD_DrawString(20, 50, "Input Parameters Manually");
+			LCD_DrawString(20, 70, "Return");
+			case 223 :
+			LCD_DrawString(10, 10, "Please enter the following");
+			LCD_DrawString(10, 30, "parameters");
+			LCD_DrawString(20, 50, "Speed(1-9):");
+
+			speed1 = speed%10+48;
+			LCD_DrawChar(125, 50, speed1);
+			
+			
+			
+			LCD_DrawString(20, 70, "Continue");
+			LCD_DrawString(20, 90, "Return");		
+				
+			break;
+			case 224 :
+			LCD_DrawString(10, 10, "Taking Video... ...");
+			LCD_DrawString(10, 30, "Time Left:");
+			LCD_DrawString(130, 30, ":");
+			LCD_DrawString(160, 30, ":");
+			Hour = timeLeft/3600;
+			Minute = (timeLeft - Hour * 60) / 60;
+			Second = timeLeft - Hour * 3600 - Minute * 60;
+			Hour1 = (Hour/10)%10+48;
+			Hour2 = Hour%10+48;
+			Minute1 = (Minute/10)%10+48;
+			Minute2 = Minute%10+48;
+			Second1 = (Second/10)%10+48;
+			Second2 = Second%10+48;
+			LCD_DrawChar(110, 30, Hour1);
+			LCD_DrawChar(120, 30, Hour2);
+			LCD_DrawChar(140, 30, Minute1);
+			LCD_DrawChar(150, 30, Minute2);
+			LCD_DrawChar(170, 30, Second1);
+			LCD_DrawChar(180, 30, Second2);
+			
+			LCD_DrawString(20, 50, "Pause");
+			LCD_DrawString(20, 70, "Stop");	
+			break;
+			case 2242 : 
+			LCD_DrawString(10, 10, "Taking Video... ...");
+			LCD_DrawString(10, 30, "Time Left:");
+			LCD_DrawString(130, 30, ":");
+			LCD_DrawString(160, 30, ":");
+			Hour = timeLeft/3600;
+			Minute = (timeLeft - Hour * 60) / 60;
+			Second = timeLeft - Hour * 3600 - Minute * 60;
+			Hour1 = (Hour/10)%10+48;
+			Hour2 = Hour%10+48;
+			Minute1 = (Minute/10)%10+48;
+			Minute2 = Minute%10+48;
+			Second1 = (Second/10)%10+48;
+			Second2 = Second%10+48;
+			LCD_DrawChar(110, 30, Hour1);
+			LCD_DrawChar(120, 30, Hour2);
+			LCD_DrawChar(140, 30, Minute1);
+			LCD_DrawChar(150, 30, Minute2);
+			LCD_DrawChar(170, 30, Second1);
+			LCD_DrawChar(180, 30, Second2);
+			
+		
+			
+			LCD_DrawString(20, 50, "Resume");
+			LCD_DrawString(20, 70, "Stop");	
+			break;
+			case 221 :
+			LCD_DrawString(10, 10, "Please enter the following");
+			LCD_DrawString(10, 30, "parameters");
+			LCD_DrawString(20, 50, "Speed(1-9):");
+
+			speed1 = speed%10+48;
+			LCD_DrawChar(125, 50, speed1);
+			
+			
+			
+			LCD_DrawString(20, 70, "Set");
+			LCD_DrawString(20, 90, "Return");	
+			break;
+		case 3 : 
+			LCD_DrawString(10, 10, "Manual Mode");
+			LCD_DrawString(20, 30, "Slide: <<<");
+			nowX1 = (nowX/1000)%10+48;
+			nowX2 = (nowX/100)%10+48;
+			nowX3 = (nowX/10)%10+48;
+			nowX4 = nowX%10+48;
+			LCD_DrawChar(100, 30, nowX1);
+			LCD_DrawChar(110, 30, nowX2);
+			LCD_DrawChar(120, 30, nowX3);
+			LCD_DrawChar(130, 30, nowX4);
+			LCD_DrawString(140, 30, ">>>");
+			
+			LCD_DrawString(20, 50, "Pan:   <<<");
+			nowY1 = (nowY/1000)%10+48;
+			nowY2 = (nowY/100)%10+48;
+			nowY3 = (nowY/10)%10+48;
+			nowY4 = nowY%10+48;
+			LCD_DrawChar(100, 50, nowY1);
+			LCD_DrawChar(110, 50, nowY2);
+			LCD_DrawChar(120, 50, nowY3);
+			LCD_DrawChar(130, 50, nowY4);
+			LCD_DrawString(140, 50, ">>>");
+			
+			LCD_DrawString(20, 70, "Tilt:  <<<");
+			nowZ1 = (nowZ/1000)%10+48;
+			nowZ2 = (nowZ/100)%10+48;
+			nowZ3 = (nowZ/10)%10+48;
+			nowZ4 = nowZ%10+48;
+			LCD_DrawChar(100, 70, nowZ1);
+			LCD_DrawChar(110, 70, nowZ2);
+			LCD_DrawChar(120, 70, nowZ3);
+			LCD_DrawChar(130, 70, nowZ4);
+			LCD_DrawString(140, 70, ">>>");
+			
+			LCD_DrawString(20, 90, "Return");
 		break;
-		case 2:
-			LCD_DrawString(10, 10, "Video Mode");
-		LCD_DrawString(10, 10, "Interactive Mode");
-		LCD_DrawString(10, 10, "Input Parameters Manually");
-		LCD_DrawString(10, 10, "Return");
-		case 12 :
-		LCD_DrawString(10, 10, "Please enter the following parameters");
-		LCD_DrawString(10, 10, "Total Fames:");
-		fames1 = (fames/1000)%10+48;
-		fames2 = (fames/100)%10+48;
-		fames3 = (fames/10)%10+48;
-		fames4 = fames%10+48;
-		LCD_DrawChar(50, 20, fames1);
-		LCD_DrawChar(60, 20, fames2);
-		LCD_DrawChar(70, 20, fames3);
-		LCD_DrawChar(80, 20, fames4);
-		
-		LCD_DrawString(10, 10, "Interval:");
-		interval1 = (interval/1000)%10+48;
-		interval2 = (interval/100)%10+48;
-		interval3 = (interval/10)%10+48;
-		interval4 = interval%10+48;
-		LCD_DrawChar(50, 20, interval1);
-		LCD_DrawChar(60, 20, interval2);
-		LCD_DrawChar(70, 20, interval3);
-		LCD_DrawChar(80, 20, interval4);
-		LCD_DrawString(10, 10, "Continue");
-		LCD_DrawString(10, 10, "Return");		
-			
+		case 4:
+			LCD_DrawString(20, 10, "Re-initialize");
+		LCD_DrawString(20, 30, "Return");
 		break;
 		
 	}
