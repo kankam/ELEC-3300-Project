@@ -205,39 +205,39 @@ int main(void)
 					UpdateRate = 500000;
 				}
 				
-			if(cursor == 2 && digitalRead(2) == 1){
+			if(cursor == 2 && digitalRead(2) == 1 && END_X > 0){
 				END_X--;
 				motor(0,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1){
+			if(cursor == 2 && digitalRead(3) == 1 && END_X < 9999){
 				END_X++;
 				motor(1,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(2) == 1){
+			if(cursor == 3 && digitalRead(2) == 1 && END_Y > 0){
 				END_Y--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(3) == 1){
+			if(cursor == 3 && digitalRead(3) == 1 && END_Y < 9999){
 				END_Y++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(2) == 1){
+			if(cursor == 4 && digitalRead(2) == 1 && END_Z > 0){
 				END_Z--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(3) == 1){
+			if(cursor == 4 && digitalRead(3) == 1 && END_Z < 9999){
 				END_Z++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
