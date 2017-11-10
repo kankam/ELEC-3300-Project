@@ -8,6 +8,8 @@ extern int STR_X, STR_Y, STR_Z;
 extern int fames, interval, shutterT;
 extern int Frames_taken;
 extern int timeLeft;
+extern int nowX, nowY, nowZ;
+extern int speed;
 
 #endif 
 

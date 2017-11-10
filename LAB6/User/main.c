@@ -48,7 +48,9 @@ int totalTime;
 int timeLeft;
 int totalX, totalY, totalZ;
 int STP_X, STP_Y, STP_Z;
+int nowX, nowY, nowZ;
 long lastOpenShutter = 0, lastCloseShutter = 0;
+int speed;
 
 volatile long counter;
 long lastClear = 0;
@@ -207,6 +209,7 @@ int main(void)
 				
 			if(cursor == 2 && digitalRead(2) == 1 && END_X > 0){
 				END_X--;
+				nowX = END_X;
 				motor(0,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
@@ -214,6 +217,7 @@ int main(void)
 			}
 			if(cursor == 2 && digitalRead(3) == 1 && END_X < 9999){
 				END_X++;
+				nowX = END_X;
 				motor(1,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
@@ -221,24 +225,28 @@ int main(void)
 			}
 			if(cursor == 3 && digitalRead(2) == 1 && END_Y > 0){
 				END_Y--;
+				nowX = END_Y;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 3 && digitalRead(3) == 1 && END_Y < 9999){
 				END_Y++;
+				nowX = END_Y;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 4 && digitalRead(2) == 1 && END_Z > 0){
 				END_Z--;
+				nowX = END_Z;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 4 && digitalRead(3) == 1 && END_Z < 9999){
 				END_Z++;
+				nowX = END_Z;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -282,45 +290,51 @@ int main(void)
 					UpdateRate = 500000;
 				}
 				
-			if(cursor == 2 && digitalRead(2) == 1){
+			if(cursor == 2 && digitalRead(2) == 1 && STR_X > 0){
 				STR_X--;
+				nowX = STR_X;
 				motor(0,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1){
+			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999){
 				STR_X++;
+				nowX = STR_X;
 				motor(1,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(2) == 1){
+			if(cursor == 3 && digitalRead(2) == 1 && STR_Y > 0){
 				STR_Y--;
+				nowX = STR_Y;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(3) == 1){
+			if(cursor == 3 && digitalRead(3) == 1 && STR_Y <9999){
 				STR_Y++;
+				nowX = STR_Y;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(2) == 1){
+			if(cursor == 4 && digitalRead(2) == 1 && STR_Z > 0){
 				STR_Z--;
+				nowX = STR_Z;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(3) == 1){
+			if(cursor == 4 && digitalRead(3) == 1 && STR_Z <9999){
 				STR_Z++;
+				nowX = STR_Z;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
+			if(cursor == 5 && digitalRead(4) == 1 && TimeLapseFlag == 1 && changeMenuFlag == 0){
 				currentMenu = 113;
 				cursor = 2;
 				changeMenuFlag =1;
@@ -359,37 +373,37 @@ int main(void)
 					UpdateRate = 500000;
 				}
 				
-			if(cursor == 2 && digitalRead(2) == 1){
+			if(cursor == 2 && digitalRead(2) == 1 && fames >0){
 				fames--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1){
+			if(cursor == 2 && digitalRead(3) == 1 && fames <9999){
 				fames++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(2) == 1){
+			if(cursor == 3 && digitalRead(2) == 1 && interval >0){
 				interval--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(3) == 1){
+			if(cursor == 3 && digitalRead(3) == 1 && interval < 9999){
 				interval++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(2) == 1){
+			if(cursor == 4 && digitalRead(2) == 1 && shutterT >0){
 				shutterT--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(3) == 1){
+			if(cursor == 4 && digitalRead(3) == 1 && shutterT < 9999){
 				shutterT++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
@@ -490,8 +504,17 @@ int main(void)
 				buzzer(1);
 				Frames_taken++;
 				motor(dir_X,0,STP_X,0);
+				if(dir_X == 1){
+					nowX = nowX + STP_X;}
+				else {nowX = nowX - STP_X;}
 				motor(dir_Y,0,STP_Y,1);
+				if(dir_Y == 1){
+					nowY = nowY + STP_Y;}
+				else {nowY = nowY - STP_Y;}
 				motor(dir_Z,0,STP_Z,2);
+				if(dir_Z == 1){
+					nowZ = nowZ + STP_Z;}
+				else {nowX = nowX - STP_X;}
 			}
 			if(Frames_taken == fames){
 				buzzer(5);
@@ -538,9 +561,9 @@ int main(void)
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
-			}
-			
+			}		
 		}
+		
 	}
 }
 
