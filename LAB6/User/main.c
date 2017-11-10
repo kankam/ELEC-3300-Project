@@ -160,14 +160,14 @@ int main(void)
 				DelayAndAbuzz();
 			}	
 			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 5;
+				currentMenu = 111;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
 			}
 			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 9;
+				currentMenu = 121;
 				cursor = 1;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -182,7 +182,7 @@ int main(void)
 				LCD_Clear_All();
 			}
 		}
-		if(currentMenu == 5){
+		if(currentMenu == 111){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
@@ -207,12 +207,14 @@ int main(void)
 				
 			if(cursor == 2 && digitalRead(2) == 1){
 				END_X--;
+				motor(0,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 2 && digitalRead(3) == 1){
 				END_X++;
+				motor(1,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -242,7 +244,7 @@ int main(void)
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 6;
+				currentMenu = 112;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -257,7 +259,7 @@ int main(void)
 			}
 		
 		}
-		if(currentMenu == 6){
+		if(currentMenu == 112){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
@@ -282,12 +284,14 @@ int main(void)
 				
 			if(cursor == 2 && digitalRead(2) == 1){
 				STR_X--;
+				motor(0,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 2 && digitalRead(3) == 1){
 				STR_X++;
+				motor(1,0,160,0);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -317,14 +321,14 @@ int main(void)
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 7;
+				currentMenu = 113;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
 			}
 			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 5;
+				currentMenu = 111;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -332,7 +336,7 @@ int main(void)
 			}
 		
 		}		
-		if(currentMenu == 7){
+		if(currentMenu == 113){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
@@ -392,26 +396,26 @@ int main(void)
 					UpdateRate = UpdateRate * 0.8;}
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 8;
+				currentMenu = 114;
 				cursor = 3;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				totalTime = fames * (interval + shutterT);
 				timeLeft = totalTime;
 				totalX = abs(END_X - STR_X);
-				STP_X = totalX/fames;
+				STP_X = totalX/fames*160;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
 				totalY = abs(END_Y - STR_Y);
-				STP_Y = totalY/fames;
+				STP_Y = totalY/fames*160;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
 				totalZ = abs(END_Z - STR_Z);
-				STP_Z = totalZ/fames;
+				STP_Z = totalZ/fames*160;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
@@ -420,7 +424,7 @@ int main(void)
 				LCD_Clear_All();
 			}
 			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 6;
+				currentMenu = 112;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -428,7 +432,7 @@ int main(void)
 			}
 		
 		}		
-		if(currentMenu == 8){
+		if(currentMenu == 114){
 			changeMenuFlag =0;
 			
 			nowTime = millis();
@@ -456,7 +460,7 @@ int main(void)
 				if(shutterState ==1){
 					shutterNow();
 					shutterState = 1;}
-				currentMenu = 88;
+				currentMenu = 1142;
 				cursor = 3;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -500,7 +504,7 @@ int main(void)
 				DelayAndAbuzz();
 				LCD_Clear_All();}
 		}
-		if(currentMenu == 88){
+		if(currentMenu == 1142){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);

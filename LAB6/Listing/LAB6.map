@@ -142,13 +142,13 @@ Section Cross References
     main.o(i.main) refers to main.o(i.digitalRead) for digitalRead
     main.o(i.main) refers to lcd.o(i.LCD_Clear_Arrow) for LCD_Clear_Arrow
     main.o(i.main) refers to main.o(i.DelayAndAbuzz) for DelayAndAbuzz
+    main.o(i.main) refers to main.o(i.motor) for motor
     main.o(i.main) refers to main.o(i.Delayus) for Delayus
     main.o(i.main) refers to dflti.o(.text) for __aeabi_i2d
     main.o(i.main) refers to dmul.o(.text) for __aeabi_dmul
     main.o(i.main) refers to dfixi.o(.text) for __aeabi_d2iz
     main.o(i.main) refers to main.o(.data) for lastClear
     main.o(i.main) refers to main.o(i.shutterNow) for shutterNow
-    main.o(i.main) refers to main.o(i.motor) for motor
     main.o(i.motor) refers to main.o(i.digitalWrite) for digitalWrite
     main.o(i.motor) refers to main.o(i.Step) for Step
     main.o(i.motor) refers to main.o(i.Delayus) for Delayus
@@ -881,10 +881,10 @@ Image Symbol Table
     i.digitalRead                            0x08002880   Section        0  main.o(i.digitalRead)
     i.digitalWrite                           0x08002920   Section        0  main.o(i.digitalWrite)
     i.main                                   0x080029c8   Section        0  main.o(i.main)
-    i.millis                                 0x0800399c   Section        0  main.o(i.millis)
-    i.motor                                  0x080039b0   Section        0  main.o(i.motor)
-    i.shutterNow                             0x08003a1a   Section        0  main.o(i.shutterNow)
-    .constdata                               0x08003a2e   Section     1520  lcd.o(.constdata)
+    i.millis                                 0x080039e8   Section        0  main.o(i.millis)
+    i.motor                                  0x080039fc   Section        0  main.o(i.motor)
+    i.shutterNow                             0x08003a66   Section        0  main.o(i.shutterNow)
+    .constdata                               0x08003a7a   Section     1520  lcd.o(.constdata)
     .data                                    0x20000000   Section      160  main.o(.data)
     .data                                    0x200000a0   Section       60  lcd.o(.data)
     STACK                                    0x200000e0   Section     1024  startup_stm32f10x_hd.o(STACK)
@@ -1043,13 +1043,13 @@ Image Symbol Table
     buzzer                                   0x08002851   Thumb Code    44  main.o(i.buzzer)
     digitalRead                              0x08002881   Thumb Code   156  main.o(i.digitalRead)
     digitalWrite                             0x08002921   Thumb Code   164  main.o(i.digitalWrite)
-    main                                     0x080029c9   Thumb Code  3976  main.o(i.main)
-    millis                                   0x0800399d   Thumb Code    16  main.o(i.millis)
-    motor                                    0x080039b1   Thumb Code   106  main.o(i.motor)
-    shutterNow                               0x08003a1b   Thumb Code    20  main.o(i.shutterNow)
-    ucAscii_1608                             0x08003a2e   Data        1520  lcd.o(.constdata)
-    Region$$Table$$Base                      0x08004020   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08004040   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x080029c9   Thumb Code  4046  main.o(i.main)
+    millis                                   0x080039e9   Thumb Code    16  main.o(i.millis)
+    motor                                    0x080039fd   Thumb Code   106  main.o(i.motor)
+    shutterNow                               0x08003a67   Thumb Code    20  main.o(i.shutterNow)
+    ucAscii_1608                             0x08003a7a   Data        1520  lcd.o(.constdata)
+    Region$$Table$$Base                      0x0800406c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800408c   Number         0  anon$$obj.o(Region$$Table)
     defaultDoSomeThing                       0x20000000   Data           4  main.o(.data)
     GPIO_InitStructure                       0x20000004   Data           4  main.o(.data)
     ANGLE_LAST_DIGIT                         0x20000008   Data           4  main.o(.data)
@@ -1149,9 +1149,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000411c, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00004168, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00004040, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0000408c, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1251,13 +1251,13 @@ Memory Map of the image
     0x08002850   0x00000030   Code   RO         3183    i.buzzer            main.o
     0x08002880   0x000000a0   Code   RO         3184    i.digitalRead       main.o
     0x08002920   0x000000a8   Code   RO         3185    i.digitalWrite      main.o
-    0x080029c8   0x00000fd4   Code   RO         3187    i.main              main.o
-    0x0800399c   0x00000014   Code   RO         3188    i.millis            main.o
-    0x080039b0   0x0000006a   Code   RO         3189    i.motor             main.o
-    0x08003a1a   0x00000014   Code   RO         3190    i.shutterNow        main.o
-    0x08003a2e   0x000005f0   Data   RO         3348    .constdata          lcd.o
-    0x0800401e   0x00000002   PAD
-    0x08004020   0x00000020   Data   RO         3566    Region$$Table       anon$$obj.o
+    0x080029c8   0x00001020   Code   RO         3187    i.main              main.o
+    0x080039e8   0x00000014   Code   RO         3188    i.millis            main.o
+    0x080039fc   0x0000006a   Code   RO         3189    i.motor             main.o
+    0x08003a66   0x00000014   Code   RO         3190    i.shutterNow        main.o
+    0x08003a7a   0x000005f0   Data   RO         3348    .constdata          lcd.o
+    0x0800406a   0x00000002   PAD
+    0x0800406c   0x00000020   Data   RO         3566    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x000004e0, Max: 0x00010000, ABSOLUTE)
@@ -1279,7 +1279,7 @@ Image component sizes
 
          0          0          0          0          0       4508   core_cm3.o
       7466       1178       1520         60          0      14792   lcd.o
-      4980        366          0        160          0      11714   main.o
+      5056        374          0        160          0      11738   main.o
        112         12          0          0          0       1028   misc.o
         36          8        304          0       1024        884   startup_stm32f10x_hd.o
        282          6          0          0          0       1821   stm32f10x_fsmc.o
@@ -1292,7 +1292,7 @@ Image component sizes
        328         28          0          0          0     223129   system_stm32f10x.o
 
     ----------------------------------------------------------------------
-     13928       1676       1858        220       1028     293724   Object Totals
+     14004       1684       1858        220       1028     293748   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         18          0          2          0          4          0   (incl. Padding)
 
@@ -1339,15 +1339,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14590       1692       1858        220       1028     291024   Grand Totals
-     14590       1692       1858        220       1028     291024   ELF Image Totals
-     14590       1692       1858        220          0          0   ROM Totals
+     14666       1700       1858        220       1028     291048   Grand Totals
+     14666       1700       1858        220       1028     291048   ELF Image Totals
+     14666       1700       1858        220          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                16448 (  16.06kB)
+    Total RO  Size (Code + RO Data)                16524 (  16.14kB)
     Total RW  Size (RW Data + ZI Data)              1248 (   1.22kB)
-    Total ROM Size (Code + RO Data + RW Data)      16668 (  16.28kB)
+    Total ROM Size (Code + RO Data + RW Data)      16744 (  16.35kB)
 
 ==============================================================================
 
