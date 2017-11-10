@@ -59,7 +59,7 @@ int Frames_taken;
 int UpdateRate;
 int shutterState = 0;
 
-///*
+
 int main(void)
 {
 	LCD_INIT(); 						// LCD_INIT 
@@ -539,7 +539,7 @@ int main(void)
 		}
 	}
 }
-//*/
+
 
 /*
 int main(void){
@@ -547,10 +547,26 @@ int main(void){
 	GPIOConf();
 	buzzer(2);
 	while (1) {
-	motor(1,0,200,0);
-		Delayus(1000000);
-	motor(0,0,200,0);
-		Delayus(1000000);
+	motor(1,0,1600,0);
+	Delayus(5000000);
+	motor(0,0,1600,0);
+	Delayus(5000000);
+	motor(1,1,1600,0);
+	Delayus(5000000);
+	motor(0,1,1600,0);
+	Delayus(5000000);
+	motor(1,2,1600,0);
+	Delayus(5000000);
+	motor(0,2,1600,0);
+	Delayus(5000000);
+	motor(1,3,1600,0);
+	Delayus(5000000);
+	motor(0,3,1600,0);
+	Delayus(5000000);
+	motor(1,4,1600,0);
+	Delayus(5000000);
+	motor(0,4,1600,0);
+	Delayus(5000000);
   }
 }
 */
@@ -577,7 +593,7 @@ void GPIOConf(void)
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	GPIOA->BSRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+	GPIOA->BRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
 	//Configure the folowing pin as intput(B 0 1 5 6 7 8 9)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
@@ -745,11 +761,20 @@ void motor(int dir, int speed, int step, int motor_no){
 	int delay_t, i;
 	switch(speed){
 		case 0 :
-			delay_t = 5000;
+			delay_t = 312;
 		break;
-		case 1:
-			delay_t = 10000;
-		break;		
+		case 1 :
+			delay_t = 625;
+		break;
+		case 2:
+			delay_t = 1250;
+		break;
+		case 3:
+			delay_t = 3125;
+		break;
+		case 4:
+			delay_t = 6250;
+		break;
 	}
 	if(dir == 1){
 		digitalWrite(2,1);//A4
