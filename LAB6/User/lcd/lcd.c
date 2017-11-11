@@ -869,7 +869,7 @@ void DrawMenu(int menu)
 			LCD_DrawChar(155, 70, END_Y4);
 			LCD_DrawString(165, 70, ">>>");
 			
-			LCD_DrawString(20, 90, "END Position_Z:");
+			LCD_DrawString(20, 90, "END Position_Z:<<<");
 			END_Z1 = (END_Z/1000)%10+48;
 			END_Z2 = (END_Z/100)%10+48;
 			END_Z3 = (END_Z/10)%10+48;
