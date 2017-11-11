@@ -33,13 +33,14 @@ void buzzer(int times);
 void motor(int dir, int speed, int step, int motor_no);
 void shutterNow(void);
 void DelayAndAbuzz(void);
+int StpPSec(int spd);
 
 int ANGLE_LAST_DIGIT;
 int ANGLE;
 int motor0Max, motor1Max, motor2Max;
 int currentMenu;
 int cursor = 0;
-int TimeLapseFlag =0;
+int TimeLapseFlag =0, VideoFlag =0;
 int END_X, END_Y, END_Z;
 int STR_X, STR_Y, STR_Z;
 int fames, interval, shutterT;
@@ -51,6 +52,10 @@ int STP_X, STP_Y, STP_Z;
 int nowX, nowY, nowZ;
 long lastOpenShutter = 0, lastCloseShutter = 0;
 int speed;
+int max;
+long totalTime_us;
+long PeriodX, PeriodY, PeriodZ;
+long lastX, lastY, lastZ;
 
 volatile long counter;
 long lastClear = 0;
@@ -124,6 +129,7 @@ int main(void)
 			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 2;
 				cursor = 1;
+				VideoFlag = 0;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
@@ -336,6 +342,13 @@ int main(void)
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && TimeLapseFlag == 1 && changeMenuFlag == 0){
 				currentMenu = 113;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 5 && digitalRead(4) == 1 && VideoFlag == 1 && changeMenuFlag == 0){
+				currentMenu = 223;
 				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -565,6 +578,223 @@ int main(void)
 		}
 		
 	}
+	if(currentMenu == 2){
+			changeMenuFlag =0;
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor < 3){
+					cursor ++;}
+				else{cursor = 1;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 3;}
+				DelayAndAbuzz();
+			}	
+			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 111;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 221;
+				cursor = 1;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 0;
+				cursor = 0;
+				VideoFlag = 0;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+		}
+		if(currentMenu == 223){
+			changeMenuFlag =0;
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(2);
+				if(cursor < 5){
+					cursor ++;}
+				else{cursor = 2;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(2);
+				if(cursor > 2){
+					cursor --;}
+				else{cursor = 5;}
+				DelayAndAbuzz();
+			}		
+			if(cursor == 2 && digitalRead(2) == 1 && speed >0){
+				speed--;
+				DelayAndAbuzz();
+			}
+			if(cursor == 2 && digitalRead(3) == 1 && speed <9){
+				speed++;
+				DelayAndAbuzz();
+			}
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 224;
+				cursor = 3;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				totalX = abs(END_X - STR_X);
+				if(END_X > STR_X){
+					dir_X = 1;
+				}
+				else{dir_X = 0;}
+				totalY = abs(END_Y - STR_Y);
+				if(END_Y > STR_Y){
+					dir_Y = 1;
+				}
+				else{dir_Y = 0;}
+				totalZ = abs(END_Z - STR_Z);
+				if(END_Z > STR_Z){
+					dir_Z = 1;
+				}
+				else{dir_Z = 0;}
+				if (totalX > totalY)
+				{
+					if(totalX > totalZ)
+					{max = totalX;}
+					else{max = totalZ;}
+				}
+				else{
+					if(totalY > totalZ)
+					{max = totalY;}
+					else{max = totalZ;}
+				}
+				totalTime = max / StpPSec(speed);
+				timeLeft = totalTime;
+				totalTime_us = max * 1000000 / StpPSec(speed);
+				PeriodX = totalTime_us / totalX;
+				PeriodY = totalTime_us / totalY;
+				PeriodZ = totalTime_us / totalZ;
+				lastSecond = millis();
+				LCD_Clear_All();
+			}
+			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 112;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+		
+		}
+		if(currentMenu == 224){
+			changeMenuFlag =0;			
+			nowTime = millis();
+			if(nowTime - lastSecond > 1000){
+				timeLeft --;
+				lastSecond = millis();
+			}
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(3);
+				if(cursor < 4){
+					cursor ++;}
+				else{cursor = 3;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(3);
+				if(cursor > 3){
+					cursor --;}
+				else{cursor = 4;}
+				DelayAndAbuzz();
+			}	
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				if(shutterState ==1){
+					shutterNow();
+					shutterState = 1;}
+				currentMenu = 2242;
+				cursor = 3;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 0;
+				cursor = 0;
+				VideoFlag = 0;
+				timeLeft = 0;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			nowTime = millis();
+			if(((nowTime - lastX))>(PeriodX){
+				motor(dir_X,0,1,0);
+				lastX = millis();
+			}
+			if(((nowTime - lastY))>(PeriodY){
+				motor(dir_Y,0,1,0);
+				lastY = millis();
+			}
+			if(((nowTime - lastZ))>(PeriodZ){
+				motor(dir_Z,0,1,0);
+				lastZ = millis();
+			}
+		}
+		if(currentMenu == 2242){
+			changeMenuFlag =0;			
+			nowTime = millis();
+			if(nowTime - lastSecond > 1000){
+				timeLeft --;
+				lastSecond = millis();
+			}
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(3);
+				if(cursor < 4){
+					cursor ++;}
+				else{cursor = 3;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(3);
+				if(cursor > 3){
+					cursor --;}
+				else{cursor = 4;}
+				DelayAndAbuzz();
+			}	
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				if(shutterState ==1){
+					shutterNow();
+					shutterState = 1;}
+				currentMenu = 224;
+				cursor = 3;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 0;
+				cursor = 0;
+				VideoFlag = 0;
+				timeLeft = 0;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+		}
+		
+	}
 }
 
 
@@ -695,95 +925,7 @@ int digitalRead(int i){
 	}
 	return r;
 }
-void MCO_CONFIG (void)
-{		
-	/*
-	 *  Task 1 – Output SYSCLK via MCO.
-	 */
-  
-	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 ;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	RCC->CFGR |= (RCC_MCO_SYSCLK << 24);
-}
 
-void TIM3_CH1_PWM (void){
-	//Generate a 250kHZ PWM
-	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-	
-	TIM_TimeBaseStructure.TIM_Period = 288;
-	TIM_TimeBaseStructure.TIM_Prescaler = 0;
-	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
-	
-	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-	TIM_OCInitStructure.TIM_Pulse = 144;
-	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_OC1Init(TIM3, &TIM_OCInitStructure);
-	
-	TIM_Cmd(TIM3, ENABLE);
-}
-void MCO_CONFIG_A6 (void)
-{		
-	/*
-	 *  Task 2
-	 */
-	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 ;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	
-}
-void MCO_CONFIG_B6 (void)
-{		
-	/*
-	 *  Task 3
-	 */
-	GPIO_InitTypeDef GPIO_InitStructure;
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 ;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
-	
-}
-void TIM4_CH1_PWM (void){
-		
-	
-		TIM_SelectMasterSlaveMode(TIM3, TIM_MasterSlaveMode_Enable);
-	
-		TIM_SelectOutputTrigger(TIM3, TIM_TRGOSource_Update);
-	
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	
-		TIM_TimeBaseStructure.TIM_Period = 1285;
-		TIM_TimeBaseStructure.TIM_Prescaler = 0;
-		TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-		TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-		TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
-		
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-		TIM_OCInitStructure.TIM_Pulse = 642;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-		TIM_OC1Init(TIM4, &TIM_OCInitStructure);
-	
-		TIM_SelectSlaveMode(TIM4, TIM_SlaveMode_Gated);
-	
-		TIM_SelectInputTrigger(TIM4, TIM_TS_ITR2);
-		
-		TIM_Cmd(TIM4, ENABLE);
-
-	
-}
 void motor(int dir, int speed, int step, int motor_no){
 	int delay_t, i;
 	switch(speed){
@@ -843,4 +985,25 @@ void DelayAndAbuzz(void){
 	Delayus(500000);
 }
 
+int StpPSec(int spd){
+	int x;
+	switch (spd) {
+		case 0 :
+			x = 3200;
+		break;
+		case 1 :
+			x = 1600;
+		break;
+		case 2 :
+			x = 800;
+		break;
+		case 3 :
+			x = 320;
+		break;
+		case 4 :
+			x = 160;
+		break;
+	}
+	return x;
+}
 
