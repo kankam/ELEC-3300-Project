@@ -773,36 +773,47 @@ void DrawMenu(int menu)
 			LCD_DrawString(20, 70, "Resume");
 			LCD_DrawString(20, 90, "Stop");	
 			break;
-			case 121 : 
-			LCD_DrawString(10, 10, "Please enter the following parameters");
+			case 123 : 
+			LCD_DrawString(10, 10, "Please enter the following");
 			LCD_DrawString(10, 30, "parameters");
 			LCD_DrawString(20, 50, "Total Fames:<<<");
 			fames1 = (fames/1000)%10+48;
 			fames2 = (fames/100)%10+48;
 			fames3 = (fames/10)%10+48;
 			fames4 = fames%10+48;
-			LCD_DrawChar(125, 50, fames1);
-			LCD_DrawChar(135, 50, fames2);
-			LCD_DrawChar(145, 50, fames3);
-			LCD_DrawChar(155, 50, fames4);
-			LCD_DrawString(165, 50, ">>>");
+			LCD_DrawChar(145, 50, fames1);
+			LCD_DrawChar(155, 50, fames2);
+			LCD_DrawChar(165, 50, fames3);
+			LCD_DrawChar(175, 50, fames4);
+			LCD_DrawString(185, 50, ">>>");
 			
-			LCD_DrawString(20, 70, "Interval:  <<<");
+			LCD_DrawString(20, 70, "Interval:   <<<");
 			interval1 = (interval/1000)%10+48;
 			interval2 = (interval/100)%10+48;
 			interval3 = (interval/10)%10+48;
 			interval4 = interval%10+48;
-			LCD_DrawChar(125, 70, interval1);
-			LCD_DrawChar(135, 70, interval2);
-			LCD_DrawChar(145, 70, interval3);
-			LCD_DrawChar(155, 70, interval4);
-			LCD_DrawString(165, 70, ">>>");
+			LCD_DrawChar(145, 70, interval1);
+			LCD_DrawChar(155, 70, interval2);
+			LCD_DrawChar(165, 70, interval3);
+			LCD_DrawChar(175, 70, interval4);
+			LCD_DrawString(185, 70, ">>>");
 			
-			LCD_DrawString(20, 90, "Continue");
-			LCD_DrawString(20, 110, "Return");
+			LCD_DrawString(20, 90, "Shutter:    <<<");
+			shutterT1 = (shutterT/1000)%10+48;
+			shutterT2 = (shutterT/100)%10+48;
+			shutterT3 = (shutterT/10)%10+48;
+			shutterT4 = shutterT%10+48;
+			LCD_DrawChar(145, 90, shutterT1);
+			LCD_DrawChar(155, 90, shutterT2);
+			LCD_DrawChar(165, 90, shutterT3);
+			LCD_DrawChar(175, 90, shutterT4);
+			LCD_DrawString(185, 90, ">>>");
+			
+			LCD_DrawString(20, 110, "Continue");
+			LCD_DrawString(20, 130, "Return");
 				
 			break;
-			case 122 : 
+			case 121 : 
 			LCD_DrawString(10, 10, "Please enter the following");
 			LCD_DrawString(10, 30, "parameters ");
 			LCD_DrawString(20, 50, "Start Position_X:");
@@ -811,11 +822,11 @@ void DrawMenu(int menu)
 			STR_X2 = (STR_X/100)%10+48;
 			STR_X3 = (STR_X/10)%10+48;
 			STR_X4 = STR_X%10+48;
-			LCD_DrawChar(35, 70, STR_X1);
-			LCD_DrawChar(45, 70, STR_X2);
-			LCD_DrawChar(55, 70, STR_X3);
-			LCD_DrawChar(65, 70, STR_X4);
-			LCD_DrawString(75, 70, ">>>");
+			LCD_DrawChar(45, 70, STR_X1);
+			LCD_DrawChar(55, 70, STR_X2);
+			LCD_DrawChar(65, 70, STR_X3);
+			LCD_DrawChar(75, 70, STR_X4);
+			LCD_DrawString(85, 70, ">>>");
 			
 			LCD_DrawString(20, 90, "Start Position_Y:");
 			LCD_DrawString(20, 110, "<<<");
@@ -823,11 +834,11 @@ void DrawMenu(int menu)
 			STR_Y2 = (STR_Y/100)%10+48;
 			STR_Y3 = (STR_Y/10)%10+48;
 			STR_Y4 = STR_Y%10+48;
-			LCD_DrawChar(35, 110, STR_Y1);
-			LCD_DrawChar(45, 110, STR_Y2);
-			LCD_DrawChar(55, 110, STR_Y3);
-			LCD_DrawChar(65, 110, STR_Y4);
-			LCD_DrawString(75, 110, ">>>");
+			LCD_DrawChar(45, 110, STR_Y1);
+			LCD_DrawChar(55, 110, STR_Y2);
+			LCD_DrawChar(65, 110, STR_Y3);
+			LCD_DrawChar(75, 110, STR_Y4);
+			LCD_DrawString(85, 110, ">>>");
 			
 			LCD_DrawString(20, 130, "Start Position_Z:");
 			LCD_DrawString(20, 150, "<<<");
@@ -835,60 +846,63 @@ void DrawMenu(int menu)
 			STR_Z2 = (STR_Z/100)%10+48;
 			STR_Z3 = (STR_Z/10)%10+48;
 			STR_Z4 = STR_Z%10+48;
-			LCD_DrawChar(35, 150, STR_Z1);
-			LCD_DrawChar(45, 150, STR_Z2);
-			LCD_DrawChar(55, 150, STR_Z3);
-			LCD_DrawChar(65, 150, STR_Z4);		
-			LCD_DrawString(75, 150, ">>>");
+			LCD_DrawChar(45, 150, STR_Z1);
+			LCD_DrawChar(55, 150, STR_Z2);
+			LCD_DrawChar(65, 150, STR_Z3);
+			LCD_DrawChar(75, 150, STR_Z4);		
+			LCD_DrawString(85, 150, ">>>");
 			
 			LCD_DrawString(20, 170, "Continue");	
-			LCD_DrawString(20, 170, "Return");		
+			LCD_DrawString(20, 190, "Return");		
 			break;
-			case 123 : 
-				LCD_DrawString(10, 10, "Please enter the following");
-			LCD_DrawString(10, 30, "parameters");
-			LCD_DrawString(20, 50, "END Position_X:<<<");
+			case 122 : 
+			LCD_DrawString(10, 10, "Please enter the following");
+			LCD_DrawString(10, 30, "parameters ");
+			LCD_DrawString(20, 50, "End Position_X:");
+			LCD_DrawString(20, 70, "<<<");
 			END_X1 = (END_X/1000)%10+48;
 			END_X2 = (END_X/100)%10+48;
 			END_X3 = (END_X/10)%10+48;
 			END_X4 = END_X%10+48;
-			LCD_DrawChar(125, 50, END_X1);
-			LCD_DrawChar(135, 50, END_X2);
-			LCD_DrawChar(145, 50, END_X3);
-			LCD_DrawChar(155, 50, END_X4);
-			LCD_DrawString(165, 50, ">>>");
+			LCD_DrawChar(45, 70, END_X1);
+			LCD_DrawChar(55, 70, END_X2);
+			LCD_DrawChar(65, 70, END_X3);
+			LCD_DrawChar(75, 70, END_X4);
+			LCD_DrawString(85, 70, ">>>");
 			
-			LCD_DrawString(20, 70, "END Position_Y:<<");
+			LCD_DrawString(20, 90, "End Position_Y:");
+			LCD_DrawString(20, 110, "<<<");
 			END_Y1 = (END_Y/1000)%10+48;
 			END_Y2 = (END_Y/100)%10+48;
 			END_Y3 = (END_Y/10)%10+48;
 			END_Y4 = END_Y%10+48;
-			LCD_DrawChar(125, 70, END_Y1);
-			LCD_DrawChar(135, 70, END_Y2);
-			LCD_DrawChar(145, 70, END_Y3);
-			LCD_DrawChar(155, 70, END_Y4);
-			LCD_DrawString(165, 70, ">>>");
+			LCD_DrawChar(45, 110, END_Y1);
+			LCD_DrawChar(55, 110, END_Y2);
+			LCD_DrawChar(65, 110, END_Y3);
+			LCD_DrawChar(75, 110, END_Y4);
+			LCD_DrawString(85, 110, ">>>");
 			
-			LCD_DrawString(20, 90, "END Position_Z:<<<");
+			LCD_DrawString(20, 130, "End Position_Z:");
+			LCD_DrawString(20, 150, "<<<");
 			END_Z1 = (END_Z/1000)%10+48;
 			END_Z2 = (END_Z/100)%10+48;
 			END_Z3 = (END_Z/10)%10+48;
 			END_Z4 = END_Z%10+48;
-			LCD_DrawChar(125, 90, END_Z1);
-			LCD_DrawChar(135, 90, END_Z2);
-			LCD_DrawChar(145, 90, END_Z3);
-			LCD_DrawChar(155, 90, END_Z4);
-			LCD_DrawString(165, 90, ">>>");
-		
-			LCD_DrawString(20, 110, "Continue");
-			LCD_DrawString(20, 130, "Return");
-				
+			LCD_DrawChar(45, 150, END_Z1);
+			LCD_DrawChar(55, 150, END_Z2);
+			LCD_DrawChar(65, 150, END_Z3);
+			LCD_DrawChar(75, 150, END_Z4);		
+			LCD_DrawString(85, 150, ">>>");
+			
+			LCD_DrawString(20, 170, "Continue");	
+			LCD_DrawString(20, 190, "Return");		
 			break;
 			case 2:
 				LCD_DrawString(10, 10, "Video Mode");
 			LCD_DrawString(20, 30, "Interactive Mode");
 			LCD_DrawString(20, 50, "Input Parameters Manually");
 			LCD_DrawString(20, 70, "Return");
+			break;
 			case 223 :
 			LCD_DrawString(10, 10, "Please enter the following");
 			LCD_DrawString(10, 30, "parameters");
@@ -1040,6 +1054,18 @@ void LCD_DrawArrow(int line)
 		break;
 		case 8 :
 			LCD_DrawArrow_raw(5,175);
+		break;
+		case 9 :
+			LCD_DrawArrow_raw(5,195);
+		break;
+		case 10 :
+			LCD_DrawArrow_raw(5,215);
+		break;
+		case 11 :
+			LCD_DrawArrow_raw(5,235);
+		break;
+		case 12 :
+			LCD_DrawArrow_raw(5,255);
 		break;
 	}
 }
