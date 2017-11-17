@@ -367,28 +367,28 @@ int main(void)
 				DelayAndAbuzz();
 				LCD_Clear_All();
 				totalX = abs(END_X - STR_X);
-				STP_X = totalX/fames*160;
+				STP_X = totalX*160;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
 				totalY = abs(END_Y - STR_Y);
-				STP_Y = totalY/fames*160;
+				STP_Y = totalY*160;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
 				totalZ = abs(END_Z - STR_Z);
-				STP_Z = totalZ/fames*160;
+				STP_Z = totalZ*160;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
 				else{dir_Z = 0;}
-				motor(dir_X,0,STP_X,1);
+				motor(dir_X,0,STP_X,0);
 				nowX = END_X;
 				motor(dir_Y,0,STP_Y,1);
 				nowY = END_Y;
-				motor(dir_Z,0,STP_Z,1);				
+				motor(dir_Z,0,STP_Z,2);				
 				nowZ = END_Z;
 			}
 		
