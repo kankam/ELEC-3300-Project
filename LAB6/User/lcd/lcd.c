@@ -771,7 +771,7 @@ void DrawMenu(int menu)
 			LCD_DrawChar(200, 70, nowZ4);
 			
 			LCD_DrawString(20, 90, "Pause");
-			LCD_DrawString(20, 120, "Stop");	
+			LCD_DrawString(20, 110, "Stop");	
 			break;
 			case 1142 : 
 			LCD_DrawString(10, 10, "Taking Time Lapse... ...");
