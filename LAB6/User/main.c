@@ -53,10 +53,11 @@ int nowX, nowY, nowZ;
 long lastOpenShutter = 0, lastCloseShutter = 0;
 int speed;
 int max;
-long totalTime_us;
+long totalTim9e_us;
 long PeriodX, PeriodY, PeriodZ;
 long lastX, lastY, lastZ;
 int STP_X_160, STP_Y_160, STP_Z_160;
+int CountX, CountY, CountZ;
 
 volatile long counter;
 long lastClear = 0;
@@ -983,20 +984,21 @@ int main(void)
 			}
 			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 224;
-				cursor = 4;
+				cursor = 3;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
-				totalX = abs(END_X - STR_X);
+				totalX = abs(END_X - STR_X)* 160;
+				//totalX = totalX * 160;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
-				totalY = abs(END_Y - STR_Y);
+				totalY = abs(END_Y - STR_Y)* 160;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
-				totalZ = abs(END_Z - STR_Z);
+				totalZ = abs(END_Z - STR_Z)* 160;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
@@ -1015,9 +1017,9 @@ int main(void)
 				totalTime = max / StpPSec(speed);
 				timeLeft = totalTime;
 				totalTime_us = max * 1000000 / StpPSec(speed);
-				PeriodX = totalTime_us / totalX /160;
-				PeriodY = totalTime_us / totalY /160;
-				PeriodZ = totalTime_us / totalZ /160;
+				PeriodX = totalTime_us / totalX;
+				PeriodY = totalTime_us / totalY;
+				PeriodZ = totalTime_us / totalZ;
 				lastSecond = millis();
 				LCD_Clear_All();
 			}
@@ -1073,14 +1075,38 @@ int main(void)
 			if(((nowTime - lastX))>(PeriodX)){
 				motor(dir_X,0,1,0);
 				lastX = millis();
+				CountX ++;
+			}
+			if(CountX == 160){
+				if(dir_X == 1){
+					nowX ++;}
+				else{
+					nowX --;}
+				CountX = 0;
 			}
 			if(((nowTime - lastY))>(PeriodY)){
 				motor(dir_Y,0,1,1);
 				lastY = millis();
+				CountY ++;
+			}
+			if(CountY == 160){
+				if(dir_Y == 1){
+					nowY ++;}
+				else{
+					nowY --;}
+				CountY = 0;
 			}
 			if(((nowTime - lastZ))>(PeriodZ)){
 				motor(dir_Z,0,1,2);
 				lastZ = millis();
+				CountZ ++;
+			}
+			if(CountZ == 160){
+				if(dir_Z == 1){
+					nowZ ++;}
+				else{
+					nowZ --;}
+				CountZ = 0;
 			}
 		}
 		if(currentMenu == 2242){
