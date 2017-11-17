@@ -735,9 +735,43 @@ void DrawMenu(int menu)
 			LCD_DrawChar(150, 50, Minute2);
 			LCD_DrawChar(170, 50, Second1);
 			LCD_DrawChar(180, 50, Second2);
+				
+			LCD_DrawString(10, 70, "X:");
+			LCD_DrawString(80, 70, "Y:");	
+			LCD_DrawString(150, 70, "Z:");
+				
+			nowX1 = (nowX/1000)%10+48;
+			nowX2 = (nowX/100)%10+48;
+			nowX3 = (nowX/10)%10+48;
+			nowX4 = nowX%10+48;
+			LCD_DrawChar(30, 70, nowX1);
+			LCD_DrawChar(40, 70, nowX2);
+			LCD_DrawChar(50, 70, nowX3);
+			LCD_DrawChar(60, 70, nowX4);
 			
-			LCD_DrawString(20, 70, "Pause");
-			LCD_DrawString(20, 90, "Stop");	
+			
+			
+			nowY1 = (nowY/1000)%10+48;
+			nowY2 = (nowY/100)%10+48;
+			nowY3 = (nowY/10)%10+48;
+			nowY4 = nowY%10+48;
+			LCD_DrawChar(100, 70, nowY1);
+			LCD_DrawChar(110, 70, nowY2);
+			LCD_DrawChar(120, 70, nowY3);
+			LCD_DrawChar(130, 70, nowY4);
+			
+			
+			nowZ1 = (nowZ/1000)%10+48;
+			nowZ2 = (nowZ/100)%10+48;
+			nowZ3 = (nowZ/10)%10+48;
+			nowZ4 = nowZ%10+48;
+			LCD_DrawChar(170, 70, nowZ1);
+			LCD_DrawChar(180, 70, nowZ2);
+			LCD_DrawChar(190, 70, nowZ3);
+			LCD_DrawChar(200, 70, nowZ4);
+			
+			LCD_DrawString(20, 90, "Pause");
+			LCD_DrawString(20, 110, "Stop");	
 			break;
 			case 1142 : 
 			LCD_DrawString(10, 10, "Taking Time Lapse... ...");
@@ -770,8 +804,43 @@ void DrawMenu(int menu)
 			LCD_DrawChar(170, 50, Second1);
 			LCD_DrawChar(180, 50, Second2);
 			
-			LCD_DrawString(20, 70, "Resume");
-			LCD_DrawString(20, 90, "Stop");	
+			LCD_DrawString(10, 70, "X:");
+			LCD_DrawString(80, 70, "Y:");	
+			LCD_DrawString(150, 70, "Z:");
+				
+			nowX1 = (nowX/1000)%10+48;
+			nowX2 = (nowX/100)%10+48;
+			nowX3 = (nowX/10)%10+48;
+			nowX4 = nowX%10+48;
+			LCD_DrawChar(30, 70, nowX1);
+			LCD_DrawChar(40, 70, nowX2);
+			LCD_DrawChar(50, 70, nowX3);
+			LCD_DrawChar(60, 70, nowX4);
+			
+			
+			
+			nowY1 = (nowY/1000)%10+48;
+			nowY2 = (nowY/100)%10+48;
+			nowY3 = (nowY/10)%10+48;
+			nowY4 = nowY%10+48;
+			LCD_DrawChar(100, 70, nowY1);
+			LCD_DrawChar(110, 70, nowY2);
+			LCD_DrawChar(120, 70, nowY3);
+			LCD_DrawChar(130, 70, nowY4);
+			
+			
+			nowZ1 = (nowZ/1000)%10+48;
+			nowZ2 = (nowZ/100)%10+48;
+			nowZ3 = (nowZ/10)%10+48;
+			nowZ4 = nowZ%10+48;
+			LCD_DrawChar(170, 70, nowZ1);
+			LCD_DrawChar(180, 70, nowZ2);
+			LCD_DrawChar(190, 70, nowZ3);
+			LCD_DrawChar(200, 70, nowZ4);
+			
+			
+			LCD_DrawString(20, 90, "Resume");
+			LCD_DrawString(20, 110, "Stop");	
 			break;
 			case 123 : 
 			LCD_DrawString(10, 10, "Please enter the following");
@@ -938,8 +1007,42 @@ void DrawMenu(int menu)
 			LCD_DrawChar(170, 30, Second1);
 			LCD_DrawChar(180, 30, Second2);
 			
-			LCD_DrawString(20, 50, "Pause");
-			LCD_DrawString(20, 70, "Stop");	
+			LCD_DrawString(10, 50, "X:");
+			LCD_DrawString(80, 50, "Y:");	
+			LCD_DrawString(150, 50, "Z:");
+				
+			nowX1 = (nowX/1000)%10+48;
+			nowX2 = (nowX/100)%10+48;
+			nowX3 = (nowX/10)%10+48;
+			nowX4 = nowX%10+48;
+			LCD_DrawChar(30, 50, nowX1);
+			LCD_DrawChar(40, 50, nowX2);
+			LCD_DrawChar(50, 50, nowX3);
+			LCD_DrawChar(60, 50, nowX4);
+			
+			
+			
+			nowY1 = (nowY/1000)%10+48;
+			nowY2 = (nowY/100)%10+48;
+			nowY3 = (nowY/10)%10+48;
+			nowY4 = nowY%10+48;
+			LCD_DrawChar(100, 50, nowY1);
+			LCD_DrawChar(110, 50, nowY2);
+			LCD_DrawChar(120, 50, nowY3);
+			LCD_DrawChar(130, 50, nowY4);
+			
+			
+			nowZ1 = (nowZ/1000)%10+48;
+			nowZ2 = (nowZ/100)%10+48;
+			nowZ3 = (nowZ/10)%10+48;
+			nowZ4 = nowZ%10+48;
+			LCD_DrawChar(170, 50, nowZ1);
+			LCD_DrawChar(180, 50, nowZ2);
+			LCD_DrawChar(190, 50, nowZ3);
+			LCD_DrawChar(200, 50, nowZ4);
+			
+			LCD_DrawString(20, 70, "Pause");
+			LCD_DrawString(20, 90, "Stop");	
 			break;
 			case 2242 : 
 			LCD_DrawString(10, 10, "Taking Video... ...");
@@ -962,10 +1065,43 @@ void DrawMenu(int menu)
 			LCD_DrawChar(170, 30, Second1);
 			LCD_DrawChar(180, 30, Second2);
 			
+			LCD_DrawString(10, 50, "X:");
+			LCD_DrawString(80, 50, "Y:");	
+			LCD_DrawString(150, 50, "Z:");
+				
+			nowX1 = (nowX/1000)%10+48;
+			nowX2 = (nowX/100)%10+48;
+			nowX3 = (nowX/10)%10+48;
+			nowX4 = nowX%10+48;
+			LCD_DrawChar(30, 50, nowX1);
+			LCD_DrawChar(40, 50, nowX2);
+			LCD_DrawChar(50, 50, nowX3);
+			LCD_DrawChar(60, 50, nowX4);
+			
+			
+			
+			nowY1 = (nowY/1000)%10+48;
+			nowY2 = (nowY/100)%10+48;
+			nowY3 = (nowY/10)%10+48;
+			nowY4 = nowY%10+48;
+			LCD_DrawChar(100, 50, nowY1);
+			LCD_DrawChar(110, 50, nowY2);
+			LCD_DrawChar(120, 50, nowY3);
+			LCD_DrawChar(130, 50, nowY4);
+			
+			
+			nowZ1 = (nowZ/1000)%10+48;
+			nowZ2 = (nowZ/100)%10+48;
+			nowZ3 = (nowZ/10)%10+48;
+			nowZ4 = nowZ%10+48;
+			LCD_DrawChar(170, 50, nowZ1);
+			LCD_DrawChar(180, 50, nowZ2);
+			LCD_DrawChar(190, 50, nowZ3);
+			LCD_DrawChar(200, 50, nowZ4);
 		
 			
-			LCD_DrawString(20, 50, "Resume");
-			LCD_DrawString(20, 70, "Stop");	
+			LCD_DrawString(20, 70, "Resume");
+			LCD_DrawString(20, 90, "Stop");	
 			break;
 			case 221 :
 			LCD_DrawString(10, 10, "Please enter the following");

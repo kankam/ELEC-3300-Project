@@ -56,11 +56,13 @@ int max;
 long totalTime_us;
 long PeriodX, PeriodY, PeriodZ;
 long lastX, lastY, lastZ;
+int STP_X_160, STP_Y_160, STP_Z_160;
 
 volatile long counter;
 long lastClear = 0;
 long nowTime;
 long lastSecond;
+int delta_time;
 int changeMenuFlag = 0;
 int Frames_taken;
 int UpdateRate;
@@ -235,6 +237,7 @@ int main(void)
 			if(cursor == 3 && digitalRead(2) == 1 && END_Y > 0){
 				END_Y--;
 				nowY = END_Y;
+				motor(0,0,160,1);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -242,6 +245,7 @@ int main(void)
 			if(cursor == 3 && digitalRead(3) == 1 && END_Y < 9999){
 				END_Y++;
 				nowY = END_Y;
+				motor(1,0,160,1);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -249,6 +253,7 @@ int main(void)
 			if(cursor == 4 && digitalRead(2) == 1 && END_Z > 0){
 				END_Z--;
 				nowZ = END_Z;
+				motor(0,0,160,2);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -256,6 +261,7 @@ int main(void)
 			if(cursor == 4 && digitalRead(3) == 1 && END_Z < 9999){
 				END_Z++;
 				nowZ = END_Z;
+				motor(1,0,160,2);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -321,6 +327,7 @@ int main(void)
 			if(cursor == 3 && digitalRead(2) == 1 && STR_Y > 0){
 				STR_Y--;
 				nowY = STR_Y;
+				motor(0,0,160,1);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -328,6 +335,7 @@ int main(void)
 			if(cursor == 3 && digitalRead(3) == 1 && STR_Y <9999){
 				STR_Y++;
 				nowY = STR_Y;
+				motor(1,0,160,1);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -335,6 +343,7 @@ int main(void)
 			if(cursor == 4 && digitalRead(2) == 1 && STR_Z > 0){
 				STR_Z--;
 				nowZ = STR_Z;
+				motor(0,0,160,2);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -342,6 +351,7 @@ int main(void)
 			if(cursor == 4 && digitalRead(3) == 1 && STR_Z <9999){
 				STR_Z++;
 				nowZ = STR_Z;
+				motor(1,0,160,2);
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
@@ -454,25 +464,28 @@ int main(void)
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 114;
-				cursor = 3;
+				cursor = 4;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				totalTime = fames * (interval + shutterT);
 				timeLeft = totalTime;
 				totalX = abs(END_X - STR_X);
-				STP_X = totalX/fames*160;
+				STP_X_160 = totalX/fames;
+				STP_X = STP_X_160 * 160;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
 				totalY = abs(END_Y - STR_Y);
-				STP_Y = totalY/fames*160;
+				STP_Y_160 = totalY/fames;
+				STP_Y = STP_X_160 * 160;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
 				totalZ = abs(END_Z - STR_Z);
-				STP_Z = totalZ/fames*160;
+				STP_Z_160 = totalZ/fames;
+				STP_Z = STP_Z_160*160;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
@@ -598,37 +611,37 @@ int main(void)
 					UpdateRate = 500000;
 				}
 				
-			if(cursor == 2 && digitalRead(2) == 1 && STR_X > 0){
+			if(cursor == 2 && digitalRead(2) == 1 && END_X > 0){
 				END_X--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999){
+			if(cursor == 2 && digitalRead(3) == 1 && END_X <9999){
 				END_X++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(2) == 1 && STR_Y > 0){
+			if(cursor == 4 && digitalRead(2) == 1 && END_Y > 0){
 				END_Y--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(3) == 1 && STR_Y <9999){
+			if(cursor == 4 && digitalRead(3) == 1 && END_Y <9999){
 				END_Y++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 6 && digitalRead(2) == 1 && STR_Z > 0){
+			if(cursor == 6 && digitalRead(2) == 1 && END_Z > 0){
 				END_Z--;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 6 && digitalRead(3) == 1 && STR_Z <9999){
+			if(cursor == 6 && digitalRead(3) == 1 && END_Z <9999){
 				END_Z++;
 				Delayus(UpdateRate);
 				if(UpdateRate > 10){
@@ -717,7 +730,7 @@ int main(void)
 			}
 			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 114;
-				cursor = 3;
+				cursor = 4;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				totalTime = fames * (interval + shutterT);
@@ -742,23 +755,29 @@ int main(void)
 				}
 				else{dir_Z = 0;}
 				motor(dir_X,0,STP_X,0);
-				motor(dir_Y,0,STP_Y,0);
-				motor(dir_Z,0,STP_Z,0);
+				motor(dir_Y,0,STP_Y,1);
+				motor(dir_Z,0,STP_Z,2);
+				nowX = STR_X;
+				nowY = STR_Y;
+				nowZ = STR_Z;
 				//calculate the movenent per interval
 				totalX = abs(END_X - STR_X);
-				STP_X = totalX/fames*160;
+				STP_X_160 = totalX/fames;
+				STP_X = STP_X_160 * 160;
 				if(END_X > STR_X){
 					dir_X = 1;
 				}
 				else{dir_X = 0;}
 				totalY = abs(END_Y - STR_Y);
-				STP_Y = totalY/fames*160;
+				STP_Y_160 = totalY/fames;
+				STP_Y = STP_Y_160 * 160;
 				if(END_Y > STR_Y){
 					dir_Y = 1;
 				}
 				else{dir_Y = 0;}
 				totalZ = abs(END_Z - STR_Z);
-				STP_Z = totalZ/fames*160;
+				STP_Z_160 = totalZ/fames;
+				STP_Z = STP_Z_160 * 160;
 				if(END_Z > STR_Z){
 					dir_Z = 1;
 				}
@@ -780,6 +799,8 @@ int main(void)
 			
 			nowTime = millis();
 			if(nowTime - lastSecond > 1000){
+				//delta_time = (nowTime - lastSecond) / 1000;
+				//timeLeft -= delta_time;
 				timeLeft --;
 				lastSecond = millis();
 			}
@@ -787,16 +808,16 @@ int main(void)
 			LCD_DrawArrow(cursor);
 			if(digitalRead(1) == 1){
 				LCD_Clear_Arrow(3);
-				if(cursor < 4){
+				if(cursor < 5){
 					cursor ++;}
-				else{cursor = 3;}
+				else{cursor = 4;}
 				DelayAndAbuzz();
 			}
 			if(digitalRead(0) == 1){
 				LCD_Clear_Arrow(3);
-				if(cursor > 3){
+				if(cursor > 4){
 					cursor --;}
-				else{cursor = 4;}
+				else{cursor = 5;}
 				DelayAndAbuzz();
 			}	
 			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
@@ -834,16 +855,16 @@ int main(void)
 				Frames_taken++;
 				motor(dir_X,0,STP_X,0);
 				if(dir_X == 1){
-					nowX = nowX + STP_X;}
-				else {nowX = nowX - STP_X;}
+					nowX = nowX + STP_X_160;}
+				else {nowX = nowX - STP_X_160;}
 				motor(dir_Y,0,STP_Y,1);
 				if(dir_Y == 1){
-					nowY = nowY + STP_Y;}
-				else {nowY = nowY - STP_Y;}
+					nowY = nowY + STP_Y_160;}
+				else {nowY = nowY - STP_Y_160;}
 				motor(dir_Z,0,STP_Z,2);
 				if(dir_Z == 1){
-					nowZ = nowZ + STP_Z;}
-				else {nowX = nowX - STP_X;}
+					nowZ = nowZ + STP_Z_160;}
+				else {nowZ = nowZ - STP_Z_160;}
 			}
 			if(Frames_taken == fames){
 				buzzer(5);
@@ -893,7 +914,7 @@ int main(void)
 			}		
 		}
 		
-	if(currentMenu == 2){
+	  if(currentMenu == 2){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
@@ -962,7 +983,7 @@ int main(void)
 			}
 			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 224;
-				cursor = 3;
+				cursor = 4;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				totalX = abs(END_X - STR_X);
@@ -994,9 +1015,9 @@ int main(void)
 				totalTime = max / StpPSec(speed);
 				timeLeft = totalTime;
 				totalTime_us = max * 1000000 / StpPSec(speed);
-				PeriodX = totalTime_us / totalX;
-				PeriodY = totalTime_us / totalY;
-				PeriodZ = totalTime_us / totalZ;
+				PeriodX = totalTime_us / totalX /160;
+				PeriodY = totalTime_us / totalY /160;
+				PeriodZ = totalTime_us / totalZ /160;
 				lastSecond = millis();
 				LCD_Clear_All();
 			}
@@ -1054,11 +1075,11 @@ int main(void)
 				lastX = millis();
 			}
 			if(((nowTime - lastY))>(PeriodY)){
-				motor(dir_Y,0,1,0);
+				motor(dir_Y,0,1,1);
 				lastY = millis();
 			}
 			if(((nowTime - lastZ))>(PeriodZ)){
-				motor(dir_Z,0,1,0);
+				motor(dir_Z,0,1,2);
 				lastZ = millis();
 			}
 		}
@@ -1141,8 +1162,7 @@ int main(void){
 */
 
 
-void Delayus(int duration)
-{
+void Delayus(int duration){
 		while(duration--) 
 		{
 			int i=0x02;				
@@ -1153,9 +1173,8 @@ void Delayus(int duration)
 
 
 
-void GPIOConf(void)
-{		
-	/* Configure the folowing pin as output(A2,A3,A4,A5,A6,A7) */
+void GPIOConf(void){		
+	/* Configure the folowing pin as output(A2,A3,A4,A5,A6,A7,A8) */
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
@@ -1185,20 +1204,20 @@ void digitalWrite(int i, int H_L){
 			else{GPIOA->BSRR=GPIO_Pin_4;}
 		break;
 		case 3 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_5;}
-			else{GPIOA->BSRR=GPIO_Pin_5;}
-		break;
-		case 4 : 
 			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_6;}
 			else{GPIOA->BSRR=GPIO_Pin_6;}
 		break;
-		case 5 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_7;}
-			else{GPIOA->BSRR=GPIO_Pin_7;}
+		case 4 : 
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_5;}
+			else{GPIOA->BSRR=GPIO_Pin_5;}
 		break;
-		case 6 : 
+		case 5 : 
 			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_8;}
 			else{GPIOA->BSRR=GPIO_Pin_8;}
+		break;
+		case 6 : 
+			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_7;}
+			else{GPIOA->BSRR=GPIO_Pin_7;}
 		break;
 		}			
 }
@@ -1259,6 +1278,8 @@ void motor(int dir, int speed, int step, int motor_no){
 	}
 	if(dir == 1){
 		digitalWrite(2,1);//A4
+		digitalWrite(4,1);//A5
+		digitalWrite(6,1);//A7
 	}
 	else{digitalWrite(2,0);}
 	for(i = 0; i < step; i++){
@@ -1273,6 +1294,18 @@ void Step(int motor_no){
 			digitalWrite(1,1); //A3
 			Delayus(20);
 			digitalWrite(1,0);
+			Delayus(20);
+		break;
+		case 1 :
+			digitalWrite(3,1); //A6
+			Delayus(20);
+			digitalWrite(3,0);
+			Delayus(20);
+		break;
+		case 2 :
+			digitalWrite(5,1); //A8
+			Delayus(20);
+			digitalWrite(5,0);
 			Delayus(20);
 		break;
 		
