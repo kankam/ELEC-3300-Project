@@ -975,7 +975,7 @@ void DrawMenu(int menu)
 			case 223 :
 			LCD_DrawString(10, 10, "Please enter the following");
 			LCD_DrawString(10, 30, "parameters");
-			LCD_DrawString(20, 50, "Speed(1-9):");
+			LCD_DrawString(20, 50, "Speed(1-5):");
 
 			speed1 = speed%10+48;
 			LCD_DrawChar(125, 50, speed1);

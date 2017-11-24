@@ -51,9 +51,9 @@ int totalX, totalY, totalZ;
 int STP_X, STP_Y, STP_Z;
 int nowX, nowY, nowZ;
 long lastOpenShutter = 0, lastCloseShutter = 0;
-int speed;
+int speed = 1;
 int max;
-long totalTim9e_us;
+long totalTime_us;
 long PeriodX, PeriodY, PeriodZ;
 long lastX, lastY, lastZ;
 int STP_X_160, STP_Y_160, STP_Z_160;
@@ -974,11 +974,11 @@ int main(void)
 				else{cursor = 4;}
 				DelayAndAbuzz();
 			}		
-			if(cursor == 2 && digitalRead(2) == 1 && speed >0){
+			if(cursor == 2 && digitalRead(2) == 1 && speed >1){
 				speed--;
 				DelayAndAbuzz();
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && speed <9){
+			if(cursor == 2 && digitalRead(3) == 1 && speed <5	){
 				speed++;
 				DelayAndAbuzz();
 			}
@@ -1016,10 +1016,10 @@ int main(void)
 				}
 				totalTime = max / StpPSec(speed);
 				timeLeft = totalTime;
-				totalTime_us = max * 1000000 / StpPSec(speed);
-				PeriodX = totalTime_us / totalX;
-				PeriodY = totalTime_us / totalY;
-				PeriodZ = totalTime_us / totalZ;
+				//totalTime_us = max * 1000000 / StpPSec(speed);
+				PeriodX = (max  * 1000000/ StpPSec(speed)) / totalX ;
+				PeriodY = (max  * 1000000/ StpPSec(speed)) / totalY ;
+				PeriodZ = (max  * 1000000/ StpPSec(speed)) / totalZ ;
 				lastSecond = millis();
 				LCD_Clear_All();
 			}
@@ -1200,19 +1200,35 @@ void Delayus(int duration){
 
 
 void GPIOConf(void){		
-	/* Configure the folowing pin as output(A2,A3,A4,A5,A6,A7,A8) */
+	/* Configure the folowing pin as output(A 2 B 12 13 14 15 C 6 7) */
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
-	GPIOA->BRR = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-	//Configure the folowing pin as intput(B 0 1 5 6 7 8 9)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0| GPIO_Pin_1| GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &GPIO_InitStructure);
+	GPIOB->BRR = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GPIOC->BRR = GPIO_Pin_6 | GPIO_Pin_7;
+	//Configure the folowing pin as intput(B 0 A 4 5 6 7)
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6 |GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
 }
 
 void digitalWrite(int i, int H_L){
@@ -1222,28 +1238,28 @@ void digitalWrite(int i, int H_L){
 			else{GPIOA->BSRR=GPIO_Pin_2;}
 		break;
 		case 1 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_3;}
-			else{GPIOA->BSRR=GPIO_Pin_3;}
+			if (H_L == 0){ GPIOC->BRR=GPIO_Pin_6;}
+			else{GPIOC->BSRR=GPIO_Pin_6;}
 		break;			
 		case 2 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_4;}
-			else{GPIOA->BSRR=GPIO_Pin_4;}
+			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_14;}
+			else{GPIOB->BSRR=GPIO_Pin_14;}
 		break;
 		case 3 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_6;}
-			else{GPIOA->BSRR=GPIO_Pin_6;}
+			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_15;}
+			else{GPIOB->BSRR=GPIO_Pin_15;}
 		break;
 		case 4 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_5;}
-			else{GPIOA->BSRR=GPIO_Pin_5;}
+			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_12;}
+			else{GPIOB->BSRR=GPIO_Pin_12;}
 		break;
 		case 5 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_8;}
-			else{GPIOA->BSRR=GPIO_Pin_8;}
+			if (H_L == 0){ GPIOC->BRR=GPIO_Pin_7;}
+			else{GPIOC->BSRR=GPIO_Pin_7;}
 		break;
 		case 6 : 
-			if (H_L == 0){ GPIOA->BRR=GPIO_Pin_7;}
-			else{GPIOA->BSRR=GPIO_Pin_7;}
+			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_13;}
+			else{GPIOB->BSRR=GPIO_Pin_13;}
 		break;
 		}			
 }
@@ -1256,21 +1272,22 @@ int digitalRead(int i){
 			else{r = 1;}
 		break;
 		case 1 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_1)){r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_4)){r = 0;}
 			else{r = 1;}
 		break;
 		case 2 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_5)){r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_5)){r = 0;}
 			else{r = 1;}
 		break;
 		case 3 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_6)){r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_6)){r = 0;}
 			else{r = 1;}
 		break;
 		case 4 :
-			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_7)){r = 0;}
+			if(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_7)){r = 0;}
 			else{r = 1;}
 		break;
+		/*
 		case 5 :
 			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_8)){r = 0;}
 			else{r = 1;}
@@ -1278,7 +1295,8 @@ int digitalRead(int i){
 		case 6 :
 			if(GPIO_ReadInputDataBit(GPIOB,GPIO_Pin_9)){r = 0;}
 			else{r = 1;}
-		break;			
+		break;
+		*/			
 	}
 	return r;
 }
@@ -1359,20 +1377,20 @@ void DelayAndAbuzz(void){
 int StpPSec(int spd){
 	int x;
 	switch (spd) {
-		case 0 :
+		case 1 :
 			x = 3200;
 		break;
-		case 1 :
+		case 2 :
 			x = 1600;
 		break;
-		case 2 :
+		case 3 :
 			x = 800;
 		break;
-		case 3 :
-			x = 320;
-		break;
 		case 4 :
-			x = 160;
+			x = 400;
+		break;
+		case 5 :
+			x = 200;
 		break;
 	}
 	return x;
