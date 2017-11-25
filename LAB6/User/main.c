@@ -100,28 +100,28 @@ int main(void)
 	
 	currentMenu = 0;
 	
-	cursor = 0;
+	cursor = 2;
   while (1) {
 		if(currentMenu == 0){
 			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
 			if(digitalRead(1) == 1){
-				LCD_Clear_Arrow(0);
-				if(cursor < 3){
+				LCD_Clear_Arrow(2);
+				if(cursor < 5){
 					cursor ++;
 				}
-				else{cursor = 0;}
+				else{cursor = 2;}
 				DelayAndAbuzz();
 			}
 			if(digitalRead(0) == 1){
-				LCD_Clear_Arrow(0);
-				if(cursor > 0){
+				LCD_Clear_Arrow(2);
+				if(cursor > 2){
 					cursor --;}
-				else{cursor = 3;}
+				else{cursor = 5;}
 				DelayAndAbuzz();
 			}
-			if(cursor == 0 && digitalRead(4) == 1 && changeMenuFlag == 0){
+			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 1;
 				cursor = 1;
 				TimeLapseFlag =1;
@@ -129,7 +129,7 @@ int main(void)
 				DelayAndAbuzz();
 				LCD_Clear_All();
 			} 	
-			if(cursor == 1 && digitalRead(4) == 1 && changeMenuFlag == 0){
+			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 2;
 				cursor = 1;
 				VideoFlag = 1;
@@ -137,14 +137,14 @@ int main(void)
 				DelayAndAbuzz();
 				LCD_Clear_All();
 			}
-			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
+			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 3;
 				cursor = 1;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
 			}
-			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
+			if(cursor == 5 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 4;
 				cursor = 1;
 				changeMenuFlag =1;
@@ -189,7 +189,7 @@ int main(void)
 			}
 			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				TimeLapseFlag = 0;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -859,7 +859,7 @@ int main(void)
 			}
 			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				TimeLapseFlag = 0;
 				timeLeft = 0;
 				Frames_taken = 0;
@@ -896,7 +896,7 @@ int main(void)
 			if(Frames_taken == fames){
 				buzzer(5);
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				TimeLapseFlag = 0;
 				timeLeft = 0;
 				Frames_taken = 0;
@@ -931,7 +931,7 @@ int main(void)
 			}
 			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				TimeLapseFlag = 0;
 				timeLeft = 0;
 				Frames_taken = 0;
@@ -979,7 +979,7 @@ int main(void)
 			}
 			if(cursor == 3 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				VideoFlag = 0;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
@@ -1094,7 +1094,7 @@ int main(void)
 			}
 			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				VideoFlag = 0;
 				timeLeft = 0;
 				changeMenuFlag =1;
@@ -1141,7 +1141,7 @@ int main(void)
 			if(nowX == END_X && nowY == END_Y && nowZ == END_Z ){
 				buzzer(5);
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				VideoFlag = 0;
 				timeLeft = 0;
 				Frames_taken = 0;
@@ -1179,7 +1179,7 @@ int main(void)
 			}
 			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
-				cursor = 0;
+				cursor = 2;
 				VideoFlag = 0;
 				timeLeft = 0;
 				changeMenuFlag =1;
@@ -1188,6 +1188,103 @@ int main(void)
 			}
 		}
 		
+		if(currentMenu == 3){
+			changeMenuFlag =0;
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor < 4){
+					cursor ++;}
+				else{cursor = 1;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 4;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 0 && digitalRead(1) == 0 && digitalRead(2) == 0 && digitalRead(3) == 0 && digitalRead(4) == 0)
+				{
+					UpdateRate = 500000;
+				}
+			if(cursor == 1 && digitalRead(2) == 1 && nowX > 0){
+				nowX--;
+				motor(0,0,160,0);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 1 && digitalRead(3) == 1 && nowX < 9999){
+				nowX++;
+				motor(1,0,160,0);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 2 && digitalRead(2) == 1 && nowY > 0){
+				nowY--;
+				motor(0,0,160,1);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 2 && digitalRead(3) == 1 && nowY < 9999){
+				nowY++;
+				motor(1,0,160,1);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 3 && digitalRead(2) == 1 && nowZ > 0){
+				nowZ--;
+				motor(0,0,160,2);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 3 && digitalRead(3) == 1 && nowZ < 9999){
+				nowZ++;
+				motor(1,0,160,2);
+				Delayus(UpdateRate);
+				if(UpdateRate > 10){
+					UpdateRate = UpdateRate * 0.8;}
+			}
+			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 0;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();}
+		}
+		if(currentMenu == 4){
+			changeMenuFlag =0;
+			DrawMenu(currentMenu);
+			LCD_DrawArrow(cursor);
+			if(digitalRead(1) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor < 2){
+					cursor ++;}
+				else{cursor = 1;}
+				DelayAndAbuzz();
+			}
+			if(digitalRead(0) == 1){
+				LCD_Clear_Arrow(1);
+				if(cursor > 1){
+					cursor --;}
+				else{cursor = 2;}
+				DelayAndAbuzz();
+			}	
+			if(cursor == 2&& digitalRead(4) == 1 && changeMenuFlag == 0){
+				currentMenu = 0;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+		}
 	}
 }
 

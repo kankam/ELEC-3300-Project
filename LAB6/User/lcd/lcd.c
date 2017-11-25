@@ -576,10 +576,12 @@ void DrawMenu(int menu)
 	
 		switch(menu){
 		case 0 : 
-			LCD_DrawString(20, 10, "Time Lapse Mode");
-			LCD_DrawString(20, 30, "Video Mode");
-			LCD_DrawString(20, 50, "Manual Mode");
-			LCD_DrawString(20, 70, "Settings");
+			LCD_DrawString(10, 10, "ELEC 3300 Project");
+			LCD_DrawString(10, 30, "3 Axis Camera Slider");
+			LCD_DrawString(20, 50, "Time Lapse Mode");
+			LCD_DrawString(20, 70, "Video Mode");
+			LCD_DrawString(20, 90, "Manual Mode");
+			LCD_DrawString(20, 110, "Settings");
 		break;
 		case 1 :
 			LCD_DrawString(10, 10, "Time Lapse Mode");
@@ -1103,19 +1105,6 @@ void DrawMenu(int menu)
 			LCD_DrawString(20, 70, "Resume");
 			LCD_DrawString(20, 90, "Stop");	
 			break;
-			case 221 :
-			LCD_DrawString(10, 10, "Please enter the following");
-			LCD_DrawString(10, 30, "parameters");
-			LCD_DrawString(20, 50, "Speed(1-9):");
-
-			speed1 = speed%10+48;
-			LCD_DrawChar(125, 50, speed1);
-			
-			
-			
-			LCD_DrawString(20, 70, "Set");
-			LCD_DrawString(20, 90, "Return");	
-			break;
 		case 3 : 
 			LCD_DrawString(10, 10, "Manual Mode");
 			LCD_DrawString(20, 30, "Slide: <<<");
@@ -1154,8 +1143,9 @@ void DrawMenu(int menu)
 			LCD_DrawString(20, 90, "Return");
 		break;
 		case 4:
-			LCD_DrawString(20, 10, "Re-initialize");
-		LCD_DrawString(20, 30, "Return");
+		LCD_DrawString(10, 10, "Settings");
+		LCD_DrawString(20, 30, "Re-initialize");
+		LCD_DrawString(20, 50, "Return");
 		break;
 		
 	}
