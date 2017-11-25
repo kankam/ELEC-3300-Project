@@ -370,6 +370,7 @@ int main(void)
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
+
 			}
 			if(cursor == 6 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 111;
@@ -661,6 +662,31 @@ int main(void)
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
+				//slew to start position
+				totalX = abs(nowX - STR_X);
+				STP_X  = totalX * 160;
+				if(nowX > STR_X){
+					dir_X = 1;
+				}
+				else{dir_X = 0;}
+				totalY = abs(nowY - STR_Y);
+				STP_Y  = totalY * 160;
+				if(nowY > STR_Y){
+					dir_Y = 1;
+				}
+				else{dir_Y = 0;}
+				totalZ = abs(nowZ - STR_Z);
+				STP_Z  = totalZ * 160;
+				if(nowZ > STR_Z){
+					dir_Z = 1;
+				}
+				else{dir_Z = 0;}
+				motor(dir_X,0,STP_X,0);
+				motor(dir_Y,0,STP_Y,1);
+				motor(dir_Z,0,STP_Z,2);
+				nowX = STR_X;
+				nowY = STR_Y;
+				nowZ = STR_Z;
 			}
 			if(cursor == 9 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 122;
@@ -939,10 +965,14 @@ int main(void)
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
+				END_X = nowX;
+				END_Y = nowY;
+				END_Z = nowZ;
+				
 			}
 			if(cursor == 2 && digitalRead(4) == 1 && changeMenuFlag == 0){
-				currentMenu = 221;
-				cursor = 1;
+				currentMenu = 121;
+				cursor = 2;
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
@@ -1017,9 +1047,9 @@ int main(void)
 				totalTime = max / StpPSec(speed);
 				timeLeft = totalTime;
 				//totalTime_us = max * 1000000 / StpPSec(speed);
-				PeriodX = (max  * 1000000/ StpPSec(speed)) / totalX ;
-				PeriodY = (max  * 1000000/ StpPSec(speed)) / totalY ;
-				PeriodZ = (max  * 1000000/ StpPSec(speed)) / totalZ ;
+				PeriodX = (max  * 2000 / StpPSec(speed)) / totalX ;
+				PeriodY = (max  * 2000 / StpPSec(speed)) / totalY ;
+				PeriodZ = (max  * 2000 / StpPSec(speed)) / totalZ ;
 				lastSecond = millis();
 				LCD_Clear_All();
 			}
@@ -1072,50 +1102,55 @@ int main(void)
 				LCD_Clear_All();
 			}
 			nowTime = millis();
-			if(((nowTime - lastX))>(PeriodX)){
-				motor(dir_X,0,1,0);
+			if(((nowTime - lastX))>(PeriodX) && nowX != END_X){
+				motor(dir_X,0,2,0);
 				lastX = millis();
 				CountX ++;
 			}
-			if(CountX == 160){
+			if(CountX == 80){
 				if(dir_X == 1){
 					nowX ++;}
 				else{
 					nowX --;}
 				CountX = 0;
 			}
-			if(((nowTime - lastY))>(PeriodY)){
-				motor(dir_Y,0,1,1);
+			if(((nowTime - lastY))>(PeriodY)&& nowY != END_Y){
+				motor(dir_Y,0,2,1);
 				lastY = millis();
 				CountY ++;
 			}
-			if(CountY == 160){
+			if(CountY == 80){
 				if(dir_Y == 1){
 					nowY ++;}
 				else{
 					nowY --;}
 				CountY = 0;
 			}
-			if(((nowTime - lastZ))>(PeriodZ)){
-				motor(dir_Z,0,1,2);
+			if(((nowTime - lastZ))>(PeriodZ)&& nowZ != END_Z){
+				motor(dir_Z,0,2,2);
 				lastZ = millis();
 				CountZ ++;
 			}
-			if(CountZ == 160){
+			if(CountZ == 80){
 				if(dir_Z == 1){
 					nowZ ++;}
 				else{
 					nowZ --;}
 				CountZ = 0;
 			}
+			if(nowX == END_X && nowY == END_Y && nowZ == END_Z ){
+				buzzer(5);
+				currentMenu = 0;
+				cursor = 0;
+				VideoFlag = 0;
+				timeLeft = 0;
+				Frames_taken = 0;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();}
 		}
 		if(currentMenu == 2242){
-			changeMenuFlag =0;			
-			nowTime = millis();
-			if(nowTime - lastSecond > 1000){
-				timeLeft --;
-				lastSecond = millis();
-			}
+			changeMenuFlag =0;
 			DrawMenu(currentMenu);
 			LCD_DrawArrow(cursor);
 			if(digitalRead(1) == 1){
@@ -1378,19 +1413,19 @@ int StpPSec(int spd){
 	int x;
 	switch (spd) {
 		case 1 :
-			x = 3200;
-		break;
-		case 2 :
-			x = 1600;
-		break;
-		case 3 :
-			x = 800;
-		break;
-		case 4 :
 			x = 400;
 		break;
-		case 5 :
+		case 2 :
 			x = 200;
+		break;
+		case 3 :
+			x = 100;
+		break;
+		case 4 :
+			x = 50;
+		break;
+		case 5 :
+			x = 25;
 		break;
 	}
 	return x;
