@@ -20,3 +20,4 @@
 ..\..\output\main.o: ..\..\User\delay.h
 ..\..\output\main.o: ..\..\User\sys.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_rtc.h
+..\..\output\main.o: ..\..\User\delay.c

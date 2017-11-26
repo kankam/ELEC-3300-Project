@@ -6,6 +6,8 @@
 #include "stm32f10x_tim.h" 
 #include "millis.h"
 #include "millis.c"
+#include "delay.h"
+#include "delay.c"
 /*------------------------------------------------------------
 LAB 6: I2C APPLICATION ON GY80 
 
@@ -32,8 +34,11 @@ void Step(int motor_mo);
 void buzzer(int times);
 void motor(int dir, int speed, int step, int motor_no);
 void shutterNow(void);
+void toggleVideo(void);
+void high(unsigned int time, int freq, int pinLED);
 void DelayAndAbuzz(void);
 int StpPSec(int spd);
+
 
 int ANGLE_LAST_DIGIT;
 int ANGLE;
@@ -75,6 +80,7 @@ int main(void)
 	LCD_INIT(); 						// LCD_INIT 
 	GPIOConf();
 	MILLIS_Init();
+	delay_init();
 
 	
 	buzzer(2);
@@ -655,14 +661,8 @@ int main(void)
 				changeMenuFlag =1;
 				DelayAndAbuzz();
 				LCD_Clear_All();
-			}
-			if(cursor == 8 && digitalRead(4) == 1 && VideoFlag == 1 && changeMenuFlag == 0){
-				currentMenu = 223;
-				cursor = 2;
-				changeMenuFlag =1;
-				DelayAndAbuzz();
-				LCD_Clear_All();
 				//slew to start position
+				LCD_DrawString(10, 10, "Slewing to start position");
 				totalX = abs(nowX - STR_X);
 				STP_X  = totalX * 160;
 				if(nowX > STR_X){
@@ -687,6 +687,43 @@ int main(void)
 				nowX = STR_X;
 				nowY = STR_Y;
 				nowZ = STR_Z;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+			}
+			if(cursor == 8 && digitalRead(4) == 1 && VideoFlag == 1 && changeMenuFlag == 0){
+				currentMenu = 223;
+				cursor = 2;
+				changeMenuFlag =1;
+				DelayAndAbuzz();
+				LCD_Clear_All();
+				//slew to start position
+				LCD_DrawString(10, 10, "Slewing to start position");
+				totalX = abs(nowX - STR_X);
+				STP_X  = totalX * 160;
+				if(nowX > STR_X){
+					dir_X = 1;
+				}
+				else{dir_X = 0;}
+				totalY = abs(nowY - STR_Y);
+				STP_Y  = totalY * 160;
+				if(nowY > STR_Y){
+					dir_Y = 1;
+				}
+				else{dir_Y = 0;}
+				totalZ = abs(nowZ - STR_Z);
+				STP_Z  = totalZ * 160;
+				if(nowZ > STR_Z){
+					dir_Z = 1;
+				}
+				else{dir_Z = 0;}
+				motor(dir_X,0,STP_X,0);
+				motor(dir_Y,0,STP_Y,1);
+				motor(dir_Z,0,STP_Z,2);
+				nowX = STR_X;
+				nowY = STR_Y;
+				nowZ = STR_Z;
+				DelayAndAbuzz();
+				LCD_Clear_All();
 			}
 			if(cursor == 9 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 122;
@@ -762,31 +799,7 @@ int main(void)
 				DelayAndAbuzz();
 				totalTime = fames * (interval + shutterT);
 				timeLeft = totalTime;
-				//slew to start position
-				totalX = abs(nowX - STR_X);
-				STP_X  = totalX * 160;
-				if(nowX > STR_X){
-					dir_X = 1;
-				}
-				else{dir_X = 0;}
-				totalY = abs(nowY - STR_Y);
-				STP_Y  = totalY * 160;
-				if(nowY > STR_Y){
-					dir_Y = 1;
-				}
-				else{dir_Y = 0;}
-				totalZ = abs(nowZ - STR_Z);
-				STP_Z  = totalZ * 160;
-				if(nowZ > STR_Z){
-					dir_Z = 1;
-				}
-				else{dir_Z = 0;}
-				motor(dir_X,0,STP_X,0);
-				motor(dir_Y,0,STP_Y,1);
-				motor(dir_Z,0,STP_Z,2);
-				nowX = STR_X;
-				nowY = STR_Y;
-				nowZ = STR_Z;
+				
 				//calculate the movenent per interval
 				totalX = abs(END_X - STR_X);
 				STP_X_160 = totalX/fames;
@@ -1052,6 +1065,7 @@ int main(void)
 				PeriodZ = (max  * 2000 / StpPSec(speed)) / totalZ ;
 				lastSecond = millis();
 				LCD_Clear_All();
+				toggleVideo();
 			}
 			if(cursor == 4 && digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 112;
@@ -1139,6 +1153,7 @@ int main(void)
 				CountZ = 0;
 			}
 			if(nowX == END_X && nowY == END_Y && nowZ == END_Z ){
+				toggleVideo();
 				buzzer(5);
 				currentMenu = 0;
 				cursor = 2;
@@ -1393,6 +1408,10 @@ void digitalWrite(int i, int H_L){
 			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_13;}
 			else{GPIOB->BSRR=GPIO_Pin_13;}
 		break;
+		case 7 : 
+			if (H_L == 0){ GPIOB->BRR=GPIO_Pin_13;}
+			else{GPIOB->BSRR=GPIO_Pin_13;}
+		break;
 		}			
 }
 
@@ -1490,16 +1509,66 @@ void Step(int motor_no){
 void buzzer(int times){
 	int i =0;
 	while(i < times){
-		Delayus(100000);
+		delay_us(100000);
 		digitalWrite(0,1);//A2
-		Delayus(100000);
+		delay_us(100000);
 		digitalWrite(0,0);
 		i++;
 	}
 }	
 void shutterNow(void){
-	digitalWrite(6, 1);
-	digitalWrite(6, 0);
+	int _pin = 7;
+	int _seq[] = {1,0,1,1,0,1,0,0,1,0,1,1,1,0,0,0,1,1,1,1};
+	int i, j;
+  for (j=0;j<3;j++) {
+    high(2320,40,_pin);
+    delay_us(650);
+    for (i=0;i<20;i++){
+      if (_seq[i]==0){
+        high(575,40,_pin);
+        delay_us(650);
+      }
+      else{
+        high(1175,40,_pin);
+        delay_us(650);
+      }
+    }
+    delay_us(10000);
+  }
+}
+void toggleVideo(void){
+  int _pin = 7;
+	int _seqToggle[] = {0,0,0,1,0,0,1,0,1,0,1,1,1,0,0,0,1,1,1,1};
+	int i, j;
+  for (j=0;j<3;j++) {
+    high(2320,40,_pin);
+    delay_us(650);
+    for (i=0;i<20;i++){
+      if (_seqToggle[i]==0){
+        high(575,40,_pin);
+        delay_us(650);
+      }
+      else{
+        high(1175,40,_pin);
+        delay_us(650);
+      }
+    }
+    delay_us(10000);
+  }
+}
+void high(unsigned int time, int freq, int pinLED){
+  int pause, i;	
+  //unsigned long start = micros();
+  //while(micros()-start<=time){
+	pause = (1000/freq/2)-4;
+	i = time / (pause * 2 + 0);
+	while(i > 0){
+    digitalWrite(pinLED,1);
+    delay_us(pause);
+    digitalWrite(pinLED,0);
+    delay_us(pause);
+		i --;
+  }
 }
 void DelayAndAbuzz(void){
 	buzzer(1);
