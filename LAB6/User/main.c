@@ -38,11 +38,11 @@ void toggleVideo(void);
 void high(unsigned int time, int freq, int pinLED);
 void DelayAndAbuzz(void);
 int StpPSec(int spd);
+void motor0init(void);
 
 
-int ANGLE_LAST_DIGIT;
-int ANGLE;
-int motor0Max, motor1Max, motor2Max;
+
+unsigned int motor0Max, motor1Max, motor2Max;
 int currentMenu;
 int cursor = 0;
 int TimeLapseFlag =0, VideoFlag =0;
@@ -80,32 +80,16 @@ int main(void)
 	LCD_INIT(); 						// LCD_INIT 
 	GPIOConf();
 	MILLIS_Init();
-	delay_init();
-
-	
+	delay_init();	
 	buzzer(2);
 	//initialize
 	//LCD Print initializeing
 	LCD_DrawString(10, 10, "Initializeing ... ...");
-	/*
-	//Slew the slider to min
-	while(digitalRead(0) == 0){
-		motor(0,0,1,0);
-	}		
-	//Slew the slider to max
-	motor0Max = 0;
-	while(digitalRead(1) == 0){
-		motor(1,0,1,0);
-		motor0Max ++;
-	}
-	*/
-
+	motor0init();
+ 
 	//Change menu to 0
-	LCD_Clear_All();
-	lastClear = millis();
-	
-	currentMenu = 0;
-	
+	LCD_Clear_All();	
+	currentMenu = 0;	
 	cursor = 2;
   while (1) {
 		if(currentMenu == 0){
@@ -233,7 +217,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && END_X < 9999){
+			if(cursor == 2 && digitalRead(3) == 1 && END_X < 9999 && END_X < motor0Max){
 				END_X++;
 				nowX = END_X;
 				motor(1,0,10,0);
@@ -323,7 +307,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999){
+			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999 && STR_X < motor0Max){
 				STR_X++;
 				nowX = STR_X;
 				motor(1,0,10,0);
@@ -545,7 +529,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999){
+			if(cursor == 2 && digitalRead(3) == 1 && STR_X <9999 && STR_X < motor0Max){
 				STR_X++;
 				delay_us(UpdateRate);
 				if(UpdateRate > 10){
@@ -557,7 +541,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 4 && digitalRead(3) == 1 && STR_Y <9999){
+			if(cursor == 4 && digitalRead(3) == 1 && STR_Y <9999 && STR_X < motor0Max){
 				STR_Y++;
 				delay_us(UpdateRate);
 				if(UpdateRate > 10){
@@ -625,7 +609,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 2 && digitalRead(3) == 1 && END_X <9999){
+			if(cursor == 2 && digitalRead(3) == 1 && END_X <9999 && END_X < motor0Max){
 				END_X++;
 				delay_us(UpdateRate);
 				if(UpdateRate > 10){
@@ -1231,7 +1215,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 1 && digitalRead(3) == 1 && nowX < 9999){
+			if(cursor == 1 && digitalRead(3) == 1 && nowX < 9999 && nowX < motor0Max){
 				nowX++;
 				motor(1,0,10,0);
 				delay_us(UpdateRate);
@@ -1291,6 +1275,13 @@ int main(void)
 				else{cursor = 2;}
 				DelayAndAbuzz();
 			}	
+			if(cursor == 2&& digitalRead(4) == 1 && changeMenuFlag == 0){
+				LCD_Clear_All();
+				LCD_DrawString(10, 10, "Initializeing ... ...");
+				motor0init();
+				buzzer(2);
+				LCD_Clear_All();
+			}
 			if(cursor == 2&& digitalRead(4) == 1 && changeMenuFlag == 0){
 				currentMenu = 0;
 				cursor = 2;
@@ -1584,3 +1575,22 @@ int StpPSec(int spd){
 	return x;
 }
 
+void motor0init(void){
+	while(digitalRead(0) == 0){
+		motor(0,0,1,0);
+		delay_us(1000);
+	}		
+	motor(1,0,50,0);
+	//Slew the slider to max
+	motor0Max = 0;
+	while(digitalRead(1) == 0){
+		motor(1,0,1,0);
+		delay_us(1000);
+		motor0Max ++;
+	}
+	motor(0,0,50,0);
+	motor0Max -= 50;
+	nowX = motor0Max / 10;
+	motor(0,0,motor0Max / 2 ,0);
+	nowX = nowX /2;
+}
