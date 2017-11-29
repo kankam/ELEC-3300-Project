@@ -42,19 +42,19 @@ void motor0init(void);
 
 
 
-unsigned int motor0Max, motor1Max, motor2Max;
+unsigned int motor0Max = 9999, motor1Max = 9999, motor2Max = 9999;
 int currentMenu;
 int cursor = 0;
 int TimeLapseFlag =0, VideoFlag =0;
 int END_X, END_Y, END_Z;
 int STR_X, STR_Y, STR_Z;
-int fames, interval, shutterT;
+int fames, interval = 5, shutterT;
 int dir_X, dir_Y, dir_Z;
 int totalTime;
 int timeLeft;
 int totalX, totalY, totalZ;
 int STP_X, STP_Y, STP_Z;
-int nowX, nowY, nowZ;
+int nowX = 5000, nowY = 5000, nowZ = 5000;
 long lastOpenShutter = 0, lastCloseShutter = 0;
 int speed = 1;
 int max;
@@ -85,7 +85,7 @@ int main(void)
 	//initialize
 	//LCD Print initializeing
 	LCD_DrawString(10, 10, "Initializeing ... ...");
-	motor0init();
+	//motor0init();
  
 	//Change menu to 0
 	LCD_Clear_All();	
@@ -430,7 +430,7 @@ int main(void)
 				if(UpdateRate > 10){
 					UpdateRate = UpdateRate * 0.8;}
 			}
-			if(cursor == 3 && digitalRead(2) == 1 && interval >0){
+			if(cursor == 3 && digitalRead(2) == 1 && interval >5){
 				interval--;
 				delay_us(UpdateRate);
 				if(UpdateRate > 10){
@@ -866,29 +866,34 @@ int main(void)
 			}
 			nowTime = millis();
 			if(((nowTime - lastCloseShutter))>(interval * 1000) && shutterState == 0){
-				shutterNow();
+				if (shutterT != 0){
+					shutterNow();}
 				lastOpenShutter = millis();
 				buzzer(1);
 				shutterState = 1;
 			}
 			if(((nowTime - lastOpenShutter))>(shutterT * 1000) && shutterState == 1){
-				shutterNow();
+				if (shutterT != 0){
+					shutterNow();}
 				lastCloseShutter = millis();
 				shutterState = 0;
 				buzzer(1);
 				Frames_taken++;
-				motor(dir_X,0,STP_X,0);
+				motor(dir_X,1,STP_X,0);
 				if(dir_X == 1){
 					nowX = nowX + STP_X_10;}
 				else {nowX = nowX - STP_X_10;}
-				motor(dir_Y,0,STP_Y,1);
+				motor(dir_Y,1,STP_Y,1);
 				if(dir_Y == 1){
 					nowY = nowY + STP_Y_1;}
 				else {nowY = nowY - STP_Y_1;}
-				motor(dir_Z,0,STP_Z,2);
+				motor(dir_Z,1,STP_Z,2);
 				if(dir_Z == 1){
 					nowZ = nowZ + STP_Z_1;}
 				else {nowZ = nowZ - STP_Z_1;}
+				if (shutterT == 0){
+					delay_us(100000);
+					shutterNow();}
 			}
 			if(Frames_taken == fames){
 				buzzer(5);
@@ -1100,11 +1105,11 @@ int main(void)
 			}
 			nowTime = millis();
 			if(((nowTime - lastX))>(PeriodX) && nowX != END_X){
-				motor(dir_X,0,2,0);
+				motor(dir_X,0,1,0);
 				lastX = millis();
 				CountX ++;
 			}
-			if(CountX == 80){
+			if(CountX == 10){
 				if(dir_X == 1){
 					nowX ++;}
 				else{
@@ -1112,11 +1117,11 @@ int main(void)
 				CountX = 0;
 			}
 			if(((nowTime - lastY))>(PeriodY)&& nowY != END_Y){
-				motor(dir_Y,0,2,1);
+				motor(dir_Y,0,1,1);
 				lastY = millis();
 				CountY ++;
 			}
-			if(CountY == 80){
+			if(CountY == 1){
 				if(dir_Y == 1){
 					nowY ++;}
 				else{
@@ -1124,11 +1129,11 @@ int main(void)
 				CountY = 0;
 			}
 			if(((nowTime - lastZ))>(PeriodZ)&& nowZ != END_Z){
-				motor(dir_Z,0,2,2);
+				motor(dir_Z,0,1,2);
 				lastZ = millis();
 				CountZ ++;
 			}
-			if(CountZ == 80){
+			if(CountZ == 1){
 				if(dir_Z == 1){
 					nowZ ++;}
 				else{
@@ -1539,7 +1544,7 @@ void high(unsigned int time, int freq, int pinLED){
   //unsigned long start = micros();
   //while(micros()-start<=time){
 	pause = (1000/freq/2)-4;
-	i = time / (pause * 2 + 1);
+	i = time / (pause * 2 + 2);
 	while(i > 0){
     digitalWrite(pinLED,1);
     delay_us(pause);
